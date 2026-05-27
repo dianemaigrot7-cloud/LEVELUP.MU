@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LEVELUP — Design thinking, innovation produit & IA pour vos équipes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --magenta:#E0185C;
+    --magenta-dk:#B81249;
+    --magenta-tint:#FFE9F0;
+    --marigold:#FFB300;
+    --ink:#111111;
+    --mute:#6B7280;
+    --paper:#FAFAFA;
+    --cream:#F5F1EA;
+    --line:#E8E5E0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:"Manrope",ui-sans-serif,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block;max-width:100%}
+  .container{width:100%;max-width:1240px;margin:0 auto;padding:0 32px}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--magenta)}
+  .mute{color:var(--mute)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-weight:700;font-size:15px;padding:14px 22px;border-radius:999px;border:none;cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s;letter-spacing:-0.1px;line-height:1;white-space:nowrap}
+  .btn-primary{background:var(--magenta);color:#fff;box-shadow:0 1px 0 var(--magenta-dk) inset, 0 6px 16px rgba(224,24,92,.25)}
+  .btn-primary:hover{background:var(--magenta-dk);transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:#fff}
+  .btn-white{background:#fff;color:var(--ink)}
+  .btn-white:hover{transform:translateY(-1px)}
+
+  /* logo */
+  .logo{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-0.5px}
+  .logo svg{height:32px;width:32px}
+  .logo span{font-size:22px}
+  .logo span em{font-style:normal;color:var(--magenta)}
+
+  /* NAV */
+  nav.top{position:sticky;top:0;z-index:50;background:rgba(250,250,250,.85);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid rgba(0,0,0,.05)}
+  nav.top .row{display:flex;align-items:center;justify-content:space-between;height:72px}
+  nav.top .links{display:flex;align-items:center;gap:28px;font-size:14px;font-weight:500;color:var(--ink)}
+  nav.top .links a{transition:color .15s}
+  nav.top .links a:hover{color:var(--magenta)}
+  nav.top .cta{display:flex;align-items:center;gap:10px}
+
+  /* HERO */
+  .hero{position:relative;padding:88px 0 64px;overflow:hidden}
+  .hero .grid{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:64px;align-items:end}
+  .hero h1{font-family:"Manrope",ui-sans-serif,system-ui,-apple-system,sans-serif;font-size:clamp(44px,6.6vw,96px);font-weight:800;letter-spacing:-3.5px;line-height:0.95;color:var(--ink);text-wrap:balance}
+  .hero h1 em{font-style:normal;color:var(--magenta);font-weight:800}
+  .hero .lede{margin-top:28px;font-size:19px;line-height:1.55;color:#3a3a3a;max-width:560px}
+  .hero .ctas{margin-top:36px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .hero .ctas .meta{margin-left:8px;font-size:13px;color:var(--mute);display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .hero .ctas .meta::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--marigold)}
+  .hero-visual{position:relative;height:520px;border-radius:24px;background:linear-gradient(160deg,var(--magenta) 0%,#8C0A38 100%);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;color:#fff}
+  .hero-visual .chev{position:absolute;inset:0;opacity:.18}
+  .hero-visual .chev svg{width:120%;height:120%;margin:-10%}
+  .hero-visual .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#fff;opacity:.75;align-self:flex-start;background:rgba(255,255,255,.12);padding:8px 12px;border-radius:999px;backdrop-filter:blur(8px)}
+  .hero-visual .quote{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:26px;line-height:1.2;letter-spacing:-1px;margin-top:auto;padding-bottom:10px}
+  .hero-visual .quote-attr{margin-top:14px;font-size:12px;opacity:.7}
+  .hero-visual .ring{position:absolute;top:32px;right:32px;width:88px;height:88px;border-radius:50%;background:var(--marigold);display:flex;align-items:center;justify-content:center;color:var(--ink);font-weight:800;font-size:11px;letter-spacing:0.5px;text-align:center;line-height:1.15;transform:rotate(-8deg)}
+
+  /* TRUST */
+  .trust{padding:44px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .trust .row{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+  .trust .label{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--mute);font-weight:700}
+  .trust .brands{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+  .trust .brand{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:18px;color:#7a7a7a;letter-spacing:-0.6px;opacity:.7}
+  .trust .brand.alt{font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:14px}
+
+  /* SECTION CHROME */
+  section.s{padding:120px 0;position:relative}
+  section.s + section.s{border-top:1px solid var(--line)}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;margin-bottom:56px}
+  .section-head h2{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:clamp(34px,4.2vw,56px);letter-spacing:-2px;line-height:1;text-wrap:balance;max-width:720px}
+  .section-head h2 em{font-style:normal;color:var(--magenta);font-weight:800}
+  .section-head .side{max-width:340px;font-size:15px;color:var(--mute);line-height:1.55}
+
+  /* PROMISE — two-column */
+  .promise{background:var(--cream)}
+  .promise .cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+  .promise .col{background:#fff;border-radius:20px;padding:36px;border:1px solid var(--line)}
+  .promise .col h3{font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:12px}
+  .promise .col p{color:#3a3a3a;line-height:1.6;font-size:16px}
+  .promise .col ul{margin-top:18px;display:flex;flex-direction:column;gap:10px;list-style:none}
+  .promise .col li{padding-left:24px;position:relative;font-size:15px;color:#3a3a3a;line-height:1.5}
+  .promise .col li::before{content:"";position:absolute;left:0;top:8px;width:12px;height:2px;background:var(--ink)}
+  .promise .col.bad{background:var(--paper)}
+  .promise .col.bad h3::before{content:"✕";display:inline-block;margin-right:8px;color:#9ca3af}
+  .promise .col.good h3::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--magenta);margin-right:10px;vertical-align:middle;transform:translateY(-2px)}
+
+  /* SERVICES */
+  .services .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .service{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:18px;transition:transform .2s,box-shadow .2s,border-color .2s}
+  .service:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.06);border-color:var(--magenta)}
+  .service .ico{width:54px;height:54px;border-radius:14px;background:var(--magenta-tint);display:flex;align-items:center;justify-content:center}
+  .service .big-num{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:64px;letter-spacing:-3px;color:var(--magenta);line-height:1;margin-bottom:4px}
+  .service .num{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--magenta)}
+  .service h3{font-size:24px;font-weight:800;letter-spacing:-0.5px;line-height:1.15}
+  .service p{color:#3a3a3a;line-height:1.55;font-size:15px}
+  .service .meta{display:flex;gap:14px;font-size:12px;color:var(--mute);margin-top:auto;padding-top:14px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .service .meta span{display:flex;align-items:center;gap:5px;white-space:nowrap}
+
+  /* METHOD */
+  .method{background:var(--ink);color:#fff}
+  .method .section-head h2{color:#fff}
+  .method .section-head h2 em{color:var(--magenta)}
+  .method .section-head .side{color:rgba(255,255,255,.6)}
+  .method .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+  .method .step{padding:32px 24px 32px 0;position:relative}
+  .method .step + .step{padding-left:32px;border-left:1px dashed rgba(255,255,255,.15)}
+  .method .step .num{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:52px;letter-spacing:-2px;color:var(--magenta);line-height:1;margin-bottom:18px;display:flex;align-items:baseline;gap:6px}
+  .method .step h3{font-size:20px;font-weight:800;letter-spacing:-0.4px;margin-bottom:8px}
+  .method .step p{color:rgba(255,255,255,.65);line-height:1.55;font-size:14px}
+  .method .step .duration{margin-top:14px;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:700}
+
+  /* IMPACT */
+  .impact .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff}
+  .impact .stat{padding:40px 28px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+  .impact .stat:last-child{border-right:none}
+  .impact .stat .n{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:64px;letter-spacing:-2.8px;line-height:0.9;color:var(--ink)}
+  .impact .stat .n em{font-style:normal;color:var(--magenta)}
+  .impact .stat .label{font-size:14px;color:var(--mute);font-weight:500;line-height:1.4}
+
+  /* PROGRAMS */
+  .programs{background:var(--cream)}
+  .programs .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .program{background:#fff;border-radius:20px;padding:0;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
+  .program .head{padding:28px 28px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  .program .tag{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--magenta);background:var(--magenta-tint);padding:6px 10px;border-radius:999px}
+  .program .body{padding:18px 28px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .program .body h3{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:28px;letter-spacing:-1.2px;line-height:1.05;text-wrap:balance}
+  .program .body p{color:#3a3a3a;line-height:1.55;font-size:15px}
+  .program .meta{padding:18px 28px;background:var(--paper);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--mute);font-weight:500}
+  .program .meta .price{color:var(--ink);font-weight:700}
+
+  /* FOUNDER */
+  .founder{background:#fff}
+  .founder .wrap{display:grid;grid-template-columns:400px 1fr;gap:64px;align-items:center}
+  .founder .portrait{position:relative;width:100%;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--magenta-tint);border:1px solid var(--line)}
+  .founder .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+  .founder .portrait .stripes{position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(224,24,92,.08) 0,rgba(224,24,92,.08) 1px,transparent 1px,transparent 14px)}
+  .founder .portrait .label{position:absolute;bottom:18px;left:18px;right:18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--magenta);letter-spacing:0.4px;line-height:1.4}
+  .founder .portrait .corner{position:absolute;top:18px;left:18px;font-family:ui-monospace,monospace;font-size:10px;color:rgba(224,24,92,.6);letter-spacing:1px;text-transform:uppercase}
+  .founder .portrait .frame{position:absolute;inset:14px;border:1px dashed rgba(224,24,92,.25);border-radius:12px}
+  .founder .portrait .name-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:28px;color:var(--magenta);letter-spacing:-0.8px;text-align:center;line-height:1;opacity:.35}
+  .founder .eyebrow{margin-bottom:18px}
+  .founder h2{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:clamp(38px,4.4vw,56px);letter-spacing:-2px;line-height:1;margin-bottom:14px}
+  .founder h2 em{font-style:normal;color:var(--magenta);font-weight:800}
+  .founder .role{font-size:18px;color:var(--mute);margin-bottom:28px;line-height:1.4}
+  .founder .bio{font-size:17px;line-height:1.6;color:#3a3a3a;max-width:580px}
+  .founder .bio strong{color:var(--ink);font-weight:700}
+  .founder .creds{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .founder .cred{padding:18px 0;display:flex;align-items:baseline;gap:18px}
+  .founder .cred:nth-child(odd){padding-right:24px;padding-left:0}
+  .founder .cred:nth-child(even){padding-left:24px}
+  .founder .cred .n{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:36px;letter-spacing:-1.4px;color:var(--magenta);line-height:1;flex:0 0 auto;min-width:84px}
+  .founder .cred .t{font-size:14px;line-height:1.4;color:#3a3a3a}
+  .founder .cred .t strong{display:block;color:var(--ink);font-weight:700;margin-bottom:2px;font-size:15px}
+
+  /* TESTIMONIAL */
+  .testi{padding:120px 0}
+  .testi .card{background:linear-gradient(155deg,#fff,var(--cream));border:1px solid var(--line);border-radius:24px;padding:64px;display:grid;grid-template-columns:80px 1fr 220px;gap:40px;align-items:center;position:relative;overflow:hidden}
+  .testi .mark{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:120px;line-height:0.7;color:var(--magenta);opacity:.18;align-self:flex-start;margin-top:14px}
+  .testi blockquote{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:26px;line-height:1.3;letter-spacing:-0.8px;color:var(--ink);text-wrap:balance}
+  .testi blockquote em{font-style:normal;color:var(--magenta)}
+  .testi .who{display:flex;flex-direction:column;gap:6px;border-left:1px solid var(--line);padding-left:24px}
+  .testi .who .name{font-weight:800;font-size:15px}
+  .testi .who .role{font-size:13px;color:var(--mute);line-height:1.4}
+  .testi .who .co{margin-top:10px;font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:16px;letter-spacing:-0.4px}
+
+  /* FINAL CTA */
+  .final{background:var(--magenta);color:#fff;padding:120px 0;position:relative;overflow:hidden}
+  .final .pattern{position:absolute;inset:0;opacity:.18}
+  .final .pattern svg{width:100%;height:100%}
+  .final .inner{position:relative;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
+  .final h2{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:clamp(38px,5vw,68px);letter-spacing:-2.5px;line-height:1;color:#fff;text-wrap:balance}
+  .final h2 em{font-style:normal;color:var(--marigold)}
+  .final .sub{margin-top:20px;font-size:18px;color:rgba(255,255,255,.85);max-width:520px;line-height:1.55}
+  .final .actions{display:flex;flex-direction:column;gap:14px}
+  .final .actions .btn{justify-content:center;padding:18px 24px;font-size:16px}
+  .final .actions .meta{font-size:13px;color:rgba(255,255,255,.7);text-align:center;line-height:1.5}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:#fff;padding:64px 0 28px}
+  footer .grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px;align-items:flex-start}
+  footer h4{font-size:13px;text-transform:uppercase;letter-spacing:1.4px;color:rgba(255,255,255,.5);font-weight:700;margin-bottom:16px}
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  footer a{color:rgba(255,255,255,.85);font-size:14px;transition:color .15s}
+  footer a:hover{color:var(--marigold)}
+  footer .blurb{color:rgba(255,255,255,.6);font-size:14px;line-height:1.6;max-width:300px;margin-top:18px}
+  footer .logo span{color:#fff}
+  footer .logo span em{color:var(--magenta)}
+  footer .bot{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;color:rgba(255,255,255,.5);font-size:13px}
+
+  /* fine-tuning small screens */
+  @media (max-width: 980px){
+    .hero .grid{grid-template-columns:1fr}
+    .hero-visual{height:380px}
+    .promise .cols, .services .grid, .programs .grid{grid-template-columns:1fr}
+    .founder .wrap{grid-template-columns:1fr;gap:32px}
+    .founder .portrait{max-width:340px}
+    .method .steps{grid-template-columns:repeat(2,1fr)}
+    .method .step + .step{padding-left:0;border-left:none}
+    .method .step{border-bottom:1px dashed rgba(255,255,255,.15);padding-right:0}
+    .impact .stats{grid-template-columns:repeat(2,1fr)}
+    .impact .stat{border-right:none;border-bottom:1px solid var(--line)}
+    .testi .card{grid-template-columns:1fr;padding:36px}
+    .testi .mark{font-size:80px;margin:0}
+    .testi .who{border-left:none;border-top:1px solid var(--line);padding:24px 0 0;padding-left:0}
+    .final .inner{grid-template-columns:1fr}
+    footer .grid{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- inline icon (locked: stacked chevrons, magenta, no dot) -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="lvl" viewBox="0 0 100 100">
+    <path d="M22 72 L50 50 L78 72" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.25"/>
+    <path d="M22 54 L50 32 L78 54" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.55"/>
+    <path d="M22 36 L50 14 L78 36" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </symbol>
+</svg>
+
+<!-- NAV -->
+<nav class="top">
+  <div class="container row">
+    <a href="#" class="logo" style="color:var(--magenta)">
+      <svg><use href="#lvl"/></svg>
+      <span style="color:var(--ink)">Level<em>Up</em></span>
+    </a>
+    <div class="links">
+      <a href="#services">Services</a>
+      <a href="#methode">Méthode</a>
+      <a href="#fondatrice">Fondatrice</a>
+      <a href="#programmes">Programmes</a>
+      <a href="#cas-clients">Cas clients</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="cta">
+      <a href="#contact" class="btn btn-primary">Réserver un appel →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container grid">
+    <div>
+      <div class="eyebrow" style="margin-bottom:24px">CONSEIL · FORMATION ET ACCOMPAGNEMENT INNOVATION AVEC OU SANS L'IA</div>
+      <h1>Transformer vos équipes en <em>moteurs d'innovation.</em></h1>
+      <p class="lede">
+        Ateliers de design thinking, sprints de développement produit augmentés par l'IA, coaching d'équipes — pour révéler les talents et embarquer toute l'entreprise dans une dynamique de croissance durable.
+      </p>
+      <div class="ctas">
+        <a href="#contact" class="btn btn-primary">Réserver un diagnostic gratuit</a>
+        <a href="#programmes" class="btn btn-ghost">Voir nos programmes</a>
+        <span class="meta">Disponible · 1<sup>er</sup> rdv sous 5 jours</span>
+      </div>
+    </div>
+    <aside class="hero-visual">
+      <div class="chev" style="color:#fff"><svg><use href="#lvl"/></svg></div>
+      <div class="ring">EN
+MOUVEMENT
+DEPUIS
+2016</div>
+      <span class="tag">● 120 équipes transformées</span>
+      <blockquote class="quote">
+        « Nos équipes utilisent maintenant l'IA <em>au quotidien</em> pour explorer dix fois plus d'idées produit. »
+      </blockquote>
+      <div class="quote-attr">Camille Roux · Directrice Innovation, Groupe Aurelia</div>
+    </aside>
+  </div>
+</header>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="container row">
+    <div class="label">Ils nous font confiance</div>
+    <div class="brands">
+      <div class="brand">Aurelia&nbsp;Group</div>
+      <div class="brand alt">Métis</div>
+      <div class="brand">Sereno</div>
+      <div class="brand alt">Hyperlane</div>
+      <div class="brand">Verdâge</div>
+      <div class="brand alt">Polaris</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE -->
+<section class="s promise" id="approche">
+  <div class="container">
+    <div class="section-head">
+      <h2>Une formation, c'est rare que ça <em>transforme</em>.</h2>
+      <p class="side">La plupart des programmes survivent une semaine. Notre métier : ancrer la transformation jusqu'à ce qu'elle devienne un réflexe d'équipe.</p>
+    </div>
+    <div class="cols">
+      <div class="col bad">
+        <h3>Ce qu'on évite</h3>
+        <p>Les approches qui partent du contenu et oublient les humains qui vont l'incarner.</p>
+        <ul>
+          <li>Une journée de séminaire, puis plus rien</li>
+          <li>Des outils plaqués qui ne parlent pas à l'équipe</li>
+          <li>Des managers formés en silo, sans leurs équipes</li>
+          <li>Un ROI difficile à mesurer six mois après</li>
+        </ul>
+      </div>
+      <div class="col good">
+        <h3>Ce qu'on construit avec vous</h3>
+        <p>Un dispositif sur-mesure qui se déploie en plusieurs temps, sur plusieurs niveaux de l'entreprise.</p>
+        <ul>
+          <li>Un diagnostic préalable des talents et tensions</li>
+          <li>Des ateliers collectifs où l'équipe co-construit</li>
+          <li>Un accompagnement managérial dans la durée</li>
+          <li>Des indicateurs partagés pour mesurer l'impact</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="s services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <h2>Trois façons de travailler avec nous.</h2>
+      <p class="side">Choisissez le format qui correspond à votre maturité et à l'ampleur du chantier. Les trois s'articulent et peuvent se cumuler.</p>
+    </div>
+    <div class="grid">
+      <article class="service">
+        <div class="big-num">1</div>
+        <div class="num">Service</div>
+        <h3>Ateliers Design&nbsp;Thinking</h3>
+        <p>De 1 à 3 jours pour cartographier les besoins utilisateurs, faire émerger des idées et prototyper rapidement avec les équipes métier concernées.</p>
+        <div class="meta">
+          <span>● 8–40 personnes</span>
+          <span>● Sur-mesure</span>
+        </div>
+      </article>
+      <article class="service" style="background:var(--magenta);color:#fff;border-color:var(--magenta)">
+        <div class="big-num" style="color:#fff">2</div>
+        <div class="num" style="color:rgba(255,255,255,.8)">Service · Le plus demandé</div>
+        <h3>Sprints Innovation Produit · IA</h3>
+        <p style="color:rgba(255,255,255,.85)">5 jours intensifs pour concevoir un nouveau produit ou service. Vos équipes apprennent à utiliser l'IA comme co-pilote : idéation, recherche, prototypage, test.</p>
+        <div class="meta" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.18)">
+          <span>● 6–12 personnes</span>
+          <span>● 1 semaine</span>
+        </div>
+      </article>
+      <article class="service">
+        <div class="big-num">3</div>
+        <div class="num">Service</div>
+        <h3>Coaching d'équipes & leadership</h3>
+        <p>3 à 12 mois d'accompagnement pour ancrer les pratiques, faire monter en autonomie et installer une culture d'innovation à tous les niveaux de l'organisation.</p>
+        <div class="meta">
+          <span>● 1 équipe</span>
+          <span>● Bimensuel</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="s method" id="methode">
+  <div class="container">
+    <div class="section-head">
+      <h2>Notre méthode <em>en quatre temps.</em></h2>
+      <p class="side">Un cadre éprouvé sur 120+ équipes. Chaque étape se prépare, se mesure et se documente — pour que la transformation tienne dans le temps.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>Diagnostic</h3>
+        <p>Entretiens individuels, sondage d'équipe et cartographie des talents. On repart avec une lecture partagée de l'existant.</p>
+        <div class="duration">2 à 4 semaines</div>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>Atelier</h3>
+        <p>Un temps fort collectif, co-construit avec votre équipe, qui transforme la lecture du diagnostic en projet partagé.</p>
+        <div class="duration">1 à 3 jours</div>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>Activation</h3>
+        <p>Les engagements pris en atelier se traduisent en rituels concrets. On accompagne managers et équipes dans la mise en mouvement.</p>
+        <div class="duration">3 à 6 mois</div>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <h3>Suivi</h3>
+        <p>Mesure d'impact à 6 et 12 mois, points d'ajustement avec les sponsors, capitalisation interne pour faire grandir d'autres équipes.</p>
+        <div class="duration">Continu</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="s impact" id="impact">
+  <div class="container">
+    <div class="section-head">
+      <h2>Des résultats <em>qui tiennent</em>.</h2>
+      <p class="side">Les chiffres clés de huit ans d'accompagnement, mesurés à 6 mois après la fin de chaque mission.</p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="n"><em>120</em>+</div>
+        <div class="label">Équipes accompagnées depuis 2017</div>
+      </div>
+      <div class="stat">
+        <div class="n"><em>95</em>%</div>
+        <div class="label">de participants qui recommandent</div>
+      </div>
+      <div class="stat">
+        <div class="n">×<em>2,4</em></div>
+        <div class="label">d'initiatives portées par les équipes en moyenne</div>
+      </div>
+      <div class="stat">
+        <div class="n"><em>3 500</em></div>
+        <div class="label">talents formés en sessions collectives</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="s founder" id="fondatrice">
+  <div class="container wrap">
+    <div class="portrait">
+      <img src="diane-portrait.jpg" alt="Diane Maigrot, fondatrice de LEVELUP" style="object-fit: cover" />
+    </div>
+    <div>
+      <div class="eyebrow">Fondatrice</div>
+      <h2>Diane <em>Maigrot</em></h2>
+      <div class="role">30 ans à faire grandir des projets et des équipes.</div>
+      <p class="bio">
+        Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle pilote depuis <strong>10 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation — en croisant l'énergie entrepreneuriale et la rigueur de l'incubation.
+      </p>
+      <div class="creds">
+        <div class="cred">
+          <span class="n">20 <small style="font-size:18px;color:var(--mute);font-weight:500">ans</small></span>
+          <div class="t"><strong>d'expérience entrepreneuriale</strong>Fondatrice et dirigeante de plusieurs entreprises</div>
+        </div>
+        <div class="cred">
+          <span class="n">10 <small style="font-size:18px;color:var(--mute);font-weight:500">ans</small></span>
+          <div class="t"><strong>Direction de La Turbine</strong>L'incubateur de référence à l'île Maurice</div>
+        </div>
+        <div class="cred">
+          <span class="n">90<small style="font-size:18px;color:var(--mute);font-weight:500">+</small></span>
+          <div class="t"><strong>Projets startups</strong>Accompagnées de l'idée au scale</div>
+        </div>
+        <div class="cred">
+          <span class="n">200<small style="font-size:18px;color:var(--mute);font-weight:500">+</small></span>
+          <div class="t"><strong>entrepreneurs formés</strong>En ateliers et programmes collectifs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="s programs" id="programmes">
+  <div class="container">
+    <div class="section-head">
+      <h2>Programmes signature.</h2>
+      <p class="side">Trois formats préformatés qui couvrent l'essentiel — chacun se personnalise à votre contexte sectoriel et culturel.</p>
+    </div>
+    <div class="grid">
+      <article class="program">
+        <div class="head">
+          <span class="tag">Atelier flagship</span>
+          <span class="mute" style="font-size:13px;font-weight:600">2 jours</span>
+        </div>
+        <div class="body">
+          <h3>Design Thinking Essentials</h3>
+          <p>Initier une équipe aux fondamentaux du design thinking sur un cas réel de l'entreprise : empathie utilisateur, idéation, prototypage rapide.</p>
+        </div>
+        <div class="meta">
+          <span>10 à 30 personnes</span>
+          <span class="price">À partir de 8 400 €</span>
+        </div>
+      </article>
+      <article class="program">
+        <div class="head">
+          <span class="tag">Sprint produit · IA</span>
+          <span class="mute" style="font-size:13px;font-weight:600">5 jours</span>
+        </div>
+        <div class="body">
+          <h3>AI Product Sprint</h3>
+          <p>Une semaine pour concevoir un nouveau produit ou service avec l'IA comme co-pilote. Vos équipes repartent avec un prototype testé et la méthode.</p>
+        </div>
+        <div class="meta">
+          <span>6 à 12 personnes</span>
+          <span class="price">À partir de 16 800 €</span>
+        </div>
+      </article>
+      <article class="program">
+        <div class="head">
+          <span class="tag">Parcours long</span>
+          <span class="mute" style="font-size:13px;font-weight:600">3 mois</span>
+        </div>
+        <div class="body">
+          <h3>Leadership Collectif</h3>
+          <p>Transformer la posture managériale d'un comité de direction ou d'une ligne managériale — 6 sessions, du sponsor au manager.</p>
+        </div>
+        <div class="meta">
+          <span>8 à 16 managers</span>
+          <span class="price">À partir de 24 000 €</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testi" id="cas-clients">
+  <div class="container">
+    <div class="card">
+      <div class="mark">«</div>
+      <blockquote>
+        Six mois après le sprint, l'équipe a sorti <em>trois nouveaux services alimentés par l'IA</em> — sans nous solliciter. C'est exactement ce qu'on cherchait.
+      </blockquote>
+      <div class="who">
+        <span class="name">Camille Roux</span>
+        <span class="role">Directrice Innovation</span>
+        <span class="co">Groupe Aurelia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="contact">
+  <div class="pattern">
+    <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <g transform="translate(-80 80)"><path d="M22 72 L50 50 L78 72" opacity=".25"/><path d="M22 54 L50 32 L78 54" opacity=".55"/><path d="M22 36 L50 14 L78 36"/></g>
+        <g transform="translate(280 -20) scale(1.4)"><path d="M22 72 L50 50 L78 72" opacity=".25"/><path d="M22 54 L50 32 L78 54" opacity=".55"/><path d="M22 36 L50 14 L78 36"/></g>
+        <g transform="translate(560 200) scale(0.9)"><path d="M22 72 L50 50 L78 72" opacity=".25"/><path d="M22 54 L50 32 L78 54" opacity=".55"/><path d="M22 36 L50 14 L78 36"/></g>
+        <g transform="translate(900 60) scale(1.6)"><path d="M22 72 L50 50 L78 72" opacity=".25"/><path d="M22 54 L50 32 L78 54" opacity=".55"/><path d="M22 36 L50 14 L78 36"/></g>
+        <g transform="translate(1100 280) scale(1.1)"><path d="M22 72 L50 50 L78 72" opacity=".25"/><path d="M22 54 L50 32 L78 54" opacity=".55"/><path d="M22 36 L50 14 L78 36"/></g>
+      </g>
+    </svg>
+  </div>
+  <div class="container inner">
+    <div>
+      <h2>Prêt à <em>faire grandir</em> vos équipes&nbsp;?</h2>
+      <p class="sub">30 minutes pour parler de votre contexte, sans engagement. On vous dit honnêtement si on est les bons partenaires pour vous.</p>
+    </div>
+    <div class="actions">
+      <a href="mailto:hello@levelup.studio" class="btn btn-white">Réserver un diagnostic gratuit</a>
+      <a href="tel:+33612345678" class="btn" style="background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)">Nous appeler · +33 6 12 34 56 78</a>
+      <span class="meta">Réponse sous 24h ouvrées · Paris, Lyon, remote</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="grid">
+      <div>
+        <a href="#" class="logo" style="color:var(--magenta)">
+          <svg style="height:28px;width:28px"><use href="#lvl"/></svg>
+          <span>Level<em>Up</em></span>
+        </a>
+        <p class="blurb">Cabinet de consulting en transformation par la formation. Design thinking, innovation produit augmentée par l'IA, coaching d'équipes — pour ancrer durablement la culture d'innovation.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Ateliers Design Thinking</a></li>
+          <li><a href="#services">Sprints Innovation Produit · IA</a></li>
+          <li><a href="#services">Coaching & leadership</a></li>
+          <li><a href="#programmes">Programmes signature</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Cas clients</a></li>
+          <li><a href="#">Le journal</a></li>
+          <li><a href="#">Manifeste</a></li>
+          <li><a href="#">Charte facilitateur</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@levelup.studio">hello@levelup.studio</a></li>
+          <li><a href="tel:+33612345678">+33 6 12 34 56 78</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bot">
+      <span>© 2026 LEVELUP · Tous droits réservés</span>
+      <span>Mentions légales · CGV · Politique de confidentialité</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
