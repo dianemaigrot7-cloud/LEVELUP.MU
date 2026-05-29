@@ -35,6 +35,11 @@
   .btn-white{background:#fff;color:var(--ink)}
   .btn-white:hover{transform:translateY(-1px)}
 
+  /* lang toggle */
+  .lang-toggle{display:flex;align-items:center;gap:0;border:1.5px solid var(--line);border-radius:999px;overflow:hidden;font-size:13px;font-weight:700}
+  .lang-toggle button{background:none;border:none;padding:6px 12px;cursor:pointer;font-family:inherit;font-weight:700;font-size:13px;color:var(--mute);transition:background .15s,color .15s}
+  .lang-toggle button.active{background:var(--ink);color:#fff}
+
   /* logo */
   .logo{display:inline-flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-0.5px}
   .logo svg{height:32px;width:32px}
@@ -82,7 +87,7 @@
   .section-head h2 em{font-style:normal;color:var(--magenta);font-weight:800}
   .section-head .side{max-width:340px;font-size:15px;color:var(--mute);line-height:1.55}
 
-  /* PROMISE — two-column */
+  /* PROMISE */
   .promise{background:var(--cream)}
   .promise .cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}
   .promise .col{background:#fff;border-radius:20px;padding:36px;border:1px solid var(--line)}
@@ -99,7 +104,6 @@
   .services .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .service{background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:18px;transition:transform .2s,box-shadow .2s,border-color .2s}
   .service:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.06);border-color:var(--magenta)}
-  .service .ico{width:54px;height:54px;border-radius:14px;background:var(--magenta-tint);display:flex;align-items:center;justify-content:center}
   .service .big-num{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:64px;letter-spacing:-3px;color:var(--magenta);line-height:1;margin-bottom:4px}
   .service .num{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--magenta)}
   .service h3{font-size:24px;font-weight:800;letter-spacing:-0.5px;line-height:1.15}
@@ -199,7 +203,6 @@
   footer .logo span em{color:var(--magenta)}
   footer .bot{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;color:rgba(255,255,255,.5);font-size:13px}
 
-  /* fine-tuning small screens */
   @media (max-width: 980px){
     .hero .grid{grid-template-columns:1fr}
     .hero-visual{height:380px}
@@ -216,12 +219,12 @@
     .testi .who{border-left:none;border-top:1px solid var(--line);padding:24px 0 0;padding-left:0}
     .final .inner{grid-template-columns:1fr}
     footer .grid{grid-template-columns:1fr 1fr}
+    nav.top .links{display:none}
   }
 </style>
 </head>
 <body>
 
-<!-- inline icon (locked: stacked chevrons, magenta, no dot) -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
   <symbol id="lvl" viewBox="0 0 100 100">
     <path d="M22 72 L50 50 L78 72" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.25"/>
@@ -238,15 +241,19 @@
       <span style="color:var(--ink)">Level<em>Up</em></span>
     </a>
     <div class="links">
-      <a href="#services">Services</a>
-      <a href="#methode">Méthode</a>
-      <a href="#fondatrice">Fondatrice</a>
-      <a href="#programmes">Programmes</a>
-      <a href="#cas-clients">Cas clients</a>
-      <a href="#contact">Contact</a>
+      <a href="#services" data-fr="Services" data-en="Services">Services</a>
+      <a href="#methode" data-fr="Méthode" data-en="Method">Méthode</a>
+      <a href="#fondatrice" data-fr="Fondatrice" data-en="Founder">Fondatrice</a>
+      <a href="#programmes" data-fr="Programmes" data-en="Programs">Programmes</a>
+      <a href="#cas-clients" data-fr="Cas clients" data-en="Case studies">Cas clients</a>
+      <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
     </div>
     <div class="cta">
-      <a href="#contact" class="btn btn-primary">Réserver un appel →</a>
+      <div class="lang-toggle">
+        <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="#contact" class="btn btn-primary" data-fr="Réserver un appel →" data-en="Book a call →">Réserver un appel →</a>
     </div>
   </div>
 </nav>
@@ -255,28 +262,24 @@
 <header class="hero">
   <div class="container grid">
     <div>
-      <div class="eyebrow" style="margin-bottom:24px">CONSEIL · FORMATION ET ACCOMPAGNEMENT INNOVATION AVEC OU SANS L'IA</div>
-      <h1>Transformer vos équipes en <em>moteurs d'innovation.</em></h1>
-      <p class="lede">
-        Ateliers de design thinking, sprints de développement produit augmentés par l'IA, coaching d'équipes — pour révéler les talents et embarquer toute l'entreprise dans une dynamique de croissance durable.
-      </p>
+      <div class="eyebrow" style="margin-bottom:24px" data-fr="CONSEIL · FORMATION ET ACCOMPAGNEMENT INNOVATION AVEC OU SANS L'IA" data-en="CONSULTING · TRAINING & INNOVATION COACHING WITH OR WITHOUT AI">CONSEIL · FORMATION ET ACCOMPAGNEMENT INNOVATION AVEC OU SANS L'IA</div>
+      <h1 data-fr="Transformer vos équipes en <em>moteurs d'innovation.</em>" data-en="Turn your teams into <em>engines of innovation.</em>">Transformer vos équipes en <em>moteurs d'innovation.</em></h1>
+      <p class="lede" data-fr="Ateliers de design thinking, sprints de développement produit augmentés par l'IA, coaching d'équipes — pour révéler les talents et embarquer toute l'entreprise dans une dynamique de croissance durable." data-en="Design thinking workshops, AI-powered product development sprints, team coaching — to unlock talent and drive your whole organisation toward lasting growth.">Ateliers de design thinking, sprints de développement produit augmentés par l'IA, coaching d'équipes — pour révéler les talents et embarquer toute l'entreprise dans une dynamique de croissance durable.</p>
       <div class="ctas">
-        <a href="#contact" class="btn btn-primary">Réserver un diagnostic gratuit</a>
-        <a href="#programmes" class="btn btn-ghost">Voir nos programmes</a>
-        <span class="meta">Disponible · 1<sup>er</sup> rdv sous 5 jours</span>
+        <a href="#contact" class="btn btn-primary" data-fr="Réserver un diagnostic gratuit" data-en="Book a free discovery call">Réserver un diagnostic gratuit</a>
+        <a href="#programmes" class="btn btn-ghost" data-fr="Voir nos programmes" data-en="See our programs">Voir nos programmes</a>
+        <span class="meta" data-fr="Disponible · 1<sup>er</sup> rdv sous 5 jours" data-en="Available · First call within 5 days">Disponible · 1<sup>er</sup> rdv sous 5 jours</span>
       </div>
     </div>
     <aside class="hero-visual">
       <div class="chev" style="color:#fff"><svg><use href="#lvl"/></svg></div>
-      <div class="ring">EN
+      <div class="ring" data-fr="EN MOUVEMENT DEPUIS 2016" data-en="IN MOTION SINCE 2016">EN
 MOUVEMENT
 DEPUIS
 2016</div>
-      <span class="tag">● 120 équipes transformées</span>
-      <blockquote class="quote">
-        « Nos équipes utilisent maintenant l'IA <em>au quotidien</em> pour explorer dix fois plus d'idées produit. »
-      </blockquote>
-      <div class="quote-attr">Camille Roux · Directrice Innovation, Groupe Aurelia</div>
+      <span class="tag" data-fr="● 120 équipes transformées" data-en="● 120 teams transformed">● 120 équipes transformées</span>
+      <blockquote class="quote" data-fr="« Nos équipes utilisent maintenant l'IA <em>au quotidien</em> pour explorer dix fois plus d'idées produit. »" data-en="&ldquo; Our teams now use AI <em>every day</em> to explore ten times more product ideas. &rdquo;">« Nos équipes utilisent maintenant l'IA <em>au quotidien</em> pour explorer dix fois plus d'idées produit. »</blockquote>
+      <div class="quote-attr">Camille Roux · <span data-fr="Directrice Innovation, Groupe Aurelia" data-en="Head of Innovation, Groupe Aurelia">Directrice Innovation, Groupe Aurelia</span></div>
     </aside>
   </div>
 </header>
@@ -284,7 +287,7 @@ DEPUIS
 <!-- TRUST -->
 <section class="trust">
   <div class="container row">
-    <div class="label">Ils nous font confiance</div>
+    <div class="label" data-fr="Ils nous font confiance" data-en="They trust us">Ils nous font confiance</div>
     <div class="brands">
       <div class="brand">Aurelia&nbsp;Group</div>
       <div class="brand alt">Métis</div>
@@ -300,28 +303,28 @@ DEPUIS
 <section class="s promise" id="approche">
   <div class="container">
     <div class="section-head">
-      <h2>Une formation, c'est rare que ça <em>transforme</em>.</h2>
-      <p class="side">La plupart des programmes survivent une semaine. Notre métier : ancrer la transformation jusqu'à ce qu'elle devienne un réflexe d'équipe.</p>
+      <h2 data-fr="Une formation, c'est rare que ça <em>transforme</em>." data-en="Training rarely <em>transforms</em> anything.">Une formation, c'est rare que ça <em>transforme</em>.</h2>
+      <p class="side" data-fr="La plupart des programmes survivent une semaine. Notre métier : ancrer la transformation jusqu'à ce qu'elle devienne un réflexe d'équipe." data-en="Most programs last a week. Our job: embed change until it becomes second nature for the whole team.">La plupart des programmes survivent une semaine. Notre métier : ancrer la transformation jusqu'à ce qu'elle devienne un réflexe d'équipe.</p>
     </div>
     <div class="cols">
       <div class="col bad">
-        <h3>Ce qu'on évite</h3>
-        <p>Les approches qui partent du contenu et oublient les humains qui vont l'incarner.</p>
+        <h3 data-fr="Ce qu'on évite" data-en="What we avoid">Ce qu'on évite</h3>
+        <p data-fr="Les approches qui partent du contenu et oublient les humains qui vont l'incarner." data-en="Approaches that start from content and forget the people who have to live it.">Les approches qui partent du contenu et oublient les humains qui vont l'incarner.</p>
         <ul>
-          <li>Une journée de séminaire, puis plus rien</li>
-          <li>Des outils plaqués qui ne parlent pas à l'équipe</li>
-          <li>Des managers formés en silo, sans leurs équipes</li>
-          <li>Un ROI difficile à mesurer six mois après</li>
+          <li data-fr="Une journée de séminaire, puis plus rien" data-en="A one-day seminar, then nothing">Une journée de séminaire, puis plus rien</li>
+          <li data-fr="Des outils plaqués qui ne parlent pas à l'équipe" data-en="Off-the-shelf tools that don't speak to the team">Des outils plaqués qui ne parlent pas à l'équipe</li>
+          <li data-fr="Des managers formés en silo, sans leurs équipes" data-en="Managers trained in silos, without their teams">Des managers formés en silo, sans leurs équipes</li>
+          <li data-fr="Un ROI difficile à mesurer six mois après" data-en="ROI that's impossible to measure six months later">Un ROI difficile à mesurer six mois après</li>
         </ul>
       </div>
       <div class="col good">
-        <h3>Ce qu'on construit avec vous</h3>
-        <p>Un dispositif sur-mesure qui se déploie en plusieurs temps, sur plusieurs niveaux de l'entreprise.</p>
+        <h3 data-fr="Ce qu'on construit avec vous" data-en="What we build with you">Ce qu'on construit avec vous</h3>
+        <p data-fr="Un dispositif sur-mesure qui se déploie en plusieurs temps, sur plusieurs niveaux de l'entreprise." data-en="A tailored programme that unfolds in stages, across every level of the organisation.">Un dispositif sur-mesure qui se déploie en plusieurs temps, sur plusieurs niveaux de l'entreprise.</p>
         <ul>
-          <li>Un diagnostic préalable des talents et tensions</li>
-          <li>Des ateliers collectifs où l'équipe co-construit</li>
-          <li>Un accompagnement managérial dans la durée</li>
-          <li>Des indicateurs partagés pour mesurer l'impact</li>
+          <li data-fr="Un diagnostic préalable des talents et tensions" data-en="An upfront diagnosis of talents and tensions">Un diagnostic préalable des talents et tensions</li>
+          <li data-fr="Des ateliers collectifs où l'équipe co-construit" data-en="Collective workshops where the team co-creates">Des ateliers collectifs où l'équipe co-construit</li>
+          <li data-fr="Un accompagnement managérial dans la durée" data-en="Long-term managerial support">Un accompagnement managérial dans la durée</li>
+          <li data-fr="Des indicateurs partagés pour mesurer l'impact" data-en="Shared metrics to measure impact">Des indicateurs partagés pour mesurer l'impact</li>
         </ul>
       </div>
     </div>
@@ -332,38 +335,38 @@ DEPUIS
 <section class="s services" id="services">
   <div class="container">
     <div class="section-head">
-      <h2>Trois façons de travailler avec nous.</h2>
-      <p class="side">Choisissez le format qui correspond à votre maturité et à l'ampleur du chantier. Les trois s'articulent et peuvent se cumuler.</p>
+      <h2 data-fr="Trois façons de travailler avec nous." data-en="Three ways to work with us.">Trois façons de travailler avec nous.</h2>
+      <p class="side" data-fr="Choisissez le format qui correspond à votre maturité et à l'ampleur du chantier. Les trois s'articulent et peuvent se cumuler." data-en="Choose the format that fits your maturity level and the scale of the challenge. All three complement each other.">Choisissez le format qui correspond à votre maturité et à l'ampleur du chantier. Les trois s'articulent et peuvent se cumuler.</p>
     </div>
     <div class="grid">
       <article class="service">
         <div class="big-num">1</div>
-        <div class="num">Service</div>
-        <h3>Ateliers Design&nbsp;Thinking</h3>
-        <p>De 1 à 3 jours pour cartographier les besoins utilisateurs, faire émerger des idées et prototyper rapidement avec les équipes métier concernées.</p>
+        <div class="num" data-fr="Service" data-en="Service">Service</div>
+        <h3 data-fr="Ateliers Design&nbsp;Thinking" data-en="Design&nbsp;Thinking Workshops">Ateliers Design&nbsp;Thinking</h3>
+        <p data-fr="De 1 à 3 jours pour cartographier les besoins utilisateurs, faire émerger des idées et prototyper rapidement avec les équipes métier concernées." data-en="1 to 3 days to map user needs, generate ideas and rapidly prototype with the relevant business teams.">De 1 à 3 jours pour cartographier les besoins utilisateurs, faire émerger des idées et prototyper rapidement avec les équipes métier concernées.</p>
         <div class="meta">
-          <span>● 8–40 personnes</span>
-          <span>● Sur-mesure</span>
+          <span data-fr="● 8–40 personnes" data-en="● 8–40 people">● 8–40 personnes</span>
+          <span data-fr="● Sur-mesure" data-en="● Tailored">● Sur-mesure</span>
         </div>
       </article>
       <article class="service" style="background:var(--magenta);color:#fff;border-color:var(--magenta)">
         <div class="big-num" style="color:#fff">2</div>
-        <div class="num" style="color:rgba(255,255,255,.8)">Service · Le plus demandé</div>
-        <h3>Sprints Innovation Produit · IA</h3>
-        <p style="color:rgba(255,255,255,.85)">5 jours intensifs pour concevoir un nouveau produit ou service. Vos équipes apprennent à utiliser l'IA comme co-pilote : idéation, recherche, prototypage, test.</p>
+        <div class="num" style="color:rgba(255,255,255,.8)" data-fr="Service · Le plus demandé" data-en="Service · Most popular">Service · Le plus demandé</div>
+        <h3 data-fr="Sprints Innovation Produit · IA" data-en="AI Product Innovation Sprints">Sprints Innovation Produit · IA</h3>
+        <p style="color:rgba(255,255,255,.85)" data-fr="5 jours intensifs pour concevoir un nouveau produit ou service. Vos équipes apprennent à utiliser l'IA comme co-pilote : idéation, recherche, prototypage, test." data-en="5 intensive days to design a new product or service. Your teams learn to use AI as a co-pilot: ideation, research, prototyping, testing.">5 jours intensifs pour concevoir un nouveau produit ou service. Vos équipes apprennent à utiliser l'IA comme co-pilote : idéation, recherche, prototypage, test.</p>
         <div class="meta" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.18)">
-          <span>● 6–12 personnes</span>
-          <span>● 1 semaine</span>
+          <span data-fr="● 6–12 personnes" data-en="● 6–12 people">● 6–12 personnes</span>
+          <span data-fr="● 1 semaine" data-en="● 1 week">● 1 semaine</span>
         </div>
       </article>
       <article class="service">
         <div class="big-num">3</div>
-        <div class="num">Service</div>
-        <h3>Coaching d'équipes & leadership</h3>
-        <p>3 à 12 mois d'accompagnement pour ancrer les pratiques, faire monter en autonomie et installer une culture d'innovation à tous les niveaux de l'organisation.</p>
+        <div class="num" data-fr="Service" data-en="Service">Service</div>
+        <h3 data-fr="Coaching d'équipes & leadership" data-en="Team coaching & leadership">Coaching d'équipes & leadership</h3>
+        <p data-fr="3 à 12 mois d'accompagnement pour ancrer les pratiques, faire monter en autonomie et installer une culture d'innovation à tous les niveaux de l'organisation." data-en="3 to 12 months of support to embed practices, build autonomy, and install an innovation culture at every level of the organisation.">3 à 12 mois d'accompagnement pour ancrer les pratiques, faire monter en autonomie et installer une culture d'innovation à tous les niveaux de l'organisation.</p>
         <div class="meta">
-          <span>● 1 équipe</span>
-          <span>● Bimensuel</span>
+          <span data-fr="● 1 équipe" data-en="● 1 team">● 1 équipe</span>
+          <span data-fr="● Bimensuel" data-en="● Fortnightly">● Bimensuel</span>
         </div>
       </article>
     </div>
@@ -374,33 +377,33 @@ DEPUIS
 <section class="s method" id="methode">
   <div class="container">
     <div class="section-head">
-      <h2>Notre méthode <em>en quatre temps.</em></h2>
-      <p class="side">Un cadre éprouvé sur 120+ équipes. Chaque étape se prépare, se mesure et se documente — pour que la transformation tienne dans le temps.</p>
+      <h2 data-fr="Notre méthode <em>en quatre temps.</em>" data-en="Our method <em>in four stages.</em>">Notre méthode <em>en quatre temps.</em></h2>
+      <p class="side" data-fr="Un cadre éprouvé sur 120+ équipes. Chaque étape se prépare, se mesure et se documente — pour que la transformation tienne dans le temps." data-en="A framework tested with 120+ teams. Each step is prepared, measured and documented — so the transformation lasts.">Un cadre éprouvé sur 120+ équipes. Chaque étape se prépare, se mesure et se documente — pour que la transformation tienne dans le temps.</p>
     </div>
     <div class="steps">
       <div class="step">
         <div class="num">01</div>
-        <h3>Diagnostic</h3>
-        <p>Entretiens individuels, sondage d'équipe et cartographie des talents. On repart avec une lecture partagée de l'existant.</p>
-        <div class="duration">2 à 4 semaines</div>
+        <h3 data-fr="Diagnostic" data-en="Diagnosis">Diagnostic</h3>
+        <p data-fr="Entretiens individuels, sondage d'équipe et cartographie des talents. On repart avec une lecture partagée de l'existant." data-en="Individual interviews, team survey and talent mapping. We leave with a shared picture of the current state.">Entretiens individuels, sondage d'équipe et cartographie des talents. On repart avec une lecture partagée de l'existant.</p>
+        <div class="duration" data-fr="2 à 4 semaines" data-en="2 to 4 weeks">2 à 4 semaines</div>
       </div>
       <div class="step">
         <div class="num">02</div>
-        <h3>Atelier</h3>
-        <p>Un temps fort collectif, co-construit avec votre équipe, qui transforme la lecture du diagnostic en projet partagé.</p>
-        <div class="duration">1 à 3 jours</div>
+        <h3 data-fr="Atelier" data-en="Workshop">Atelier</h3>
+        <p data-fr="Un temps fort collectif, co-construit avec votre équipe, qui transforme la lecture du diagnostic en projet partagé." data-en="A collective high-intensity session, co-designed with your team, turning the diagnosis into a shared project.">Un temps fort collectif, co-construit avec votre équipe, qui transforme la lecture du diagnostic en projet partagé.</p>
+        <div class="duration" data-fr="1 à 3 jours" data-en="1 to 3 days">1 à 3 jours</div>
       </div>
       <div class="step">
         <div class="num">03</div>
-        <h3>Activation</h3>
-        <p>Les engagements pris en atelier se traduisent en rituels concrets. On accompagne managers et équipes dans la mise en mouvement.</p>
-        <div class="duration">3 à 6 mois</div>
+        <h3 data-fr="Activation" data-en="Activation">Activation</h3>
+        <p data-fr="Les engagements pris en atelier se traduisent en rituels concrets. On accompagne managers et équipes dans la mise en mouvement." data-en="Workshop commitments become concrete rituals. We support managers and teams in putting them into motion.">Les engagements pris en atelier se traduisent en rituels concrets. On accompagne managers et équipes dans la mise en mouvement.</p>
+        <div class="duration" data-fr="3 à 6 mois" data-en="3 to 6 months">3 à 6 mois</div>
       </div>
       <div class="step">
         <div class="num">04</div>
-        <h3>Suivi</h3>
-        <p>Mesure d'impact à 6 et 12 mois, points d'ajustement avec les sponsors, capitalisation interne pour faire grandir d'autres équipes.</p>
-        <div class="duration">Continu</div>
+        <h3 data-fr="Suivi" data-en="Follow-up">Suivi</h3>
+        <p data-fr="Mesure d'impact à 6 et 12 mois, points d'ajustement avec les sponsors, capitalisation interne pour faire grandir d'autres équipes." data-en="Impact measurement at 6 and 12 months, adjustment sessions with sponsors, internal knowledge-sharing to grow other teams.">Mesure d'impact à 6 et 12 mois, points d'ajustement avec les sponsors, capitalisation interne pour faire grandir d'autres équipes.</p>
+        <div class="duration" data-fr="Continu" data-en="Ongoing">Continu</div>
       </div>
     </div>
   </div>
@@ -410,25 +413,25 @@ DEPUIS
 <section class="s impact" id="impact">
   <div class="container">
     <div class="section-head">
-      <h2>Des résultats <em>qui tiennent</em>.</h2>
-      <p class="side">Les chiffres clés de huit ans d'accompagnement, mesurés à 6 mois après la fin de chaque mission.</p>
+      <h2 data-fr="Des résultats <em>qui tiennent</em>." data-en="Results <em>that last</em>.">Des résultats <em>qui tiennent</em>.</h2>
+      <p class="side" data-fr="Les chiffres clés de huit ans d'accompagnement, mesurés à 6 mois après la fin de chaque mission." data-en="Key figures from eight years of work, measured 6 months after each engagement ends.">Les chiffres clés de huit ans d'accompagnement, mesurés à 6 mois après la fin de chaque mission.</p>
     </div>
     <div class="stats">
       <div class="stat">
         <div class="n"><em>120</em>+</div>
-        <div class="label">Équipes accompagnées depuis 2017</div>
+        <div class="label" data-fr="Équipes accompagnées depuis 2017" data-en="Teams supported since 2017">Équipes accompagnées depuis 2017</div>
       </div>
       <div class="stat">
         <div class="n"><em>95</em>%</div>
-        <div class="label">de participants qui recommandent</div>
+        <div class="label" data-fr="de participants qui recommandent" data-en="of participants who recommend us">de participants qui recommandent</div>
       </div>
       <div class="stat">
         <div class="n">×<em>2,4</em></div>
-        <div class="label">d'initiatives portées par les équipes en moyenne</div>
+        <div class="label" data-fr="d'initiatives portées par les équipes en moyenne" data-en="more initiatives driven by teams on average">d'initiatives portées par les équipes en moyenne</div>
       </div>
       <div class="stat">
         <div class="n"><em>3 500</em></div>
-        <div class="label">talents formés en sessions collectives</div>
+        <div class="label" data-fr="talents formés en sessions collectives" data-en="people trained in group sessions">talents formés en sessions collectives</div>
       </div>
     </div>
   </div>
@@ -438,31 +441,33 @@ DEPUIS
 <section class="s founder" id="fondatrice">
   <div class="container wrap">
     <div class="portrait">
-      <img src="diane-portrait.jpg" alt="Diane Maigrot, fondatrice de LEVELUP" style="object-fit: cover" />
+      <div class="stripes"></div>
+      <div class="frame"></div>
+      <div class="corner">Portrait</div>
+      <div class="name-overlay">Diane<br>Maigrot</div>
+      <div class="label" data-fr="Fondatrice LEVELUP · Directrice La Turbine · Île Maurice" data-en="Founder LEVELUP · Director La Turbine · Mauritius">Fondatrice LEVELUP · Directrice La Turbine · Île Maurice</div>
     </div>
     <div>
-      <div class="eyebrow">Fondatrice</div>
+      <div class="eyebrow" data-fr="Fondatrice" data-en="Founder">Fondatrice</div>
       <h2>Diane <em>Maigrot</em></h2>
-      <div class="role">30 ans à faire grandir des projets et des équipes.</div>
-      <p class="bio">
-        Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle pilote depuis <strong>10 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation — en croisant l'énergie entrepreneuriale et la rigueur de l'incubation.
-      </p>
+      <div class="role" data-fr="30 ans à faire grandir des projets et des équipes." data-en="30 years growing projects and people.">30 ans à faire grandir des projets et des équipes.</div>
+      <p class="bio" data-fr="Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle pilote depuis <strong>10 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation — en croisant l'énergie entrepreneuriale et la rigueur de l'incubation." data-en="With over <strong>20 years</strong> of entrepreneurial experience, Diane founded and led several companies before taking the helm of <strong>La Turbine</strong>, the leading incubator in Mauritius, which she has been directing for <strong>10 years</strong>. She now works with organisations that want to turn their teams into engines of innovation — combining entrepreneurial energy with the discipline of incubation.">Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle pilote depuis <strong>10 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation — en croisant l'énergie entrepreneuriale et la rigueur de l'incubation.</p>
       <div class="creds">
         <div class="cred">
-          <span class="n">20 <small style="font-size:18px;color:var(--mute);font-weight:500">ans</small></span>
-          <div class="t"><strong>d'expérience entrepreneuriale</strong>Fondatrice et dirigeante de plusieurs entreprises</div>
+          <span class="n">20 <small style="font-size:18px;color:var(--mute);font-weight:500" data-fr="ans" data-en="yrs">ans</small></span>
+          <div class="t"><strong data-fr="d'expérience entrepreneuriale" data-en="entrepreneurial experience">d'expérience entrepreneuriale</strong><span data-fr="Fondatrice et dirigeante de plusieurs entreprises" data-en="Founder and CEO of multiple companies">Fondatrice et dirigeante de plusieurs entreprises</span></div>
         </div>
         <div class="cred">
-          <span class="n">10 <small style="font-size:18px;color:var(--mute);font-weight:500">ans</small></span>
-          <div class="t"><strong>Direction de La Turbine</strong>L'incubateur de référence à l'île Maurice</div>
+          <span class="n">10 <small style="font-size:18px;color:var(--mute);font-weight:500" data-fr="ans" data-en="yrs">ans</small></span>
+          <div class="t"><strong data-fr="Direction de La Turbine" data-en="Leading La Turbine">Direction de La Turbine</strong><span data-fr="L'incubateur de référence à l'île Maurice" data-en="The leading incubator in Mauritius">L'incubateur de référence à l'île Maurice</span></div>
         </div>
         <div class="cred">
           <span class="n">90<small style="font-size:18px;color:var(--mute);font-weight:500">+</small></span>
-          <div class="t"><strong>Projets startups</strong>Accompagnées de l'idée au scale</div>
+          <div class="t"><strong data-fr="Projets startups" data-en="Startup projects">Projets startups</strong><span data-fr="Accompagnées de l'idée au scale" data-en="Supported from idea to scale">Accompagnées de l'idée au scale</span></div>
         </div>
         <div class="cred">
           <span class="n">200<small style="font-size:18px;color:var(--mute);font-weight:500">+</small></span>
-          <div class="t"><strong>entrepreneurs formés</strong>En ateliers et programmes collectifs</div>
+          <div class="t"><strong data-fr="entrepreneurs formés" data-en="entrepreneurs trained">entrepreneurs formés</strong><span data-fr="En ateliers et programmes collectifs" data-en="In workshops and group programs">En ateliers et programmes collectifs</span></div>
         </div>
       </div>
     </div>
@@ -473,50 +478,50 @@ DEPUIS
 <section class="s programs" id="programmes">
   <div class="container">
     <div class="section-head">
-      <h2>Programmes signature.</h2>
-      <p class="side">Trois formats préformatés qui couvrent l'essentiel — chacun se personnalise à votre contexte sectoriel et culturel.</p>
+      <h2 data-fr="Programmes signature." data-en="Signature programs.">Programmes signature.</h2>
+      <p class="side" data-fr="Trois formats préformatés qui couvrent l'essentiel — chacun se personnalise à votre contexte sectoriel et culturel." data-en="Three ready-made formats that cover the essentials — each one tailored to your sector and culture.">Trois formats préformatés qui couvrent l'essentiel — chacun se personnalise à votre contexte sectoriel et culturel.</p>
     </div>
     <div class="grid">
       <article class="program">
         <div class="head">
-          <span class="tag">Atelier flagship</span>
-          <span class="mute" style="font-size:13px;font-weight:600">2 jours</span>
+          <span class="tag" data-fr="Atelier flagship" data-en="Flagship workshop">Atelier flagship</span>
+          <span class="mute" style="font-size:13px;font-weight:600" data-fr="2 jours" data-en="2 days">2 jours</span>
         </div>
         <div class="body">
           <h3>Design Thinking Essentials</h3>
-          <p>Initier une équipe aux fondamentaux du design thinking sur un cas réel de l'entreprise : empathie utilisateur, idéation, prototypage rapide.</p>
+          <p data-fr="Initier une équipe aux fondamentaux du design thinking sur un cas réel de l'entreprise : empathie utilisateur, idéation, prototypage rapide." data-en="Introduce a team to the fundamentals of design thinking on a real company challenge: user empathy, ideation, rapid prototyping.">Initier une équipe aux fondamentaux du design thinking sur un cas réel de l'entreprise : empathie utilisateur, idéation, prototypage rapide.</p>
         </div>
         <div class="meta">
-          <span>10 à 30 personnes</span>
-          <span class="price">À partir de 8 400 €</span>
+          <span data-fr="10 à 30 personnes" data-en="10 to 30 people">10 à 30 personnes</span>
+          <span class="price" data-fr="À partir de 8 400 €" data-en="From €8,400">À partir de 8 400 €</span>
         </div>
       </article>
       <article class="program">
         <div class="head">
-          <span class="tag">Sprint produit · IA</span>
-          <span class="mute" style="font-size:13px;font-weight:600">5 jours</span>
+          <span class="tag" data-fr="Sprint produit · IA" data-en="Product sprint · AI">Sprint produit · IA</span>
+          <span class="mute" style="font-size:13px;font-weight:600" data-fr="5 jours" data-en="5 days">5 jours</span>
         </div>
         <div class="body">
           <h3>AI Product Sprint</h3>
-          <p>Une semaine pour concevoir un nouveau produit ou service avec l'IA comme co-pilote. Vos équipes repartent avec un prototype testé et la méthode.</p>
+          <p data-fr="Une semaine pour concevoir un nouveau produit ou service avec l'IA comme co-pilote. Vos équipes repartent avec un prototype testé et la méthode." data-en="One week to design a new product or service with AI as co-pilot. Your teams leave with a tested prototype and the method.">Une semaine pour concevoir un nouveau produit ou service avec l'IA comme co-pilote. Vos équipes repartent avec un prototype testé et la méthode.</p>
         </div>
         <div class="meta">
-          <span>6 à 12 personnes</span>
-          <span class="price">À partir de 16 800 €</span>
+          <span data-fr="6 à 12 personnes" data-en="6 to 12 people">6 à 12 personnes</span>
+          <span class="price" data-fr="À partir de 16 800 €" data-en="From €16,800">À partir de 16 800 €</span>
         </div>
       </article>
       <article class="program">
         <div class="head">
-          <span class="tag">Parcours long</span>
-          <span class="mute" style="font-size:13px;font-weight:600">3 mois</span>
+          <span class="tag" data-fr="Parcours long" data-en="Long programme">Parcours long</span>
+          <span class="mute" style="font-size:13px;font-weight:600" data-fr="3 mois" data-en="3 months">3 mois</span>
         </div>
         <div class="body">
-          <h3>Leadership Collectif</h3>
-          <p>Transformer la posture managériale d'un comité de direction ou d'une ligne managériale — 6 sessions, du sponsor au manager.</p>
+          <h3 data-fr="Leadership Collectif" data-en="Collective Leadership">Leadership Collectif</h3>
+          <p data-fr="Transformer la posture managériale d'un comité de direction ou d'une ligne managériale — 6 sessions, du sponsor au manager." data-en="Shift the management posture of a leadership team or management layer — 6 sessions, from sponsor to line manager.">Transformer la posture managériale d'un comité de direction ou d'une ligne managériale — 6 sessions, du sponsor au manager.</p>
         </div>
         <div class="meta">
-          <span>8 à 16 managers</span>
-          <span class="price">À partir de 24 000 €</span>
+          <span data-fr="8 à 16 managers" data-en="8 to 16 managers">8 à 16 managers</span>
+          <span class="price" data-fr="À partir de 24 000 €" data-en="From €24,000">À partir de 24 000 €</span>
         </div>
       </article>
     </div>
@@ -528,12 +533,12 @@ DEPUIS
   <div class="container">
     <div class="card">
       <div class="mark">«</div>
-      <blockquote>
-        Six mois après le sprint, l'équipe a sorti <em>trois nouveaux services alimentés par l'IA</em> — sans nous solliciter. C'est exactement ce qu'on cherchait.
+      <blockquote data-fr="Six mois après le sprint, l'équipe a sorti <em>trois nouveaux services alimentés par l'IA</em> — sans nous solliciter. C'est exactement ce qu'on cherchait." data-en="Six months after the sprint, the team launched <em>three new AI-powered services</em> — without our input. That's exactly what we were after.">
+        Six mois après le sprint, l'équipe a sorti <em>trois nouveaux services alimentés par l'IA</em> — sans nous solliciter. C'est exactement ce qu'on cherchait.
       </blockquote>
       <div class="who">
         <span class="name">Camille Roux</span>
-        <span class="role">Directrice Innovation</span>
+        <span class="role" data-fr="Directrice Innovation" data-en="Head of Innovation">Directrice Innovation</span>
         <span class="co">Groupe Aurelia</span>
       </div>
     </div>
@@ -555,13 +560,13 @@ DEPUIS
   </div>
   <div class="container inner">
     <div>
-      <h2>Prêt à <em>faire grandir</em> vos équipes&nbsp;?</h2>
-      <p class="sub">30 minutes pour parler de votre contexte, sans engagement. On vous dit honnêtement si on est les bons partenaires pour vous.</p>
+      <h2 data-fr="Prêt à <em>faire grandir</em> vos équipes&nbsp;?" data-en="Ready to <em>grow</em> your teams&nbsp;?">Prêt à <em>faire grandir</em> vos équipes&nbsp;?</h2>
+      <p class="sub" data-fr="30 minutes pour parler de votre contexte, sans engagement. On vous dit honnêtement si on est les bons partenaires pour vous." data-en="30 minutes to talk about your context, no commitment. We'll tell you honestly whether we're the right fit.">30 minutes pour parler de votre contexte, sans engagement. On vous dit honnêtement si on est les bons partenaires pour vous.</p>
     </div>
     <div class="actions">
-      <a href="mailto:hello@levelup.studio" class="btn btn-white">Réserver un diagnostic gratuit</a>
-      <a href="tel:+33612345678" class="btn" style="background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)">Nous appeler · +33 6 12 34 56 78</a>
-      <span class="meta">Réponse sous 24h ouvrées · Paris, Lyon, remote</span>
+      <a href="mailto:hello@levelup.studio" class="btn btn-white" data-fr="Réserver un diagnostic gratuit" data-en="Book a free discovery call">Réserver un diagnostic gratuit</a>
+      <a href="tel:+33612345678" class="btn" style="background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)" data-fr="Nous appeler · +33 6 12 34 56 78" data-en="Call us · +33 6 12 34 56 78">Nous appeler · +33 6 12 34 56 78</a>
+      <span class="meta" data-fr="Réponse sous 24h ouvrées · Paris, Lyon, remote" data-en="Response within 24 business hours · Paris, Lyon, remote">Réponse sous 24h ouvrées · Paris, Lyon, remote</span>
     </div>
   </div>
 </section>
@@ -575,42 +580,69 @@ DEPUIS
           <svg style="height:28px;width:28px"><use href="#lvl"/></svg>
           <span>Level<em>Up</em></span>
         </a>
-        <p class="blurb">Cabinet de consulting en transformation par la formation. Design thinking, innovation produit augmentée par l'IA, coaching d'équipes — pour ancrer durablement la culture d'innovation.</p>
+        <p class="blurb" data-fr="Cabinet de consulting en transformation par la formation. Design thinking, innovation produit augmentée par l'IA, coaching d'équipes — pour ancrer durablement la culture d'innovation." data-en="A consulting firm specialising in transformation through learning. Design thinking, AI-powered product innovation, team coaching — to embed an innovation culture for the long term.">Cabinet de consulting en transformation par la formation. Design thinking, innovation produit augmentée par l'IA, coaching d'équipes — pour ancrer durablement la culture d'innovation.</p>
       </div>
       <div>
-        <h4>Services</h4>
+        <h4 data-fr="Services" data-en="Services">Services</h4>
         <ul>
-          <li><a href="#services">Ateliers Design Thinking</a></li>
-          <li><a href="#services">Sprints Innovation Produit · IA</a></li>
-          <li><a href="#services">Coaching & leadership</a></li>
-          <li><a href="#programmes">Programmes signature</a></li>
+          <li><a href="#services" data-fr="Ateliers Design Thinking" data-en="Design Thinking Workshops">Ateliers Design Thinking</a></li>
+          <li><a href="#services" data-fr="Sprints Innovation Produit · IA" data-en="AI Product Innovation Sprints">Sprints Innovation Produit · IA</a></li>
+          <li><a href="#services" data-fr="Coaching & leadership" data-en="Coaching & leadership">Coaching & leadership</a></li>
+          <li><a href="#programmes" data-fr="Programmes signature" data-en="Signature programs">Programmes signature</a></li>
         </ul>
       </div>
       <div>
-        <h4>Ressources</h4>
+        <h4 data-fr="Ressources" data-en="Resources">Ressources</h4>
         <ul>
-          <li><a href="#">Cas clients</a></li>
-          <li><a href="#">Le journal</a></li>
-          <li><a href="#">Manifeste</a></li>
-          <li><a href="#">Charte facilitateur</a></li>
+          <li><a href="#" data-fr="Cas clients" data-en="Case studies">Cas clients</a></li>
+          <li><a href="#" data-fr="Le journal" data-en="The journal">Le journal</a></li>
+          <li><a href="#" data-fr="Manifeste" data-en="Manifesto">Manifeste</a></li>
+          <li><a href="#" data-fr="Charte facilitateur" data-en="Facilitator charter">Charte facilitateur</a></li>
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
+        <h4 data-fr="Contact" data-en="Contact">Contact</h4>
         <ul>
           <li><a href="mailto:hello@levelup.studio">hello@levelup.studio</a></li>
           <li><a href="tel:+33612345678">+33 6 12 34 56 78</a></li>
           <li><a href="#">LinkedIn</a></li>
-          <li><a href="#">Newsletter</a></li>
+          <li><a href="#" data-fr="Newsletter" data-en="Newsletter">Newsletter</a></li>
         </ul>
       </div>
     </div>
     <div class="bot">
-      <span>© 2026 LEVELUP · Tous droits réservés</span>
-      <span>Mentions légales · CGV · Politique de confidentialité</span>
+      <span data-fr="© 2026 LEVELUP · Tous droits réservés" data-en="© 2026 LEVELUP · All rights reserved">© 2026 LEVELUP · Tous droits réservés</span>
+      <span data-fr="Mentions légales · CGV · Politique de confidentialité" data-en="Legal notice · T&Cs · Privacy policy">Mentions légales · CGV · Politique de confidentialité</span>
     </div>
   </div>
 </footer>
+
+<script>
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+  document.querySelectorAll('[data-fr][data-en]').forEach(el => {
+    const text = el.getAttribute('data-' + lang);
+    if (text !== null) el.innerHTML = text;
+  });
+
+  const titles = {
+    fr: 'LEVELUP — Design thinking, innovation produit & IA pour vos équipes',
+    en: 'LEVELUP — Design thinking, product innovation & AI for your teams'
+  };
+  document.title = titles[lang];
+
+  try { localStorage.setItem('levelup-lang', lang); } catch(e) {}
+}
+
+(function() {
+  let saved;
+  try { saved = localStorage.getItem('levelup-lang'); } catch(e) {}
+  if (saved === 'en') setLang('en');
+})();
+</script>
 
 </body>
 </html>
