@@ -203,6 +203,7 @@
   footer .logo span em{color:var(--magenta)}
   footer .bot{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;color:rgba(255,255,255,.5);font-size:13px}
 
+  /* ── Tablet ── */
   @media (max-width: 980px){
     .hero .grid{grid-template-columns:1fr}
     .hero-visual{height:380px}
@@ -220,6 +221,82 @@
     .final .inner{grid-template-columns:1fr}
     footer .grid{grid-template-columns:1fr 1fr}
     nav.top .links{display:none}
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 600px){
+    .container{padding:0 18px}
+    section.s{padding:72px 0}
+    .testi{padding:72px 0}
+    .final{padding:72px 0}
+
+    /* nav */
+    nav.top .row{height:60px}
+    nav.top .cta .btn-primary{display:none}
+    .lang-toggle{margin-left:auto}
+
+    /* hero */
+    .hero{padding:56px 0 40px}
+    .hero h1{letter-spacing:-2px}
+    .hero .lede{font-size:16px}
+    .hero .ctas{flex-direction:column;align-items:flex-start;gap:10px}
+    .hero .ctas .meta{margin-left:0}
+    .hero-visual{height:300px;border-radius:16px}
+    .hero-visual .quote{font-size:18px}
+    .hero-visual .ring{width:68px;height:68px;font-size:9px;top:18px;right:18px}
+
+    /* trust */
+    .trust{padding:28px 0}
+    .trust .row{flex-direction:column;align-items:flex-start;gap:16px}
+    .trust .brands{gap:20px}
+    .trust .brand{font-size:14px}
+
+    /* section heads */
+    .section-head{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:36px}
+    .section-head h2{font-size:clamp(28px,8vw,40px);letter-spacing:-1.2px}
+    .section-head .side{max-width:100%;font-size:14px}
+
+    /* promise */
+    .promise .col{padding:24px}
+
+    /* services */
+    .service{padding:24px}
+    .service .big-num{font-size:48px}
+
+    /* method */
+    .method .steps{grid-template-columns:1fr}
+    .method .step{border-bottom:1px dashed rgba(255,255,255,.15);padding:24px 0}
+    .method .step .num{font-size:36px}
+
+    /* impact */
+    .impact .stats{grid-template-columns:1fr 1fr;border-radius:14px}
+    .impact .stat{padding:24px 16px}
+    .impact .stat .n{font-size:44px;letter-spacing:-2px}
+
+    /* founder */
+    .founder .portrait{max-width:100%;aspect-ratio:3/4}
+    .founder h2{font-size:clamp(32px,8vw,44px)}
+    .founder .creds{grid-template-columns:1fr}
+    .founder .cred:nth-child(even){padding-left:0}
+    .founder .cred{border-bottom:1px solid var(--line);padding:14px 0}
+
+    /* programs */
+    .program .body h3{font-size:22px}
+
+    /* testimonial */
+    .testi .card{padding:28px;gap:20px}
+    .testi blockquote{font-size:18px;letter-spacing:-0.4px}
+    .testi .mark{font-size:60px}
+
+    /* final cta */
+    .final h2{font-size:clamp(30px,8vw,44px);letter-spacing:-1.5px}
+    .final .sub{font-size:15px}
+    .final .actions .btn{font-size:14px;padding:15px 18px}
+
+    /* footer */
+    footer{padding:48px 0 24px}
+    footer .grid{grid-template-columns:1fr;gap:32px}
+    footer .bot{flex-direction:column;gap:10px;text-align:center}
   }
 </style>
 </head>
