@@ -193,25 +193,43 @@
   .program .meta .price{color:var(--ink);font-weight:700}
 
   /* FOUNDER */
-  .founder{background:#fff}
-  .founder .wrap{display:grid;grid-template-columns:400px 1fr;gap:64px;align-items:center}
-  .founder .portrait{position:relative;width:100%;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--magenta-tint);border:1px solid var(--line)}
-  .founder .portrait img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
-  .founder .portrait .stripes{position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(224,24,92,.08) 0,rgba(224,24,92,.08) 1px,transparent 1px,transparent 14px)}
-  .founder .portrait .label{position:absolute;bottom:18px;left:18px;right:18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--magenta);letter-spacing:0.4px;line-height:1.4}
-  .founder .portrait .corner{position:absolute;top:18px;left:18px;font-family:ui-monospace,monospace;font-size:10px;color:rgba(224,24,92,.6);letter-spacing:1px;text-transform:uppercase}
-  .founder .portrait .frame{position:absolute;inset:14px;border:1px dashed rgba(224,24,92,.25);border-radius:12px}
-  .founder .portrait .name-overlay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:28px;color:var(--magenta);letter-spacing:-0.8px;text-align:center;line-height:1;opacity:.35}
+  .founder{background:#fff;overflow:hidden;position:relative}
+  .founder::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(224,24,92,.07) 0%,transparent 70%);pointer-events:none}
+  .founder::after{content:"";position:absolute;bottom:-80px;left:40%;width:320px;height:320px;background:radial-gradient(circle,rgba(255,179,0,.07) 0%,transparent 70%);pointer-events:none}
+  .founder .wrap{display:grid;grid-template-columns:400px 1fr;gap:72px;align-items:center;position:relative;z-index:1}
+  /* portrait column */
+  .founder .portrait-col{display:flex;flex-direction:column;align-items:center;gap:20px}
+  .founder .portrait-wrap{position:relative;width:100%}
+  /* accent square behind photo */
+  .founder .portrait-wrap::before{content:"";position:absolute;inset:14px -14px -14px 14px;background:var(--magenta-tint);border-radius:20px;z-index:0}
+  .founder .portrait{position:relative;width:100%;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--magenta-tint);border:1.5px solid var(--line);z-index:1}
+  .founder .portrait img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block}
+  /* name badge below portrait */
+  .founder .portrait-badge{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+  .founder .portrait-badge .badge-name{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:18px;color:var(--ink);letter-spacing:-0.4px}
+  .founder .portrait-badge .badge-title{font-size:13px;color:var(--magenta);font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
+  /* social pill */
+  .founder .portrait-badge .linkedin{display:inline-flex;align-items:center;gap:7px;margin-top:8px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);font-size:13px;font-weight:700;color:var(--ink);text-decoration:none;transition:background .18s,border-color .18s}
+  .founder .portrait-badge .linkedin:hover{background:var(--magenta-tint);border-color:var(--magenta)}
+  .founder .portrait-badge .linkedin svg{flex:0 0 auto}
+  /* tags */
+  .founder .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+  .founder .tag-pill{padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;border:1.5px solid var(--line);color:var(--ink);background:#fff}
+  /* pullquote */
+  .founder .pullquote{margin:28px 0;padding:22px 24px;border-left:3px solid var(--magenta);background:var(--cream);border-radius:0 12px 12px 0}
+  .founder .pullquote p{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:17px;line-height:1.5;color:var(--ink);letter-spacing:-0.3px;font-style:italic}
+  .founder .pullquote cite{display:block;margin-top:8px;font-size:12px;font-weight:600;color:var(--magenta);text-transform:uppercase;letter-spacing:1px;font-style:normal}
+  /* text side */
   .founder .eyebrow{margin-bottom:18px}
   .founder h2{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:clamp(38px,4.4vw,56px);letter-spacing:-2px;line-height:1;margin-bottom:14px}
   .founder h2 em{font-style:normal;color:var(--magenta);font-weight:800}
   .founder .role{font-size:18px;color:var(--mute);margin-bottom:28px;line-height:1.4}
   .founder .bio{font-size:17px;line-height:1.6;color:#3a3a3a;max-width:580px}
   .founder .bio strong{color:var(--ink);font-weight:700}
-  .founder .creds{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:0}
-  .founder .cred{padding:18px 0;display:flex;align-items:baseline;gap:18px}
+  .founder .creds{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+  .founder .cred{padding:18px 0;display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--line)}
   .founder .cred:nth-child(odd){padding-right:24px;padding-left:0}
-  .founder .cred:nth-child(even){padding-left:24px}
+  .founder .cred:nth-child(even){padding-left:24px;border-left:1px solid var(--line)}
   .founder .cred .n{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:36px;letter-spacing:-1.4px;color:var(--magenta);line-height:1;flex:0 0 auto;min-width:84px}
   .founder .cred .t{font-size:14px;line-height:1.4;color:#3a3a3a}
   .founder .cred .t strong{display:block;color:var(--ink);font-weight:700;margin-bottom:2px;font-size:15px}
@@ -293,7 +311,8 @@
     .promise .vs-divider::before{top:auto;left:0;right:0;width:auto;height:1px}
     .services .grid, .programs .grid{grid-template-columns:1fr}
     .founder .wrap{grid-template-columns:1fr;gap:32px}
-    .founder .portrait{max-width:340px}
+    .founder .portrait-col{max-width:340px;margin:0 auto;width:100%}
+    .founder .portrait-wrap::before{inset:10px -10px -10px 10px}
     .method .steps{grid-template-columns:repeat(2,1fr)}
     .method .step + .step{padding-left:0;border-left:none}
     .method .step{border-bottom:1px dashed rgba(255,255,255,.15);padding-right:0}
@@ -373,11 +392,13 @@
     .impact .stat .n{font-size:44px;letter-spacing:-2px}
 
     /* founder */
-    .founder .portrait{max-width:100%;aspect-ratio:3/4}
+    .founder .portrait-col{max-width:100%}
+    .founder .portrait{aspect-ratio:3/4}
     .founder h2{font-size:clamp(32px,8vw,44px)}
     .founder .creds{grid-template-columns:1fr}
-    .founder .cred:nth-child(even){padding-left:0}
+    .founder .cred:nth-child(even){padding-left:0;border-left:none}
     .founder .cred{border-bottom:1px solid var(--line);padding:14px 0}
+    .founder .tags{gap:6px}
 
     /* programs */
     .program .body h3{font-size:22px}
@@ -671,14 +692,48 @@ DEPUIS
 <!-- FOUNDER -->
 <section class="s founder" id="fondatrice">
   <div class="container wrap">
-    <div class="portrait">
-      <img src="diane-portrait.jpg" alt="Diane Maigrot, fondatrice de LEVELUP" width="400" height="500" loading="lazy" decoding="async" />
+
+    <!-- Portrait column -->
+    <div class="portrait-col">
+      <div class="portrait-wrap">
+        <div class="portrait">
+          <img src="diane-portrait.jpg" alt="Diane Maigrot, fondatrice de LEVELUP" width="400" height="500" loading="lazy" decoding="async" />
+        </div>
+      </div>
+      <!-- Name badge + LinkedIn -->
+      <div class="portrait-badge">
+        <span class="badge-name">Diane Maigrot</span>
+        <span class="badge-title" data-fr="Fondatrice &amp; Directrice" data-en="Founder &amp; Director">Fondatrice &amp; Directrice</span>
+        <a href="https://www.linkedin.com/in/dianemaigrot/" target="_blank" rel="noopener" class="linkedin" aria-label="LinkedIn de Diane Maigrot">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.23 0z"/></svg>
+          LinkedIn
+        </a>
+      </div>
     </div>
+
+    <!-- Text column -->
     <div>
       <div class="eyebrow" data-fr="Fondatrice" data-en="Founder">Fondatrice</div>
       <h2>Diane <em>Maigrot</em></h2>
       <div class="role" data-fr="30 ans à faire grandir des projets et des équipes." data-en="30 years growing projects and people.">30 ans à faire grandir des projets et des équipes.</div>
+
+      <!-- Expertise tags -->
+      <div class="tags">
+        <span class="tag-pill" data-fr="Design Thinking" data-en="Design Thinking">Design Thinking</span>
+        <span class="tag-pill" data-fr="Innovation IA" data-en="AI Innovation">Innovation IA</span>
+        <span class="tag-pill" data-fr="Coaching d'équipes" data-en="Team Coaching">Coaching d'équipes</span>
+        <span class="tag-pill" data-fr="Incubation" data-en="Incubation">Incubation</span>
+        <span class="tag-pill" data-fr="Leadership" data-en="Leadership">Leadership</span>
+      </div>
+
       <p class="bio" data-fr="Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle pilote depuis <strong>10 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation — en croisant l'énergie entrepreneuriale et la rigueur de l'incubation." data-en="With over <strong>20 years</strong> of entrepreneurial experience, Diane founded and led several companies before taking the helm of <strong>La Turbine</strong>, the leading incubator in Mauritius, which she has been directing for <strong>10 years</strong>. She now works with organisations that want to turn their teams into engines of innovation — combining entrepreneurial energy with the discipline of incubation.">Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle pilote depuis <strong>10 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation — en croisant l'énergie entrepreneuriale et la rigueur de l'incubation.</p>
+
+      <!-- Pull-quote -->
+      <blockquote class="pullquote">
+        <p>« It always seems impossible until it's done. »</p>
+        <cite>— Nelson Mandela</cite>
+      </blockquote>
+
       <div class="creds">
         <div class="cred">
           <span class="n">20 <small style="font-size:18px;color:var(--mute);font-weight:500" data-fr="ans" data-en="yrs">ans</small></span>
@@ -698,6 +753,7 @@ DEPUIS
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
