@@ -4,13 +4,33 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>LEVELUP — Design thinking, innovation produit & IA pour vos équipes</title>
+<meta name="description" content="LEVELUP accompagne vos équipes avec des ateliers design thinking, sprints innovation produit augmentés par l'IA et coaching managérial. 120+ équipes transformées depuis 2016. Basé à l'île Maurice, intervention partout." />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#E0185C" />
+<link rel="canonical" href="https://levelup.mu/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://levelup.mu/" />
+<meta property="og:title" content="LEVELUP — Design thinking, innovation produit & IA pour vos équipes" />
+<meta property="og:description" content="Ateliers design thinking, sprints IA, coaching d'équipes. 120+ équipes transformées depuis 2016." />
+<meta property="og:image" content="https://levelup.mu/og-image.jpg" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="og:site_name" content="LEVELUP" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="LEVELUP — Design thinking, innovation produit & IA" />
+<meta name="twitter:description" content="Ateliers design thinking, sprints IA, coaching d'équipes. 120+ équipes transformées depuis 2016." />
+<meta name="twitter:image" content="https://levelup.mu/og-image.jpg" />
+<link rel="alternate" hreflang="fr" href="https://levelup.mu/?lang=fr" />
+<link rel="alternate" hreflang="en" href="https://levelup.mu/?lang=en" />
+<link rel="alternate" hreflang="x-default" href="https://levelup.mu/" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none';">
 <meta http-equiv="X-Frame-Options" content="DENY">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" /></noscript>
 <style>
   :root{
     --magenta:#E0185C;
@@ -207,6 +227,39 @@
   footer .logo span em{color:var(--magenta)}
   footer .bot{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;color:rgba(255,255,255,.5);font-size:13px}
 
+  /* smooth scroll */
+  html{scroll-behavior:smooth}
+  [id]{scroll-margin-top:84px}
+
+  /* reveal animations */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  /* hover states — programs */
+  .program{transition:transform .2s,box-shadow .2s,border-color .2s}
+  .program:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.06);border-color:var(--magenta)}
+
+  /* hover states — trust brands */
+  .trust .brand{transition:opacity .2s}
+  .trust .brand:hover{opacity:1}
+
+  /* hover states — testimonial */
+  .testi .card{transition:box-shadow .2s}
+  .testi .card:hover{box-shadow:0 24px 56px rgba(0,0,0,.08)}
+
+  /* active nav link */
+  nav.top .links a.active{color:var(--magenta);font-weight:700}
+
+  /* hamburger button */
+  .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
+  .nav-burger span{display:block;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .25s}
+  .nav-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  /* quote-attr contrast fix */
+  .hero-visual .quote-attr{opacity:.9}
+
   /* ── Tablet ── */
   @media (max-width: 980px){
     .hero .grid{grid-template-columns:1fr}
@@ -224,7 +277,21 @@
     .testi .who{border-left:none;border-top:1px solid var(--line);padding:24px 0 0;padding-left:0}
     .final .inner{grid-template-columns:1fr}
     footer .grid{grid-template-columns:1fr 1fr}
-    nav.top .links{display:none}
+    .nav-burger{display:flex}
+    nav.top .links{
+      display:flex !important;
+      position:fixed;top:72px;left:0;right:0;
+      flex-direction:column;align-items:flex-start;gap:0;
+      background:rgba(250,250,250,.97);backdrop-filter:blur(12px);
+      padding:16px 0 24px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-8px);opacity:0;pointer-events:none;
+      transition:transform .25s ease,opacity .2s ease;
+      z-index:40;
+    }
+    nav.top .links.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    nav.top .links a{width:100%;padding:13px 32px;font-size:16px;border-bottom:1px solid var(--line)}
+    nav.top .links a:last-child{border-bottom:none}
   }
 
   /* ── Mobile ── */
@@ -238,6 +305,7 @@
     nav.top .row{height:60px}
     nav.top .cta .btn-primary{display:none}
     .lang-toggle{margin-left:auto}
+    nav.top .links{top:60px}
 
     /* hero */
     .hero{padding:56px 0 40px}
@@ -315,13 +383,13 @@
 </svg>
 
 <!-- NAV -->
-<nav class="top">
+<nav class="top" aria-label="Navigation principale">
   <div class="container row">
-    <a href="#" class="logo" style="color:var(--magenta)">
-      <svg><use href="#lvl"/></svg>
+    <a href="/" class="logo" style="color:var(--magenta)" aria-label="LEVELUP — Accueil">
+      <svg aria-hidden="true" focusable="false"><use href="#lvl"/></svg>
       <span style="color:var(--ink)">Level<em>Up</em></span>
     </a>
-    <div class="links">
+    <div class="links" id="nav-links">
       <a href="#services" data-fr="Services" data-en="Services">Services</a>
       <a href="#methode" data-fr="Méthode" data-en="Method">Méthode</a>
       <a href="#fondatrice" data-fr="Fondatrice" data-en="Founder">Fondatrice</a>
@@ -331,10 +399,13 @@
     </div>
     <div class="cta">
       <div class="lang-toggle">
-        <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
-        <button id="btn-en" onclick="setLang('en')">EN</button>
+        <button id="btn-fr" class="active" onclick="setLang('fr')" aria-label="Passer en français" aria-pressed="true">FR</button>
+        <button id="btn-en" onclick="setLang('en')" aria-label="Switch to English" aria-pressed="false">EN</button>
       </div>
       <a href="#contact" class="btn btn-primary" data-fr="Réserver un appel →" data-en="Book a call →">Réserver un appel →</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
@@ -343,18 +414,18 @@
 <header class="hero">
   <div class="container grid">
     <div>
-      <div class="eyebrow" style="margin-bottom:24px" data-fr="CONSEIL · FORMATION ET ACCOMPAGNEMENT INNOVATION AVEC OU SANS L'IA" data-en="CONSULTING · TRAINING & INNOVATION COACHING WITH OR WITHOUT AI">CONSEIL · FORMATION ET ACCOMPAGNEMENT INNOVATION AVEC OU SANS L'IA</div>
+      <div class="eyebrow" style="margin-bottom:24px" data-fr="DESIGN THINKING · IA · TRANSFORMATION D'ÉQUIPES" data-en="DESIGN THINKING · AI · TEAM TRANSFORMATION">DESIGN THINKING · IA · TRANSFORMATION D'ÉQUIPES</div>
       <h1 data-fr="Transformer vos équipes en <em>moteurs d'innovation.</em>" data-en="Turn your teams into <em>engines of innovation.</em>">Transformer vos équipes en <em>moteurs d'innovation.</em></h1>
-      <p class="lede" data-fr="Ateliers de design thinking, sprints de développement produit augmentés par l'IA, coaching d'équipes — pour révéler les talents et embarquer toute l'entreprise dans une dynamique de croissance durable." data-en="Design thinking workshops, AI-powered product development sprints, team coaching — to unlock talent and drive your whole organisation toward lasting growth.">Ateliers de design thinking, sprints de développement produit augmentés par l'IA, coaching d'équipes — pour révéler les talents et embarquer toute l'entreprise dans une dynamique de croissance durable.</p>
+      <p class="lede" data-fr="Ateliers de design thinking, sprints de développement produit augmentés par l'IA, coaching d'équipes — pour révéler les talents et embarquer toute l'entreprise dans une dynamique de croissance durable." data-en="Your teams have more potential than they're currently using. We unlock it — through design thinking workshops, AI-powered product sprints, and sustained team coaching that makes the change stick.">Ateliers de design thinking, sprints de développement produit augmentés par l'IA, coaching d'équipes — pour révéler les talents et embarquer toute l'entreprise dans une dynamique de croissance durable.</p>
       <div class="ctas">
-        <a href="#contact" class="btn btn-primary" data-fr="Réserver un diagnostic gratuit" data-en="Book a free discovery call">Réserver un diagnostic gratuit</a>
-        <a href="#programmes" class="btn btn-ghost" data-fr="Voir nos programmes" data-en="See our programs">Voir nos programmes</a>
+        <a href="#contact" class="btn btn-primary" data-fr="Réserver mon diagnostic offert" data-en="Claim my free diagnostic">Réserver mon diagnostic offert</a>
+        <a href="#programmes" class="btn btn-ghost" data-fr="Explorer les programmes" data-en="Explore our programmes">Explorer les programmes</a>
         <span class="meta" data-fr="Disponible · 1<sup>er</sup> rdv sous 5 jours" data-en="Available · First call within 5 days">Disponible · 1<sup>er</sup> rdv sous 5 jours</span>
       </div>
     </div>
     <aside class="hero-visual">
       <div class="chev" style="color:#fff"><svg><use href="#lvl"/></svg></div>
-      <div class="ring" data-fr="EN MOUVEMENT DEPUIS 2016" data-en="IN MOTION SINCE 2016">EN
+      <div class="ring" data-fr="EN MOUVEMENT DEPUIS 2016" data-en="DRIVING CHANGE SINCE 2016">EN
 MOUVEMENT
 DEPUIS
 2016</div>
@@ -368,7 +439,7 @@ DEPUIS
 <!-- TRUST -->
 <section class="trust">
   <div class="container row">
-    <div class="label" data-fr="Ils nous font confiance" data-en="They trust us">Ils nous font confiance</div>
+    <div class="label" data-fr="Ils nous font confiance" data-en="Trusted by">Ils nous font confiance</div>
     <div class="brands">
       <div class="brand">Aurelia&nbsp;Group</div>
       <div class="brand alt">Métis</div>
@@ -432,7 +503,7 @@ DEPUIS
       </article>
       <article class="service" style="background:var(--magenta);color:#fff;border-color:var(--magenta)">
         <div class="big-num" style="color:#fff">2</div>
-        <div class="num" style="color:rgba(255,255,255,.8)" data-fr="Service · Le plus demandé" data-en="Service · Most popular">Service · Le plus demandé</div>
+        <div class="num" style="color:rgba(255,255,255,.8)" data-fr="Service · Le plus demandé" data-en="Service · Most requested">Service · Le plus demandé</div>
         <h3 data-fr="Sprints Innovation Produit · IA" data-en="AI Product Innovation Sprints">Sprints Innovation Produit · IA</h3>
         <p style="color:rgba(255,255,255,.85)" data-fr="5 jours intensifs pour concevoir un nouveau produit ou service. Vos équipes apprennent à utiliser l'IA comme co-pilote : idéation, recherche, prototypage, test." data-en="5 intensive days to design a new product or service. Your teams learn to use AI as a co-pilot: ideation, research, prototyping, testing.">5 jours intensifs pour concevoir un nouveau produit ou service. Vos équipes apprennent à utiliser l'IA comme co-pilote : idéation, recherche, prototypage, test.</p>
         <div class="meta" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.18)">
@@ -447,7 +518,7 @@ DEPUIS
         <p data-fr="3 à 12 mois d'accompagnement pour ancrer les pratiques, faire monter en autonomie et installer une culture d'innovation à tous les niveaux de l'organisation." data-en="3 to 12 months of support to embed practices, build autonomy, and install an innovation culture at every level of the organisation.">3 à 12 mois d'accompagnement pour ancrer les pratiques, faire monter en autonomie et installer une culture d'innovation à tous les niveaux de l'organisation.</p>
         <div class="meta">
           <span data-fr="● 1 équipe" data-en="● 1 team">● 1 équipe</span>
-          <span data-fr="● Bimensuel" data-en="● Fortnightly">● Bimensuel</span>
+          <span data-fr="● Bimensuel" data-en="● Bi-monthly sessions">● Bimensuel</span>
         </div>
       </article>
     </div>
@@ -458,7 +529,7 @@ DEPUIS
 <section class="s method" id="methode">
   <div class="container">
     <div class="section-head">
-      <h2 data-fr="Notre méthode <em>en quatre temps.</em>" data-en="Our method <em>in four stages.</em>">Notre méthode <em>en quatre temps.</em></h2>
+      <h2 data-fr="Notre méthode <em>en quatre temps.</em>" data-en="Our <em>four-stage</em> method.">Notre méthode <em>en quatre temps.</em></h2>
       <p class="side" data-fr="Un cadre éprouvé sur 120+ équipes. Chaque étape se prépare, se mesure et se documente — pour que la transformation tienne dans le temps." data-en="A framework tested with 120+ teams. Each step is prepared, measured and documented — so the transformation lasts.">Un cadre éprouvé sur 120+ équipes. Chaque étape se prépare, se mesure et se documente — pour que la transformation tienne dans le temps.</p>
     </div>
     <div class="steps">
@@ -477,7 +548,7 @@ DEPUIS
       <div class="step">
         <div class="num">03</div>
         <h3 data-fr="Activation" data-en="Activation">Activation</h3>
-        <p data-fr="Les engagements pris en atelier se traduisent en rituels concrets. On accompagne managers et équipes dans la mise en mouvement." data-en="Workshop commitments become concrete rituals. We support managers and teams in putting them into motion.">Les engagements pris en atelier se traduisent en rituels concrets. On accompagne managers et équipes dans la mise en mouvement.</p>
+        <p data-fr="Les engagements pris en atelier se traduisent en rituels concrets. On accompagne managers et équipes dans la mise en mouvement." data-en="Workshop commitments become concrete habits. We support managers and teams as they put them into practice.">Les engagements pris en atelier se traduisent en rituels concrets. On accompagne managers et équipes dans la mise en mouvement.</p>
         <div class="duration" data-fr="3 à 6 mois" data-en="3 to 6 months">3 à 6 mois</div>
       </div>
       <div class="step">
@@ -500,19 +571,19 @@ DEPUIS
     <div class="stats">
       <div class="stat">
         <div class="n"><em>120</em>+</div>
-        <div class="label" data-fr="Équipes accompagnées depuis 2017" data-en="Teams supported since 2017">Équipes accompagnées depuis 2017</div>
+        <div class="label" data-fr="Équipes accompagnées depuis 2017" data-en="Teams supported over 8 years">Équipes accompagnées en 8 ans</div>
       </div>
       <div class="stat">
         <div class="n"><em>95</em>%</div>
-        <div class="label" data-fr="de participants qui recommandent" data-en="of participants who recommend us">de participants qui recommandent</div>
+        <div class="label" data-fr="de participants qui recommandent" data-en="of participants who would recommend us">de participants qui recommandent</div>
       </div>
       <div class="stat">
         <div class="n">×<em>2,4</em></div>
-        <div class="label" data-fr="d'initiatives portées par les équipes en moyenne" data-en="more initiatives driven by teams on average">d'initiatives portées par les équipes en moyenne</div>
+        <div class="label" data-fr="d'initiatives portées par les équipes en moyenne" data-en="more team-led initiatives, measured at 6 months">d'initiatives portées par les équipes en moyenne</div>
       </div>
       <div class="stat">
         <div class="n"><em>3 500</em></div>
-        <div class="label" data-fr="talents formés en sessions collectives" data-en="people trained in group sessions">talents formés en sessions collectives</div>
+        <div class="label" data-fr="talents formés en sessions collectives" data-en="people upskilled through group sessions">talents formés en sessions collectives</div>
       </div>
     </div>
   </div>
@@ -522,7 +593,7 @@ DEPUIS
 <section class="s founder" id="fondatrice">
   <div class="container wrap">
     <div class="portrait">
-      <img src="diane-portrait.jpg" alt="Diane Maigrot, fondatrice de LEVELUP" />
+      <img src="diane-portrait.jpg" alt="Diane Maigrot, fondatrice de LEVELUP" width="400" height="500" loading="lazy" decoding="async" />
     </div>
     <div>
       <div class="eyebrow" data-fr="Fondatrice" data-en="Founder">Fondatrice</div>
@@ -589,12 +660,12 @@ DEPUIS
       </article>
       <article class="program">
         <div class="head">
-          <span class="tag" data-fr="Parcours long" data-en="Long programme">Parcours long</span>
+          <span class="tag" data-fr="Parcours long" data-en="Extended programme">Parcours long</span>
           <span class="mute" style="font-size:13px;font-weight:600" data-fr="3 mois" data-en="3 months">3 mois</span>
         </div>
         <div class="body">
           <h3 data-fr="Leadership Collectif" data-en="Collective Leadership">Leadership Collectif</h3>
-          <p data-fr="Transformer la posture managériale d'un comité de direction ou d'une ligne managériale — 6 sessions, du sponsor au manager." data-en="Shift the management posture of a leadership team or management layer — 6 sessions, from sponsor to line manager.">Transformer la posture managériale d'un comité de direction ou d'une ligne managériale — 6 sessions, du sponsor au manager.</p>
+          <p data-fr="Transformer la posture managériale d'un comité de direction ou d'une ligne managériale — 6 sessions, du sponsor au manager." data-en="Reshape the leadership culture of your exec team or management tier — 6 sessions, from C-suite sponsor to line manager.">Transformer la posture managériale d'un comité de direction ou d'une ligne managériale — 6 sessions, du sponsor au manager.</p>
         </div>
         <div class="meta">
           <span data-fr="8 à 16 managers" data-en="8 to 16 managers">8 à 16 managers</span>
@@ -610,7 +681,7 @@ DEPUIS
   <div class="container">
     <div class="card">
       <div class="mark">«</div>
-      <blockquote data-fr="Six mois après le sprint, l'équipe a sorti <em>trois nouveaux services alimentés par l'IA</em> — sans nous solliciter. C'est exactement ce qu'on cherchait." data-en="Six months after the sprint, the team launched <em>three new AI-powered services</em> — without our input. That's exactly what we were after.">
+      <blockquote data-fr="Six mois après le sprint, l'équipe a sorti <em>trois nouveaux services alimentés par l'IA</em> — sans nous solliciter. C'est exactement ce qu'on cherchait." data-en="Six months after the sprint, the team shipped <em>three new AI-powered services</em> — entirely off their own backs. That's exactly what we were looking for.">
         Six mois après le sprint, l'équipe a sorti <em>trois nouveaux services alimentés par l'IA</em> — sans nous solliciter. C'est exactement ce qu'on cherchait.
       </blockquote>
       <div class="who">
@@ -641,7 +712,7 @@ DEPUIS
       <p class="sub" data-fr="30 minutes pour parler de votre contexte, sans engagement. On vous dit honnêtement si on est les bons partenaires pour vous." data-en="30 minutes to talk about your context, no commitment. We'll tell you honestly whether we're the right fit.">30 minutes pour parler de votre contexte, sans engagement. On vous dit honnêtement si on est les bons partenaires pour vous.</p>
     </div>
     <div class="actions">
-      <a href="mailto:hello@levelup.studio" class="btn btn-white" data-fr="Réserver un diagnostic gratuit" data-en="Book a free discovery call">Réserver un diagnostic gratuit</a>
+      <a href="mailto:hello@levelup.studio" class="btn btn-white" data-fr="Parler de votre projet" data-en="Let's talk about your project">Parler de votre projet</a>
       <a href="tel:+23052528910" class="btn" style="background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)" data-fr="Nous appeler · +230 5252 8910" data-en="Call us · +230 5252 8910">Nous appeler · +230 5252 8910</a>
       <span class="meta" data-fr="Réponse sous 24h ouvrées · Rivière Noire, Ile Maurice, remote" data-en="Response within 24 business hours · Black River, Mauritius, remote">Réponse sous 24h ouvrées · Rivière Noire, Ile Maurice, remote</span>
     </div>
@@ -657,7 +728,7 @@ DEPUIS
           <svg style="height:28px;width:28px"><use href="#lvl"/></svg>
           <span>Level<em>Up</em></span>
         </a>
-        <p class="blurb" data-fr="Cabinet de consulting en transformation par la formation. Design thinking, innovation produit augmentée par l'IA, coaching d'équipes — pour ancrer durablement la culture d'innovation." data-en="A consulting firm specialising in transformation through learning. Design thinking, AI-powered product innovation, team coaching — to embed an innovation culture for the long term.">Cabinet de consulting en transformation par la formation. Design thinking, innovation produit augmentée par l'IA, coaching d'équipes — pour ancrer durablement la culture d'innovation.</p>
+        <p class="blurb" data-fr="Cabinet de consulting en transformation par la formation. Design thinking, innovation produit augmentée par l'IA, coaching d'équipes — pour ancrer durablement la culture d'innovation." data-en="A consulting practice that drives lasting transformation through learning. Design thinking, AI-powered product innovation, team coaching — to build an innovation culture that endures.">Cabinet de consulting en transformation par la formation. Design thinking, innovation produit augmentée par l'IA, coaching d'équipes — pour ancrer durablement la culture d'innovation.</p>
       </div>
       <div>
         <h4 data-fr="Services" data-en="Services">Services</h4>
@@ -714,6 +785,8 @@ function setLang(lang) {
   document.documentElement.lang = lang;
   document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-fr').setAttribute('aria-pressed', lang === 'fr');
+  document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en');
 
   document.querySelectorAll('[data-fr][data-en]').forEach(el => {
     const text = el.getAttribute('data-' + lang);
@@ -734,6 +807,75 @@ function setLang(lang) {
   try { saved = localStorage.getItem('levelup-lang'); } catch(e) {}
   if (saved === 'en') setLang('en');
 })();
+
+// Hamburger menu
+const burger = document.getElementById('nav-burger');
+const navLinks = document.getElementById('nav-links');
+if (burger && navLinks) {
+  burger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      burger.setAttribute('aria-expanded', false);
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('nav.top')) {
+      navLinks.classList.remove('open');
+      burger.setAttribute('aria-expanded', false);
+    }
+  });
+}
+
+// Reveal animations
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('section, .service, .program, .stat, .step').forEach(el => {
+  el.classList.add('reveal');
+  revealObserver.observe(el);
+});
+
+// Active nav link on scroll
+const navAnchors = document.querySelectorAll('nav.top .links a[href^="#"]');
+const navSections = [...navAnchors].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const activeObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navAnchors.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`nav.top .links a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+navSections.forEach(s => activeObserver.observe(s));
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "LEVELUP",
+  "url": "https://levelup.mu",
+  "description": "Cabinet de consulting en transformation par la formation. Design thinking, innovation produit augmentée par l'IA, coaching d'équipes.",
+  "telephone": "+23052528910",
+  "email": "hello@levelup.studio",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Rivière Noire",
+    "addressCountry": "MU"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Diane Maigrot",
+    "jobTitle": "Fondatrice & Directrice"
+  },
+  "areaServed": ["MU", "FR", "RE"],
+  "knowsAbout": ["Design Thinking", "Innovation produit", "Intelligence Artificielle", "Coaching d'équipes"]
+}
 </script>
 
 </body>
