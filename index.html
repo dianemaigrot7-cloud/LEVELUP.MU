@@ -172,13 +172,6 @@
   .method .step p{color:rgba(255,255,255,.65);line-height:1.55;font-size:14px}
   .method .step .duration{margin-top:14px;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:700}
 
-  /* IMPACT */
-  .impact .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff}
-  .impact .stat{padding:40px 28px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
-  .impact .stat:last-child{border-right:none}
-  .impact .stat .n{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:64px;letter-spacing:-2.8px;line-height:0.9;color:var(--ink)}
-  .impact .stat .n em{font-style:normal;color:var(--magenta)}
-  .impact .stat .label{font-size:14px;color:var(--mute);font-weight:500;line-height:1.4}
 
   /* PROGRAMS */
   .programs{background:var(--cream)}
@@ -237,6 +230,15 @@
   .testi .who .name{font-weight:800;font-size:15px}
   .testi .who .role{font-size:13px;color:var(--mute);line-height:1.4}
   .testi .who .co{margin-top:10px;font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:16px;letter-spacing:-0.4px}
+
+  /* FLOATING CTA (desktop — appears after hero scrolls away) */
+  .float-cta{position:fixed;bottom:32px;right:32px;z-index:100;display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:var(--magenta);color:#fff;font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 4px 24px rgba(224,24,92,.4);opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s}
+  .float-cta.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+  .float-cta:hover{background:var(--magenta-dk)}
+  .float-cta svg{flex:0 0 auto}
+  /* STICKY MOBILE BAR */
+  .sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;padding:12px 16px;background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+  .sticky-bar a{display:block;width:100%;text-align:center;padding:14px;border-radius:999px;background:var(--magenta);color:#fff;font-weight:700;font-size:15px;text-decoration:none}
 
   /* FINAL CTA */
   .final{background:var(--magenta);color:#fff;padding:120px 0;position:relative;overflow:hidden}
@@ -308,8 +310,6 @@
     .method .steps{grid-template-columns:repeat(2,1fr)}
     .method .step + .step{padding-left:0;border-left:none}
     .method .step{border-bottom:1px dashed rgba(255,255,255,.15);padding-right:0}
-    .impact .stats{grid-template-columns:repeat(2,1fr)}
-    .impact .stat{border-right:none;border-bottom:1px solid var(--line)}
     .testi .card{grid-template-columns:1fr;padding:36px}
     .testi .mark{font-size:80px;margin:0}
     .testi .who{border-left:none;border-top:1px solid var(--line);padding:24px 0 0;padding-left:0}
@@ -334,10 +334,12 @@
 
   /* ── Mobile ── */
   @media (max-width: 600px){
+    .float-cta{display:none}
+    .sticky-bar{display:block}
     .container{padding:0 18px}
     section.s{padding:72px 0}
     .testi{padding:72px 0}
-    .final{padding:72px 0}
+    .final{padding:72px 0 96px}
 
     /* nav */
     nav.top .row{height:60px}
@@ -378,10 +380,6 @@
     .method .step{border-bottom:1px dashed rgba(255,255,255,.15);padding:24px 0}
     .method .step .num{font-size:36px}
 
-    /* impact */
-    .impact .stats{grid-template-columns:1fr 1fr;border-radius:14px}
-    .impact .stat{padding:24px 16px}
-    .impact .stat .n{font-size:44px;letter-spacing:-2px}
 
     /* founder */
     .founder .portrait-col{max-width:100%}
@@ -454,7 +452,7 @@
     <div>
       <div class="eyebrow" style="margin-bottom:24px" data-fr="DESIGN THINKING · IA · TRANSFORMATION D'ÉQUIPES" data-en="DESIGN THINKING · AI · TEAM TRANSFORMATION">DESIGN THINKING · IA · TRANSFORMATION D'ÉQUIPES</div>
       <h1 data-fr="Transformer vos équipes en <em>moteurs d'innovation.</em>" data-en="Turn your teams into <em>engines of innovation.</em>">Transformer vos équipes en <em>moteurs d'innovation.</em></h1>
-      <p class="lede" data-fr="Ateliers de design thinking, sprints de développement produit augmentés par l'IA, coaching d'équipes — pour révéler les talents et embarquer toute l'entreprise dans une dynamique de croissance durable." data-en="Your teams have more potential than they're currently using. We unlock it — through design thinking workshops, AI-powered product sprints, and sustained team coaching that makes the change stick.">Ateliers de design thinking, sprints de développement produit augmentés par l'IA, coaching d'équipes — pour révéler les talents et embarquer toute l'entreprise dans une dynamique de croissance durable.</p>
+      <p class="lede" data-fr="Vos équipes ont plus de potentiel qu'elles n'en expriment. Nous l'activons — avec des ateliers de design thinking, des sprints IA et un coaching qui ancre le changement dans la durée." data-en="Your teams have more potential than they're showing. We activate it — with design thinking workshops, AI product sprints, and coaching that makes change stick.">Vos équipes ont plus de potentiel qu'elles n'en expriment. Nous l'activons — avec des ateliers de design thinking, des sprints IA et un coaching qui ancre le changement dans la durée.</p>
       <div class="ctas">
         <a href="#contact" class="btn btn-primary" data-fr="Réserver mon diagnostic offert" data-en="Claim my free diagnostic">Réserver mon diagnostic offert</a>
         <a href="#programmes" class="btn btn-ghost" data-fr="Explorer les programmes" data-en="Explore our programmes">Explorer les programmes</a>
@@ -646,34 +644,6 @@ DEPUIS
         <h3 data-fr="Suivi" data-en="Follow-up">Suivi</h3>
         <p data-fr="Mesure d'impact à 6 et 12 mois, points d'ajustement avec les sponsors, capitalisation interne pour faire grandir d'autres équipes." data-en="Impact measurement at 6 and 12 months, adjustment sessions with sponsors, internal knowledge-sharing to grow other teams.">Mesure d'impact à 6 et 12 mois, points d'ajustement avec les sponsors, capitalisation interne pour faire grandir d'autres équipes.</p>
         <div class="duration" data-fr="Continu" data-en="Ongoing">Continu</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- IMPACT -->
-<section class="s impact" id="impact">
-  <div class="container">
-    <div class="section-head">
-      <h2 data-fr="Des résultats <em>qui tiennent</em>." data-en="Results <em>that last</em>.">Des résultats <em>qui tiennent</em>.</h2>
-      <p class="side" data-fr="Les chiffres clés de huit ans d'accompagnement, mesurés à 6 mois après la fin de chaque mission." data-en="Key figures from eight years of work, measured 6 months after each engagement ends.">Les chiffres clés de huit ans d'accompagnement, mesurés à 6 mois après la fin de chaque mission.</p>
-    </div>
-    <div class="stats">
-      <div class="stat">
-        <div class="n"><em>120</em>+</div>
-        <div class="label" data-fr="Équipes accompagnées depuis 2017" data-en="Teams supported over 8 years">Équipes accompagnées en 8 ans</div>
-      </div>
-      <div class="stat">
-        <div class="n"><em>95</em>%</div>
-        <div class="label" data-fr="de participants qui recommandent" data-en="of participants who would recommend us">de participants qui recommandent</div>
-      </div>
-      <div class="stat">
-        <div class="n">×<em>2,4</em></div>
-        <div class="label" data-fr="d'initiatives portées par les équipes en moyenne" data-en="more team-led initiatives, measured at 6 months">d'initiatives portées par les équipes en moyenne</div>
-      </div>
-      <div class="stat">
-        <div class="n"><em>3 500</em></div>
-        <div class="label" data-fr="talents formés en sessions collectives" data-en="people upskilled through group sessions">talents formés en sessions collectives</div>
       </div>
     </div>
   </div>
@@ -966,6 +936,16 @@ const activeObserver = new IntersectionObserver(entries => {
   });
 }, { rootMargin: '-30% 0px -60% 0px' });
 navSections.forEach(s => activeObserver.observe(s));
+
+// Floating CTA — show after hero leaves viewport
+const floatCta = document.getElementById('float-cta');
+const heroEl = document.querySelector('header.hero');
+if (floatCta && heroEl) {
+  const heroObserver = new IntersectionObserver(([entry]) => {
+    floatCta.classList.toggle('visible', !entry.isIntersecting);
+  }, { threshold: 0 });
+  heroObserver.observe(heroEl);
+}
 </script>
 
 <script type="application/ld+json">
@@ -991,6 +971,18 @@ navSections.forEach(s => activeObserver.observe(s));
   "knowsAbout": ["Design Thinking", "Innovation produit", "Intelligence Artificielle", "Coaching d'équipes"]
 }
 </script>
+
+<!-- FLOATING CTA (desktop) -->
+<a href="#contact" class="float-cta" id="float-cta" aria-label="Réserver un appel">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 16l.42.92z"/></svg>
+  <span data-fr="Réserver un appel" data-en="Book a call">Réserver un appel</span>
+</a>
+
+<!-- STICKY MOBILE BAR -->
+<div class="sticky-bar" id="sticky-bar">
+  <a href="#contact" data-fr="Réserver mon appel offert →" data-en="Book my free call →">Réserver mon appel offert →</a>
+</div>
+
 
 </body>
 </html>
