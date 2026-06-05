@@ -1260,7 +1260,13 @@ const PROFILES = [
   const emailInput = document.getElementById('gate-email');
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  gate.addEventListener('submit', (e) => {
+  // ── Brevo integration ──
+  // ÉTAPE : Remplace la valeur ci-dessous par l'URL de ton formulaire Brevo.
+  // Contacts → Formulaires → ton formulaire → Partager → Intégrer → copie l'URL "action"
+  // Elle ressemble à : https://sibforms.com/serve/MUIFxxxxxxxxxxxxxxxxxxxxxxxx
+  const BREVO_FORM_URL = 'REMPLACE_PAR_TON_URL_BREVO'; // ← colle ici
+
+  gate.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = emailInput.value.trim();
     if (!EMAIL_RE.test(email)) {
@@ -1269,12 +1275,26 @@ const PROFILES = [
       return;
     }
     gateError.style.display = 'none';
-    // store the lead locally (placeholder for CRM/email integration)
+
+    // Envoie le contact à Brevo (si l'URL est configurée)
+    if (BREVO_FORM_URL && BREVO_FORM_URL !== 'REMPLACE_PAR_TON_URL_BREVO') {
+      try {
+        const body = new FormData();
+        body.append('EMAIL', email);
+        // Envoie le profil et le score comme attributs Brevo (optionnel)
+        body.append('QUIZ_SCORE', score);
+        body.append('QUIZ_PROFILE', document.getElementById('profile-tag').textContent);
+        await fetch(BREVO_FORM_URL, { method: 'POST', body, mode: 'no-cors' });
+      } catch(err) { /* silencieux — l'UX ne bloque pas */ }
+    }
+
+    // Stocke aussi en local comme fallback
     try {
       const leads = JSON.parse(localStorage.getItem('levelup-quiz-leads') || '[]');
-      leads.push({ email, score, date: new Date().toISOString() });
+      leads.push({ email, score, profile: document.getElementById('profile-tag').textContent, date: new Date().toISOString() });
       localStorage.setItem('levelup-quiz-leads', JSON.stringify(leads));
-    } catch(e) {}
+    } catch(err) {}
+
     gate.style.display = 'none';
     unlocked.style.display = 'block';
   });
