@@ -112,17 +112,41 @@
   .section-head .side{max-width:340px;font-size:15px;color:var(--mute);line-height:1.55}
 
   /* PROMISE */
-  .promise{background:var(--cream)}
-  .promise .cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-  .promise .col{background:#fff;border-radius:20px;padding:36px;border:1px solid var(--line)}
-  .promise .col h3{font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:12px}
-  .promise .col p{color:#3a3a3a;line-height:1.6;font-size:16px}
-  .promise .col ul{margin-top:18px;display:flex;flex-direction:column;gap:10px;list-style:none}
-  .promise .col li{padding-left:24px;position:relative;font-size:15px;color:#3a3a3a;line-height:1.5}
-  .promise .col li::before{content:"";position:absolute;left:0;top:8px;width:12px;height:2px;background:var(--ink)}
-  .promise .col.bad{background:var(--paper)}
-  .promise .col.bad h3::before{content:"✕";display:inline-block;margin-right:8px;color:#9ca3af}
-  .promise .col.good h3::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--magenta);margin-right:10px;vertical-align:middle;transform:translateY(-2px)}
+  .promise{background:var(--cream);overflow:hidden;position:relative}
+  .promise .deco-circle{position:absolute;border-radius:50%;pointer-events:none}
+  .promise .deco-circle-1{width:480px;height:480px;background:radial-gradient(circle,rgba(224,24,92,.07) 0%,transparent 70%);top:-120px;right:-80px}
+  .promise .deco-circle-2{width:320px;height:320px;background:radial-gradient(circle,rgba(255,179,0,.1) 0%,transparent 70%);bottom:-60px;left:-40px}
+  .promise .cols{display:grid;grid-template-columns:1fr 56px 1fr;gap:0;align-items:stretch;position:relative;z-index:1}
+  .promise .vs-divider{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;position:relative}
+  .promise .vs-divider::before{content:"";position:absolute;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--line) 20%,var(--line) 80%,transparent)}
+  .promise .vs-badge{background:var(--ink);color:#fff;font-weight:800;font-size:11px;letter-spacing:2px;padding:8px 10px;border-radius:999px;z-index:1;line-height:1}
+  .promise .col{border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:0}
+  .promise .col-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+  .promise .col-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .promise .col h3{font-size:20px;font-weight:800;letter-spacing:-0.5px;line-height:1.1}
+  .promise .col p{font-size:15px;line-height:1.6;margin-bottom:24px}
+  .promise .col ul{display:flex;flex-direction:column;gap:0;list-style:none;margin-top:auto}
+  .promise .col li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;padding:12px 0;border-top:1px solid}
+  .promise .col li:last-child{border-bottom:1px solid}
+  .promise .col li .li-icon{width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+  /* bad column */
+  .promise .col.bad{background:#fff;border:1.5px solid var(--line)}
+  .promise .col.bad .col-icon{background:#F3F4F6}
+  .promise .col.bad h3{color:#6B7280}
+  .promise .col.bad p{color:#9ca3af}
+  .promise .col.bad li{color:#9ca3af;border-color:#F3F4F6;text-decoration-color:transparent}
+  .promise .col.bad .li-icon{background:#F3F4F6}
+  /* good column */
+  .promise .col.good{background:var(--ink);border:1.5px solid var(--ink);color:#fff}
+  .promise .col.good .col-icon{background:var(--magenta)}
+  .promise .col.good h3{color:#fff}
+  .promise .col.good p{color:rgba(255,255,255,.65)}
+  .promise .col.good li{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.1)}
+  .promise .col.good .li-icon{background:rgba(224,24,92,.25)}
+  /* decorative label */
+  .promise .col-eyebrow{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+  .promise .col.bad .col-eyebrow{color:#9ca3af}
+  .promise .col.good .col-eyebrow{color:var(--magenta)}
 
   /* SERVICES */
   .services .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -264,7 +288,10 @@
   @media (max-width: 980px){
     .hero .grid{grid-template-columns:1fr}
     .hero-visual{height:380px}
-    .promise .cols, .services .grid, .programs .grid{grid-template-columns:1fr}
+    .promise .cols{grid-template-columns:1fr}
+    .promise .vs-divider{flex-direction:row;height:48px}
+    .promise .vs-divider::before{top:auto;left:0;right:0;width:auto;height:1px}
+    .services .grid, .programs .grid{grid-template-columns:1fr}
     .founder .wrap{grid-template-columns:1fr;gap:32px}
     .founder .portrait{max-width:340px}
     .method .steps{grid-template-columns:repeat(2,1fr)}
@@ -453,32 +480,84 @@ DEPUIS
 
 <!-- PROMISE -->
 <section class="s promise" id="approche">
+  <div class="deco-circle deco-circle-1" aria-hidden="true"></div>
+  <div class="deco-circle deco-circle-2" aria-hidden="true"></div>
   <div class="container">
     <div class="section-head">
       <h2 data-fr="Une formation, c'est rare que ça <em>transforme</em>." data-en="Training rarely <em>transforms</em> anything.">Une formation, c'est rare que ça <em>transforme</em>.</h2>
       <p class="side" data-fr="La plupart des programmes survivent une semaine. Notre métier : ancrer la transformation jusqu'à ce qu'elle devienne un réflexe d'équipe." data-en="Most programs last a week. Our job: embed change until it becomes second nature for the whole team.">La plupart des programmes survivent une semaine. Notre métier : ancrer la transformation jusqu'à ce qu'elle devienne un réflexe d'équipe.</p>
     </div>
     <div class="cols">
+
+      <!-- BAD -->
       <div class="col bad">
-        <h3 data-fr="Ce qu'on évite" data-en="What we avoid">Ce qu'on évite</h3>
-        <p data-fr="Les approches qui partent du contenu et oublient les humains qui vont l'incarner." data-en="Approaches that start from content and forget the people who have to live it.">Les approches qui partent du contenu et oublient les humains qui vont l'incarner.</p>
+        <div class="col-eyebrow" data-fr="L'approche classique" data-en="The standard approach">L'approche classique</div>
+        <div class="col-header">
+          <div class="col-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 5l10 10M15 5L5 15" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 data-fr="Ce qu'on évite" data-en="What we avoid">Ce qu'on évite</h3>
+        </div>
+        <p data-fr="Les approches qui partent du contenu et oublient les humains qui vont l'incarner." data-en="Approaches that start from content — and forget the people who have to make it work.">Les approches qui partent du contenu et oublient les humains qui vont l'incarner.</p>
         <ul>
-          <li data-fr="Une journée de séminaire, puis plus rien" data-en="A one-day seminar, then nothing">Une journée de séminaire, puis plus rien</li>
-          <li data-fr="Des outils plaqués qui ne parlent pas à l'équipe" data-en="Off-the-shelf tools that don't speak to the team">Des outils plaqués qui ne parlent pas à l'équipe</li>
-          <li data-fr="Des managers formés en silo, sans leurs équipes" data-en="Managers trained in silos, without their teams">Des managers formés en silo, sans leurs équipes</li>
-          <li data-fr="Un ROI difficile à mesurer six mois après" data-en="ROI that's impossible to measure six months later">Un ROI difficile à mesurer six mois après</li>
+          <li>
+            <div class="li-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2l8 8M10 2L2 10" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <span data-fr="Une journée de séminaire, puis plus rien" data-en="A one-day seminar, then nothing">Une journée de séminaire, puis plus rien</span>
+          </li>
+          <li>
+            <div class="li-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2l8 8M10 2L2 10" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <span data-fr="Des outils plaqués qui ne parlent pas à l'équipe" data-en="Cookie-cutter tools that don't resonate with the team">Des outils plaqués qui ne parlent pas à l'équipe</span>
+          </li>
+          <li>
+            <div class="li-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2l8 8M10 2L2 10" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <span data-fr="Des managers formés en silo, sans leurs équipes" data-en="Managers trained in silos, without their teams">Des managers formés en silo, sans leurs équipes</span>
+          </li>
+          <li>
+            <div class="li-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2l8 8M10 2L2 10" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <span data-fr="Un ROI difficile à mesurer six mois après" data-en="ROI that's impossible to measure six months later">Un ROI difficile à mesurer six mois après</span>
+          </li>
         </ul>
       </div>
+
+      <!-- VS -->
+      <div class="vs-divider" aria-hidden="true">
+        <span class="vs-badge">VS</span>
+      </div>
+
+      <!-- GOOD -->
       <div class="col good">
-        <h3 data-fr="Ce qu'on construit avec vous" data-en="What we build with you">Ce qu'on construit avec vous</h3>
-        <p data-fr="Un dispositif sur-mesure qui se déploie en plusieurs temps, sur plusieurs niveaux de l'entreprise." data-en="A tailored programme that unfolds in stages, across every level of the organisation.">Un dispositif sur-mesure qui se déploie en plusieurs temps, sur plusieurs niveaux de l'entreprise.</p>
+        <div class="col-eyebrow" data-fr="Notre approche" data-en="Our approach">Notre approche</div>
+        <div class="col-header">
+          <div class="col-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M4 10.5l4.5 4.5 7.5-8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 data-fr="Ce qu'on construit avec vous" data-en="What we build with you">Ce qu'on construit avec vous</h3>
+        </div>
+        <p data-fr="Un dispositif sur-mesure qui se déploie en plusieurs temps, sur plusieurs niveaux de l'entreprise." data-en="A bespoke programme that rolls out in stages — across every level of your organisation.">Un dispositif sur-mesure qui se déploie en plusieurs temps, sur plusieurs niveaux de l'entreprise.</p>
         <ul>
-          <li data-fr="Un diagnostic préalable des talents et tensions" data-en="An upfront diagnosis of talents and tensions">Un diagnostic préalable des talents et tensions</li>
-          <li data-fr="Des ateliers collectifs où l'équipe co-construit" data-en="Collective workshops where the team co-creates">Des ateliers collectifs où l'équipe co-construit</li>
-          <li data-fr="Un accompagnement managérial dans la durée" data-en="Long-term managerial support">Un accompagnement managérial dans la durée</li>
-          <li data-fr="Des indicateurs partagés pour mesurer l'impact" data-en="Shared metrics to measure impact">Des indicateurs partagés pour mesurer l'impact</li>
+          <li>
+            <div class="li-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l3 3 5-5.5" stroke="#E0185C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span data-fr="Un diagnostic préalable des talents et tensions" data-en="An upfront diagnosis of talents and tensions">Un diagnostic préalable des talents et tensions</span>
+          </li>
+          <li>
+            <div class="li-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l3 3 5-5.5" stroke="#E0185C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span data-fr="Des ateliers collectifs où l'équipe co-construit" data-en="Collective workshops where the team co-creates">Des ateliers collectifs où l'équipe co-construit</span>
+          </li>
+          <li>
+            <div class="li-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l3 3 5-5.5" stroke="#E0185C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span data-fr="Un accompagnement managérial dans la durée" data-en="Long-term managerial support">Un accompagnement managérial dans la durée</span>
+          </li>
+          <li>
+            <div class="li-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l3 3 5-5.5" stroke="#E0185C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <span data-fr="Des indicateurs partagés pour mesurer l'impact" data-en="Shared metrics to measure impact">Des indicateurs partagés pour mesurer l'impact</span>
+          </li>
         </ul>
       </div>
+
     </div>
   </div>
 </section>
