@@ -231,49 +231,6 @@
   .testi .who .role{font-size:13px;color:var(--mute);line-height:1.4}
   .testi .who .co{margin-top:10px;font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:16px;letter-spacing:-0.4px}
 
-  /* QUIZ */
-  .quiz{background:var(--ink);color:#fff;position:relative;overflow:hidden}
-  .quiz::before{content:"";position:absolute;top:-140px;right:-120px;width:460px;height:460px;background:radial-gradient(circle,rgba(224,24,92,.22) 0%,transparent 70%);pointer-events:none}
-  .quiz::after{content:"";position:absolute;bottom:-120px;left:-100px;width:380px;height:380px;background:radial-gradient(circle,rgba(255,179,0,.14) 0%,transparent 70%);pointer-events:none}
-  .quiz .quiz-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;text-align:center}
-  .quiz .eyebrow{color:var(--marigold);justify-content:center;display:flex;margin-bottom:18px}
-  .quiz h2{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:clamp(32px,4.4vw,52px);letter-spacing:-1.6px;line-height:1.02;margin-bottom:14px;color:#fff;text-wrap:balance}
-  .quiz h2 em{font-style:normal;color:var(--magenta)}
-  .quiz .quiz-sub{font-size:17px;color:rgba(255,255,255,.7);line-height:1.5;max-width:540px;margin:0 auto 14px}
-  /* card */
-  .quiz .quiz-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:40px;margin-top:40px;text-align:left;backdrop-filter:blur(6px)}
-  .quiz .quiz-progress{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;font-size:13px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:0.4px}
-  .quiz .quiz-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;margin-bottom:32px}
-  .quiz .quiz-bar span{display:block;height:100%;background:var(--magenta);border-radius:999px;width:0;transition:width .4s ease}
-  .quiz .quiz-q{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:clamp(20px,2.4vw,26px);letter-spacing:-0.6px;line-height:1.2;margin-bottom:26px;text-wrap:balance}
-  .quiz .quiz-options{display:grid;gap:12px}
-  .quiz .quiz-opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:18px 20px;border-radius:14px;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.14);color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;transition:background .15s,border-color .15s,transform .12s;line-height:1.35}
-  .quiz .quiz-opt:hover{background:rgba(224,24,92,.16);border-color:var(--magenta);transform:translateX(3px)}
-  .quiz .quiz-opt .dot{flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--marigold)}
-  /* result */
-  .quiz .quiz-result{text-align:center}
-  .quiz .quiz-result .score-ring{width:120px;height:120px;margin:0 auto 24px;position:relative}
-  .quiz .quiz-result .score-ring svg{transform:rotate(-90deg)}
-  .quiz .quiz-result .score-ring .score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:34px;color:#fff}
-  .quiz .quiz-result .profile-tag{display:inline-block;padding:7px 16px;border-radius:999px;background:var(--magenta);color:#fff;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}
-  .quiz .quiz-result h3{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:clamp(24px,3vw,34px);letter-spacing:-1px;margin-bottom:14px;line-height:1.1}
-  .quiz .quiz-result p{font-size:16px;color:rgba(255,255,255,.78);line-height:1.6;max-width:520px;margin:0 auto 28px}
-  .quiz .quiz-result .result-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .quiz .quiz-result .btn-retry{background:transparent;border:1.5px solid rgba(255,255,255,.3);color:#fff}
-  .quiz .quiz-result .btn-retry:hover{background:rgba(255,255,255,.1)}
-  /* soft gate */
-  .quiz .quiz-gate{max-width:480px;margin:0 auto;text-align:center}
-  .quiz .gate-label{font-size:15px;color:#fff;line-height:1.5;margin-bottom:18px}
-  .quiz .gate-label strong{color:var(--marigold);font-weight:800}
-  .quiz .gate-row{display:flex;gap:10px}
-  .quiz .gate-row input{flex:1;min-width:0;padding:14px 16px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:15px;outline:none;transition:border-color .15s}
-  .quiz .gate-row input::placeholder{color:rgba(255,255,255,.4)}
-  .quiz .gate-row input:focus{border-color:var(--magenta)}
-  .quiz .gate-row .btn{white-space:nowrap;flex:0 0 auto}
-  .quiz .gate-error{display:block;margin-top:10px;font-size:13px;color:var(--marigold);font-weight:600}
-  .quiz .gate-privacy{display:block;margin-top:14px;font-size:12px;color:rgba(255,255,255,.45)}
-  .quiz .gate-success{font-size:16px;color:#fff;line-height:1.5;margin-bottom:24px;font-weight:600}
-
   /* FLOATING CTA (desktop — appears after hero scrolls away) */
   .float-cta{position:fixed;bottom:32px;right:32px;z-index:100;display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:var(--magenta);color:#fff;font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:15px;text-decoration:none;box-shadow:0 4px 24px rgba(224,24,92,.4);opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s}
   .float-cta.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
@@ -426,14 +383,6 @@
     .founder .photo-quote p{font-size:13px}
     .founder .portrait-badge .badge-name{font-size:16px}
 
-    /* quiz */
-    .quiz .quiz-card{padding:24px}
-    .quiz .quiz-opt{padding:15px 16px;font-size:15px}
-    .quiz .quiz-result .result-actions{flex-direction:column}
-    .quiz .quiz-result .result-actions .btn{width:100%;justify-content:center}
-    .quiz .gate-row{flex-direction:column}
-    .quiz .gate-row .btn{width:100%;justify-content:center}
-
     /* programs */
     .programs .grid{grid-template-columns:1fr}
     .program .body h3{font-size:22px}
@@ -490,7 +439,6 @@
       <a href="#methode" data-fr="Méthode" data-en="Method">Méthode</a>
       <a href="#fondatrice" data-fr="Fondatrice" data-en="Founder">Fondatrice</a>
       <a href="#programmes" data-fr="Programmes" data-en="Programs">Programmes</a>
-      <a href="#quiz" data-fr="Quiz" data-en="Quiz">Quiz</a>
       <a href="#cas-clients" data-fr="Cas clients" data-en="Case studies">Cas clients</a>
       <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
     </div>
@@ -865,64 +813,6 @@ DEPUIS
   </div>
 </section>
 
-<!-- QUIZ -->
-<section class="s quiz" id="quiz">
-  <div class="container">
-    <div class="quiz-inner">
-      <div class="eyebrow" data-fr="Test express · 1 minute" data-en="Quick test · 1 minute">Test express · 1 minute</div>
-      <h2 data-fr="Quel est votre <em>profil d'innovateur</em> ?" data-en="What's your <em>innovator profile</em>?">Quel est votre <em>profil d'innovateur</em> ?</h2>
-      <p class="quiz-sub" data-fr="5 questions pour évaluer la maturité d'innovation de votre équipe. Recevez votre score et des pistes concrètes." data-en="5 questions to assess your team's innovation maturity. Get your score and concrete next steps.">5 questions pour évaluer la maturité d'innovation de votre équipe. Recevez votre score et des pistes concrètes.</p>
-
-      <div class="quiz-card" id="quiz-card">
-        <!-- Question view -->
-        <div id="quiz-questions">
-          <div class="quiz-progress">
-            <span id="q-counter" data-fr="Question 1 / 5" data-en="Question 1 / 5">Question 1 / 5</span>
-            <span id="q-pct">0%</span>
-          </div>
-          <div class="quiz-bar"><span id="q-bar"></span></div>
-          <div class="quiz-q" id="q-text"></div>
-          <div class="quiz-options" id="q-options"></div>
-        </div>
-
-        <!-- Result view -->
-        <div id="quiz-result" class="quiz-result" style="display:none">
-          <div class="score-ring">
-            <svg width="120" height="120" viewBox="0 0 120 120">
-              <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="10"/>
-              <circle id="score-arc" cx="60" cy="60" r="52" fill="none" stroke="#E0185C" stroke-width="10" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="327" style="transition:stroke-dashoffset 1s ease"/>
-            </svg>
-            <div class="score-num" id="score-num">0</div>
-          </div>
-          <span class="profile-tag" id="profile-tag"></span>
-          <h3 id="profile-title"></h3>
-          <p id="profile-desc"></p>
-
-          <!-- Soft gate: email form to unlock detailed report -->
-          <form class="quiz-gate" id="quiz-gate" novalidate>
-            <p class="gate-label" data-fr="📩 Recevez votre <strong>rapport détaillé</strong> + 3 recommandations personnalisées pour votre équipe." data-en="📩 Get your <strong>detailed report</strong> + 3 personalised recommendations for your team.">📩 Recevez votre <strong>rapport détaillé</strong> + 3 recommandations personnalisées pour votre équipe.</p>
-            <div class="gate-row">
-              <input type="email" id="gate-email" required autocomplete="email" placeholder="vous@entreprise.com" aria-label="Email" />
-              <button type="submit" class="btn btn-primary" data-fr="Recevoir mon rapport" data-en="Get my report">Recevoir mon rapport</button>
-            </div>
-            <span class="gate-error" id="gate-error" style="display:none" data-fr="Merci d'entrer un email valide." data-en="Please enter a valid email.">Merci d'entrer un email valide.</span>
-            <span class="gate-privacy" data-fr="Pas de spam · désinscription en 1 clic" data-en="No spam · unsubscribe in 1 click">Pas de spam · désinscription en 1 clic</span>
-          </form>
-
-          <!-- Unlocked state (after email) -->
-          <div class="quiz-unlocked" id="quiz-unlocked" style="display:none">
-            <p class="gate-success" data-fr="✅ Parfait ! Votre rapport arrive dans votre boîte mail. Pour aller plus loin :" data-en="✅ Great! Your report is on its way. To take it further:">✅ Parfait ! Votre rapport arrive dans votre boîte mail. Pour aller plus loin :</p>
-            <div class="result-actions">
-              <a href="#contact" class="btn btn-primary" data-fr="Réserver mon diagnostic offert" data-en="Book my free diagnostic">Réserver mon diagnostic offert</a>
-              <button class="btn btn-retry" id="quiz-retry" data-fr="Refaire le test" data-en="Retake the test">Refaire le test</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- TESTIMONIAL -->
 <section class="testi" id="cas-clients">
   <div class="container">
@@ -1047,7 +937,6 @@ function setLang(lang) {
   document.title = titles[lang];
 
   try { localStorage.setItem('levelup-lang', lang); } catch(e) {}
-  window.dispatchEvent(new Event('languagechange-quiz'));
 }
 
 (function() {
@@ -1110,212 +999,6 @@ if (floatCta && heroEl) {
   }, { threshold: 0 });
   heroObserver.observe(heroEl);
 }
-
-// ── Innovation Quiz ──
-const QUIZ = [
-  {
-    fr: "Face à un problème nouveau, votre équipe…",
-    en: "Faced with a new problem, your team…",
-    opts: [
-      { fr: "attend des instructions de la hiérarchie", en: "waits for instructions from management", pts: 0 },
-      { fr: "applique la solution habituelle", en: "applies the usual solution", pts: 1 },
-      { fr: "explore plusieurs pistes avant de décider", en: "explores several options before deciding", pts: 2 }
-    ]
-  },
-  {
-    fr: "À quelle fréquence testez-vous des idées auprès de vrais utilisateurs ?",
-    en: "How often do you test ideas with real users?",
-    opts: [
-      { fr: "Jamais ou presque", en: "Rarely or never", pts: 0 },
-      { fr: "Sur les gros projets uniquement", en: "Only on big projects", pts: 1 },
-      { fr: "Régulièrement, c'est un réflexe", en: "Regularly — it's a reflex", pts: 2 }
-    ]
-  },
-  {
-    fr: "Comment l'IA est-elle utilisée dans votre quotidien ?",
-    en: "How is AI used in your day-to-day?",
-    opts: [
-      { fr: "Pas du tout", en: "Not at all", pts: 0 },
-      { fr: "Quelques outils, sans méthode", en: "A few tools, no method", pts: 1 },
-      { fr: "Intégrée à nos process clés", en: "Embedded in our key processes", pts: 2 }
-    ]
-  },
-  {
-    fr: "Quand une idée échoue, dans votre culture c'est…",
-    en: "When an idea fails, in your culture it's…",
-    opts: [
-      { fr: "un risque à éviter à tout prix", en: "a risk to avoid at all costs", pts: 0 },
-      { fr: "toléré mais peu valorisé", en: "tolerated but not valued", pts: 1 },
-      { fr: "une source d'apprentissage assumée", en: "an embraced learning source", pts: 2 }
-    ]
-  },
-  {
-    fr: "Vos équipes collaborent entre départements…",
-    en: "Your teams collaborate across departments…",
-    opts: [
-      { fr: "rarement, chacun son silo", en: "rarely — everyone in their silo", pts: 0 },
-      { fr: "ponctuellement sur certains projets", en: "occasionally on some projects", pts: 1 },
-      { fr: "en continu, c'est notre mode par défaut", en: "continuously — it's our default mode", pts: 2 }
-    ]
-  }
-];
-
-const PROFILES = [
-  {
-    min: 0, max: 3,
-    tag: { fr: "Explorateur", en: "Explorer" },
-    title: { fr: "Le potentiel est là, prêt à être activé", en: "The potential is there, ready to be unlocked" },
-    desc: { fr: "Votre équipe a des bases solides mais l'innovation reste informelle. Avec les bons rituels et un cadre simple, vous pouvez libérer beaucoup de valeur rapidement.", en: "Your team has solid foundations but innovation is still informal. With the right rituals and a simple framework, you can unlock a lot of value quickly." }
-  },
-  {
-    min: 4, max: 6,
-    tag: { fr: "Bâtisseur", en: "Builder" },
-    title: { fr: "Vous construisez une vraie dynamique", en: "You're building real momentum" },
-    desc: { fr: "L'innovation commence à s'ancrer dans vos pratiques. Le prochain palier : structurer la méthode et embarquer plus largement vos équipes pour passer à l'échelle.", en: "Innovation is starting to take root in your practices. The next step: structure the method and engage your teams more broadly to scale up." }
-  },
-  {
-    min: 7, max: 10,
-    tag: { fr: "Pionnier", en: "Pioneer" },
-    title: { fr: "Votre culture d'innovation est mature", en: "Your innovation culture is mature" },
-    desc: { fr: "Bravo — vos équipes pensent et agissent en innovateurs. L'enjeu est maintenant de maintenir l'élan et d'aller plus loin avec l'IA et de nouveaux formats d'accompagnement.", en: "Well done — your teams think and act like innovators. The challenge now is to sustain momentum and go further with AI and new formats of support." }
-  }
-];
-
-(function initQuiz(){
-  const qSection = document.getElementById('quiz');
-  if (!qSection) return;
-  let current = 0, score = 0;
-  const lang = () => document.documentElement.lang === 'en' ? 'en' : 'fr';
-
-  const qText = document.getElementById('q-text');
-  const qOptions = document.getElementById('q-options');
-  const qCounter = document.getElementById('q-counter');
-  const qPct = document.getElementById('q-pct');
-  const qBar = document.getElementById('q-bar');
-  const qView = document.getElementById('quiz-questions');
-  const rView = document.getElementById('quiz-result');
-
-  function render(){
-    const q = QUIZ[current];
-    const L = lang();
-    qText.textContent = q[L];
-    qCounter.textContent = (L === 'en' ? 'Question ' : 'Question ') + (current+1) + ' / ' + QUIZ.length;
-    const pct = Math.round((current / QUIZ.length) * 100);
-    qPct.textContent = pct + '%';
-    qBar.style.width = pct + '%';
-    qOptions.innerHTML = '';
-    const letters = ['A','B','C','D'];
-    q.opts.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'quiz-opt';
-      btn.type = 'button';
-      const dot = document.createElement('span');
-      dot.className = 'dot';
-      dot.textContent = letters[i];
-      const label = document.createElement('span');
-      label.textContent = opt[L];
-      btn.appendChild(dot);
-      btn.appendChild(label);
-      btn.addEventListener('click', () => choose(opt.pts));
-      qOptions.appendChild(btn);
-    });
-  }
-
-  function choose(pts){
-    score += pts;
-    current++;
-    if (current < QUIZ.length) {
-      render();
-    } else {
-      showResult();
-    }
-  }
-
-  function showResult(){
-    qBar.style.width = '100%';
-    qPct.textContent = '100%';
-    qView.style.display = 'none';
-    rView.style.display = 'block';
-    const L = lang();
-    const profile = PROFILES.find(p => score >= p.min && score <= p.max) || PROFILES[0];
-    document.getElementById('profile-tag').textContent = profile.tag[L];
-    document.getElementById('profile-title').textContent = profile.title[L];
-    document.getElementById('profile-desc').textContent = profile.desc[L];
-    // animate score ring (out of 10)
-    const arc = document.getElementById('score-arc');
-    const circ = 327;
-    const ratio = score / 10;
-    setTimeout(() => { arc.style.strokeDashoffset = circ - (circ * ratio); }, 100);
-    // count up
-    const numEl = document.getElementById('score-num');
-    let n = 0;
-    const step = () => { if (n <= score) { numEl.textContent = n + '/10'; n++; setTimeout(step, 90); } };
-    step();
-  }
-
-  // Soft gate — capture email to unlock report
-  const gate = document.getElementById('quiz-gate');
-  const gateError = document.getElementById('gate-error');
-  const unlocked = document.getElementById('quiz-unlocked');
-  const emailInput = document.getElementById('gate-email');
-  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  // ── Brevo integration ──
-  // ÉTAPE : Remplace la valeur ci-dessous par l'URL de ton formulaire Brevo.
-  // Contacts → Formulaires → ton formulaire → Partager → Intégrer → copie l'URL "action"
-  // Elle ressemble à : https://sibforms.com/serve/MUIFxxxxxxxxxxxxxxxxxxxxxxxx
-  const BREVO_FORM_URL = 'https://7c675398.sibforms.com/v2/serve/MUIFALiVm_3jpgaNqz82GHXK2b2ZIeV9jpaG_7s8YWCS9dBK8w4YAGpDB8xez3zk_xxjAsxn5GUMJHfwFn1pHQpW990D3dgO9VWvLhNcHlKdIURuKt_i4qod_b-IaO3rq6kD8Za6T1b4quujiCoBg_MYkjURpe5Vg4T73qnpaklTu6hHFNXoLxgtf8FaLwyYFSFQL4TqTTMiGnKvug==';
-
-  gate.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = emailInput.value.trim();
-    if (!EMAIL_RE.test(email)) {
-      gateError.style.display = 'block';
-      emailInput.focus();
-      return;
-    }
-    gateError.style.display = 'none';
-
-    // Envoie le contact à Brevo (si l'URL est configurée)
-    if (BREVO_FORM_URL && BREVO_FORM_URL !== 'REMPLACE_PAR_TON_URL_BREVO') {
-      try {
-        const body = new FormData();
-        body.append('EMAIL', email);
-        // Envoie le profil et le score comme attributs Brevo (optionnel)
-        body.append('QUIZ_SCORE', score);
-        body.append('QUIZ_PROFILE', document.getElementById('profile-tag').textContent);
-        await fetch(BREVO_FORM_URL, { method: 'POST', body, mode: 'no-cors' });
-      } catch(err) { /* silencieux — l'UX ne bloque pas */ }
-    }
-
-    // Stocke aussi en local comme fallback
-    try {
-      const leads = JSON.parse(localStorage.getItem('levelup-quiz-leads') || '[]');
-      leads.push({ email, score, profile: document.getElementById('profile-tag').textContent, date: new Date().toISOString() });
-      localStorage.setItem('levelup-quiz-leads', JSON.stringify(leads));
-    } catch(err) {}
-
-    gate.style.display = 'none';
-    unlocked.style.display = 'block';
-  });
-
-  document.getElementById('quiz-retry').addEventListener('click', () => {
-    current = 0; score = 0;
-    rView.style.display = 'none';
-    qView.style.display = 'block';
-    gate.style.display = 'block';
-    unlocked.style.display = 'none';
-    gateError.style.display = 'none';
-    emailInput.value = '';
-    document.getElementById('score-arc').style.strokeDashoffset = 327;
-    render();
-  });
-
-  // re-render current question on language switch
-  window.addEventListener('languagechange-quiz', () => { if (rView.style.display === 'none') render(); });
-
-  render();
-})();
 </script>
 
 <script type="application/ld+json">
