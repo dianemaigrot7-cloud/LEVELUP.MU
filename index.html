@@ -303,7 +303,8 @@
     .promise .cols{grid-template-columns:1fr}
     .promise .vs-divider{flex-direction:row;height:48px}
     .promise .vs-divider::before{top:auto;left:0;right:0;width:auto;height:1px}
-    .services .grid, .programs .grid{grid-template-columns:1fr}
+    .services .grid{grid-template-columns:repeat(2,1fr)}
+    .programs .grid{grid-template-columns:repeat(2,1fr)}
     .founder .wrap{grid-template-columns:1fr;gap:32px}
     .founder .portrait-col{max-width:340px;margin:0 auto;width:100%}
     .method .steps{grid-template-columns:repeat(2,1fr)}
@@ -336,9 +337,9 @@
     .float-cta{display:none}
     .sticky-bar{display:block}
     .container{padding:0 18px}
-    section.s{padding:72px 0}
-    .testi{padding:72px 0}
-    .final{padding:72px 0 96px}
+    section.s{padding:64px 0}
+    .testi{padding:64px 0}
+    .final{padding:64px 0 96px}
 
     /* nav */
     nav.top .row{height:60px}
@@ -346,64 +347,73 @@
     .lang-toggle{margin-left:auto}
     nav.top .links{top:60px}
 
-    /* hero */
-    .hero{padding:56px 0 40px}
-    .hero h1{letter-spacing:-2px}
+    /* hero — hide visual on mobile, text only */
+    .hero{padding:48px 0 36px}
+    .hero h1{font-size:clamp(34px,9vw,48px);letter-spacing:-2px}
     .hero .lede{font-size:16px}
-    .hero .ctas{flex-direction:column;align-items:flex-start;gap:10px}
-    .hero .ctas .meta{margin-left:0}
-    .hero-visual{height:300px;border-radius:16px}
-    .hero-visual .quote{font-size:18px}
-    .hero-visual .ring{width:68px;height:68px;font-size:9px;top:18px;right:18px}
-
-    /* trust */
-    .trust{padding:28px 0}
-    .trust .row{flex-direction:column;align-items:flex-start;gap:16px}
-    .trust .brands{gap:24px}
-    .trust .brand-logo svg{height:26px}
+    .hero .ctas{flex-direction:column;align-items:stretch;gap:10px}
+    .hero .ctas .btn{justify-content:center;width:100%}
+    .hero .ctas .meta{margin-left:0;justify-content:center}
+    .hero-visual{display:none}
 
     /* section heads */
-    .section-head{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:36px}
+    .section-head{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:32px}
     .section-head h2{font-size:clamp(28px,8vw,40px);letter-spacing:-1.2px}
     .section-head .side{max-width:100%;font-size:14px}
 
     /* promise */
-    .promise .col{padding:24px}
+    .promise .col{padding:20px}
+    .promise .col-eyebrow{font-size:10px}
 
     /* services */
-    .service{padding:24px}
+    .services .grid{grid-template-columns:1fr}
+    .service{padding:22px}
     .service .big-num{font-size:48px}
 
     /* method */
     .method .steps{grid-template-columns:1fr}
-    .method .step{border-bottom:1px dashed rgba(255,255,255,.15);padding:24px 0}
+    .method .step{border-bottom:1px dashed rgba(255,255,255,.15);padding:22px 0;border-left:none !important;padding-left:0 !important}
     .method .step .num{font-size:36px}
-
 
     /* founder */
     .founder .portrait-col{max-width:100%}
-    .founder .portrait{aspect-ratio:3/4}
+    .founder .portrait{aspect-ratio:4/5}
     .founder h2{font-size:clamp(32px,8vw,44px)}
     .founder .tags{gap:6px}
     .founder .photo-quote p{font-size:13px}
+    .founder .portrait-badge .badge-name{font-size:16px}
 
     /* programs */
+    .programs .grid{grid-template-columns:1fr}
     .program .body h3{font-size:22px}
+    .program .head{padding:20px 20px 0}
+    .program .body{padding:14px 20px 20px}
+    .program .meta{padding:14px 20px}
 
     /* testimonial */
-    .testi .card{padding:28px;gap:20px}
-    .testi blockquote{font-size:18px;letter-spacing:-0.4px}
-    .testi .mark{font-size:60px}
+    .testi .card{padding:24px;gap:18px}
+    .testi blockquote{font-size:17px;letter-spacing:-0.3px}
+    .testi .mark{font-size:56px}
 
     /* final cta */
-    .final h2{font-size:clamp(30px,8vw,44px);letter-spacing:-1.5px}
+    .final h2{font-size:clamp(28px,8vw,42px);letter-spacing:-1.5px}
     .final .sub{font-size:15px}
-    .final .actions .btn{font-size:14px;padding:15px 18px}
+    .final .actions .btn{font-size:14px;padding:15px 18px;justify-content:center}
 
     /* footer */
     footer{padding:48px 0 24px}
-    footer .grid{grid-template-columns:1fr;gap:32px}
+    footer .grid{grid-template-columns:1fr;gap:28px}
     footer .bot{flex-direction:column;gap:10px;text-align:center}
+  }
+
+  /* ── Micro — iPhone SE / tight phones ── */
+  @media (max-width: 390px){
+    .container{padding:0 14px}
+    .hero h1{font-size:32px}
+    .founder .tags .tag-pill{font-size:11px;padding:5px 10px}
+    .program .body h3{font-size:20px}
+    nav.top .logo{font-size:16px}
+    .sticky-bar a{font-size:14px;padding:12px}
   }
 </style>
 </head>
