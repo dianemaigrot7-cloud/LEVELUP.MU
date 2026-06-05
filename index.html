@@ -194,16 +194,18 @@
 
   /* FOUNDER */
   .founder{background:#fff;overflow:hidden;position:relative}
-  .founder::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(224,24,92,.07) 0%,transparent 70%);pointer-events:none}
-  .founder::after{content:"";position:absolute;bottom:-80px;left:40%;width:320px;height:320px;background:radial-gradient(circle,rgba(255,179,0,.07) 0%,transparent 70%);pointer-events:none}
+  .founder::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(224,24,92,.06) 0%,transparent 70%);pointer-events:none}
   .founder .wrap{display:grid;grid-template-columns:400px 1fr;gap:72px;align-items:center;position:relative;z-index:1}
   /* portrait column */
   .founder .portrait-col{display:flex;flex-direction:column;align-items:center;gap:20px}
   .founder .portrait-wrap{position:relative;width:100%}
-  /* accent square behind photo */
-  .founder .portrait-wrap::before{content:"";position:absolute;inset:14px -14px -14px 14px;background:var(--magenta-tint);border-radius:20px;z-index:0}
-  .founder .portrait{position:relative;width:100%;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--magenta-tint);border:1.5px solid var(--line);z-index:1}
-  .founder .portrait img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block}
+  /* photo — sharpened via CSS filter */
+  .founder .portrait{position:relative;width:100%;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--cream);border:1.5px solid var(--line)}
+  .founder .portrait img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;filter:contrast(1.06) saturate(1.05) sharpen(0);image-rendering:crisp-edges}
+  /* Mandela quote overlay on photo */
+  .founder .photo-quote{position:absolute;bottom:0;left:0;right:0;padding:20px 20px 22px;background:linear-gradient(to top,rgba(17,17,17,.85) 0%,rgba(17,17,17,.5) 60%,transparent 100%);border-radius:0 0 18px 18px}
+  .founder .photo-quote p{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:14px;line-height:1.45;color:#fff;font-style:italic;letter-spacing:0;margin:0}
+  .founder .photo-quote cite{display:block;margin-top:6px;font-size:11px;font-weight:600;color:var(--magenta);text-transform:uppercase;letter-spacing:1.2px;font-style:normal}
   /* name badge below portrait */
   .founder .portrait-badge{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
   .founder .portrait-badge .badge-name{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:18px;color:var(--ink);letter-spacing:-0.4px}
@@ -215,10 +217,6 @@
   /* tags */
   .founder .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
   .founder .tag-pill{padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;border:1.5px solid var(--line);color:var(--ink);background:#fff}
-  /* pullquote */
-  .founder .pullquote{margin:28px 0;padding:22px 24px;border-left:3px solid var(--magenta);background:var(--cream);border-radius:0 12px 12px 0}
-  .founder .pullquote p{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:17px;line-height:1.5;color:var(--ink);letter-spacing:-0.3px;font-style:italic}
-  .founder .pullquote cite{display:block;margin-top:8px;font-size:12px;font-weight:600;color:var(--magenta);text-transform:uppercase;letter-spacing:1px;font-style:normal}
   /* text side */
   .founder .eyebrow{margin-bottom:18px}
   .founder h2{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:clamp(38px,4.4vw,56px);letter-spacing:-2px;line-height:1;margin-bottom:14px}
@@ -226,13 +224,6 @@
   .founder .role{font-size:18px;color:var(--mute);margin-bottom:28px;line-height:1.4}
   .founder .bio{font-size:17px;line-height:1.6;color:#3a3a3a;max-width:580px}
   .founder .bio strong{color:var(--ink);font-weight:700}
-  .founder .creds{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
-  .founder .cred{padding:18px 0;display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--line)}
-  .founder .cred:nth-child(odd){padding-right:24px;padding-left:0}
-  .founder .cred:nth-child(even){padding-left:24px;border-left:1px solid var(--line)}
-  .founder .cred .n{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:36px;letter-spacing:-1.4px;color:var(--magenta);line-height:1;flex:0 0 auto;min-width:84px}
-  .founder .cred .t{font-size:14px;line-height:1.4;color:#3a3a3a}
-  .founder .cred .t strong{display:block;color:var(--ink);font-weight:700;margin-bottom:2px;font-size:15px}
 
   /* TESTIMONIAL */
   .testi{padding:120px 0}
@@ -312,7 +303,6 @@
     .services .grid, .programs .grid{grid-template-columns:1fr}
     .founder .wrap{grid-template-columns:1fr;gap:32px}
     .founder .portrait-col{max-width:340px;margin:0 auto;width:100%}
-    .founder .portrait-wrap::before{inset:10px -10px -10px 10px}
     .method .steps{grid-template-columns:repeat(2,1fr)}
     .method .step + .step{padding-left:0;border-left:none}
     .method .step{border-bottom:1px dashed rgba(255,255,255,.15);padding-right:0}
@@ -395,10 +385,8 @@
     .founder .portrait-col{max-width:100%}
     .founder .portrait{aspect-ratio:3/4}
     .founder h2{font-size:clamp(32px,8vw,44px)}
-    .founder .creds{grid-template-columns:1fr}
-    .founder .cred:nth-child(even){padding-left:0;border-left:none}
-    .founder .cred{border-bottom:1px solid var(--line);padding:14px 0}
     .founder .tags{gap:6px}
+    .founder .photo-quote p{font-size:13px}
 
     /* programs */
     .program .body h3{font-size:22px}
@@ -698,6 +686,11 @@ DEPUIS
       <div class="portrait-wrap">
         <div class="portrait">
           <img src="diane-portrait.jpg" alt="Diane Maigrot, fondatrice de LEVELUP" width="400" height="500" loading="lazy" decoding="async" />
+          <!-- Mandela quote overlay -->
+          <div class="photo-quote">
+            <p>« It always seems impossible until it's done. »</p>
+            <cite>— Nelson Mandela</cite>
+          </div>
         </div>
       </div>
       <!-- Name badge + LinkedIn -->
@@ -726,32 +719,7 @@ DEPUIS
         <span class="tag-pill" data-fr="Leadership" data-en="Leadership">Leadership</span>
       </div>
 
-      <p class="bio" data-fr="Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle pilote depuis <strong>10 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation — en croisant l'énergie entrepreneuriale et la rigueur de l'incubation." data-en="With over <strong>20 years</strong> of entrepreneurial experience, Diane founded and led several companies before taking the helm of <strong>La Turbine</strong>, the leading incubator in Mauritius, which she has been directing for <strong>10 years</strong>. She now works with organisations that want to turn their teams into engines of innovation — combining entrepreneurial energy with the discipline of incubation.">Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle pilote depuis <strong>10 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation — en croisant l'énergie entrepreneuriale et la rigueur de l'incubation.</p>
-
-      <!-- Pull-quote -->
-      <blockquote class="pullquote">
-        <p>« It always seems impossible until it's done. »</p>
-        <cite>— Nelson Mandela</cite>
-      </blockquote>
-
-      <div class="creds">
-        <div class="cred">
-          <span class="n">20 <small style="font-size:18px;color:var(--mute);font-weight:500" data-fr="ans" data-en="yrs">ans</small></span>
-          <div class="t"><strong data-fr="d'expérience entrepreneuriale" data-en="entrepreneurial experience">d'expérience entrepreneuriale</strong><span data-fr="Fondatrice et dirigeante de plusieurs entreprises" data-en="Founder and CEO of multiple companies">Fondatrice et dirigeante de plusieurs entreprises</span></div>
-        </div>
-        <div class="cred">
-          <span class="n">10 <small style="font-size:18px;color:var(--mute);font-weight:500" data-fr="ans" data-en="yrs">ans</small></span>
-          <div class="t"><strong data-fr="Direction de La Turbine" data-en="Leading La Turbine">Direction de La Turbine</strong><span data-fr="L'incubateur de référence à l'île Maurice" data-en="The leading incubator in Mauritius">L'incubateur de référence à l'île Maurice</span></div>
-        </div>
-        <div class="cred">
-          <span class="n">90<small style="font-size:18px;color:var(--mute);font-weight:500">+</small></span>
-          <div class="t"><strong data-fr="Projets startups" data-en="Startup projects">Projets startups</strong><span data-fr="Accompagnées de l'idée au scale" data-en="Supported from idea to scale">Accompagnées de l'idée au scale</span></div>
-        </div>
-        <div class="cred">
-          <span class="n">200<small style="font-size:18px;color:var(--mute);font-weight:500">+</small></span>
-          <div class="t"><strong data-fr="entrepreneurs formés" data-en="entrepreneurs trained">entrepreneurs formés</strong><span data-fr="En ateliers et programmes collectifs" data-en="In workshops and group programs">En ateliers et programmes collectifs</span></div>
-        </div>
-      </div>
+      <p class="bio" data-fr="Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle a piloté pendant presque <strong>10 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation et de croissance — en mettant <strong>l'humain au cœur</strong> de chaque projet." data-en="With over <strong>20 years</strong> of entrepreneurial experience, Diane founded and led several companies before taking the helm of <strong>La Turbine</strong>, the leading incubator in Mauritius, which she directed for nearly <strong>10 years</strong>. She now works with organisations that want to turn their teams into engines of innovation and growth — putting <strong>people at the heart</strong> of every project.">Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle a piloté pendant presque <strong>10 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation et de croissance — en mettant <strong>l'humain au cœur</strong> de chaque projet.</p>
     </div>
 
   </div>
