@@ -4,6 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>LEVELUP — Design thinking, innovation produit & IA pour vos équipes</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none';">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -691,6 +695,21 @@ DEPUIS
 </footer>
 
 <script>
+const ALLOWED_TAGS = /^(em|strong|sup|sub|span|br)$/i;
+function safeSetHTML(el, html) {
+  const tpl = document.createElement('template');
+  tpl.innerHTML = html;
+  tpl.content.querySelectorAll('*').forEach(node => {
+    if (!ALLOWED_TAGS.test(node.tagName)) {
+      node.replaceWith(document.createTextNode(node.textContent));
+    } else {
+      [...node.attributes].forEach(a => node.removeAttribute(a.name));
+    }
+  });
+  el.innerHTML = '';
+  el.appendChild(tpl.content);
+}
+
 function setLang(lang) {
   document.documentElement.lang = lang;
   document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
@@ -698,7 +717,7 @@ function setLang(lang) {
 
   document.querySelectorAll('[data-fr][data-en]').forEach(el => {
     const text = el.getAttribute('data-' + lang);
-    if (text !== null) el.innerHTML = text;
+    if (text !== null) safeSetHTML(el, text);
   });
 
   const titles = {
