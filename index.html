@@ -99,9 +99,9 @@
   .trust{padding:44px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .trust .row{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
   .trust .label{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--mute);font-weight:700}
-  .trust .brands{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
-  .trust .brand{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:18px;color:#7a7a7a;letter-spacing:-0.6px;opacity:.7}
-  .trust .brand.alt{font-family:"Manrope",sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:14px}
+  .trust .brands{display:flex;align-items:center;gap:48px;flex-wrap:wrap}
+  .trust .brand-logo{opacity:.55;transition:opacity .2s;filter:grayscale(1)}
+  .trust .brand-logo:hover{opacity:.85}
 
   /* SECTION CHROME */
   section.s{padding:120px 0;position:relative}
@@ -277,8 +277,7 @@
   .program:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.06);border-color:var(--magenta)}
 
   /* hover states — trust brands */
-  .trust .brand{transition:opacity .2s}
-  .trust .brand:hover{opacity:1}
+  .trust .brand-logo:hover{opacity:.85;filter:grayscale(0)}
 
   /* hover states — testimonial */
   .testi .card{transition:box-shadow .2s}
@@ -360,8 +359,8 @@
     /* trust */
     .trust{padding:28px 0}
     .trust .row{flex-direction:column;align-items:flex-start;gap:16px}
-    .trust .brands{gap:20px}
-    .trust .brand{font-size:14px}
+    .trust .brands{gap:24px}
+    .trust .brand-logo svg{height:26px}
 
     /* section heads */
     .section-head{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:36px}
@@ -477,12 +476,42 @@ DEPUIS
   <div class="container row">
     <div class="label" data-fr="Ils nous font confiance" data-en="Trusted by">Ils nous font confiance</div>
     <div class="brands">
-      <div class="brand">Aurelia&nbsp;Group</div>
-      <div class="brand alt">Métis</div>
-      <div class="brand">Sereno</div>
-      <div class="brand alt">Hyperlane</div>
-      <div class="brand">Verdâge</div>
-      <div class="brand alt">Polaris</div>
+
+      <!-- C.Care -->
+      <div class="brand-logo" aria-label="C.Care">
+        <svg height="32" viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="14" cy="16" r="13" fill="#0057A8"/>
+          <path d="M20 10.5A8 8 0 1 0 20 21.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+          <text x="33" y="22" font-family="Manrope,ui-sans-serif,sans-serif" font-weight="800" font-size="15" fill="#0057A8" letter-spacing="-0.3">C.Care</text>
+        </svg>
+      </div>
+
+      <!-- ER Group -->
+      <div class="brand-logo" aria-label="ER Group">
+        <svg height="32" viewBox="0 0 122 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="4" width="24" height="24" rx="4" fill="#E8303A"/>
+          <text x="6" y="21" font-family="Manrope,ui-sans-serif,sans-serif" font-weight="900" font-size="14" fill="#fff" letter-spacing="0.5">ER</text>
+          <text x="31" y="22" font-family="Manrope,ui-sans-serif,sans-serif" font-weight="800" font-size="15" fill="#1A1A1A" letter-spacing="-0.3">Group</text>
+        </svg>
+      </div>
+
+      <!-- Aptis -->
+      <div class="brand-logo" aria-label="Aptis">
+        <svg height="32" viewBox="0 0 90 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <polygon points="16,4 28,28 4,28" fill="#004B87"/>
+          <text x="36" y="22" font-family="Manrope,ui-sans-serif,sans-serif" font-weight="800" font-size="15" fill="#004B87" letter-spacing="-0.2">Aptis</text>
+        </svg>
+      </div>
+
+      <!-- MCB -->
+      <div class="brand-logo" aria-label="MCB Group">
+        <svg height="32" viewBox="0 0 108 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="4" width="24" height="24" rx="12" fill="#F7941D"/>
+          <text x="6.5" y="21" font-family="Manrope,ui-sans-serif,sans-serif" font-weight="900" font-size="11" fill="#fff" letter-spacing="0.2">MCB</text>
+          <text x="31" y="22" font-family="Manrope,ui-sans-serif,sans-serif" font-weight="800" font-size="15" fill="#1A1A1A" letter-spacing="-0.3">Group</text>
+        </svg>
+      </div>
+
     </div>
   </div>
 </section>
