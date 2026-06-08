@@ -1030,128 +1030,142 @@ if (floatCta && heroEl) {
   heroObserver.observe(heroEl);
 }
 
-/* ── Hero canvas animation ── */
+/* ── Hero: magnetic words animation ── */
 (function(){
   const canvas = document.getElementById('hero-canvas');
   if(!canvas) return;
   const ctx = canvas.getContext('2d');
-  const MAGENTA = '#E0185C';
-  const MARIGOLD = '#FFB300';
-  const WHITE = 'rgba(80,70,90,0.6)';
-  const LINK_DIST = 130;
-  const NODE_COUNT = 52;
 
-  let W, H, nodes, raf;
+  const WORDS = [
+    { text: 'Innovation',      size: 22, weight: '800', color: '#E0185C' },
+    { text: 'Design Thinking', size: 16, weight: '700', color: '#111111' },
+    { text: 'Intelligence IA', size: 15, weight: '700', color: '#E0185C' },
+    { text: 'Cohésion',        size: 18, weight: '800', color: '#FFB300' },
+    { text: 'Leadership',      size: 16, weight: '700', color: '#111111' },
+    { text: 'Transformation',  size: 14, weight: '700', color: '#6B7280' },
+    { text: 'Agilité',         size: 20, weight: '800', color: '#E0185C' },
+    { text: 'Créativité',      size: 15, weight: '700', color: '#111111' },
+    { text: 'Sprint',          size: 17, weight: '800', color: '#FFB300' },
+    { text: 'Empathie',        size: 14, weight: '700', color: '#6B7280' },
+    { text: 'Impact',          size: 21, weight: '800', color: '#111111' },
+    { text: 'Prototype',       size: 13, weight: '700', color: '#6B7280' },
+    { text: '90 jours',        size: 18, weight: '800', color: '#E0185C' },
+    { text: 'Équipes',         size: 16, weight: '700', color: '#111111' },
+    { text: 'Vision',          size: 14, weight: '700', color: '#FFB300' },
+  ];
+
+  const REPEL_R  = 110;
+  const SPRING   = 0.07;
+  const DAMPING  = 0.78;
+  const DRIFT_A  = 0.012;
+
+  let W, H, words, mouse = {x: -999, y: -999};
 
   function resize(){
     const r = canvas.parentElement.getBoundingClientRect();
-    W = canvas.width = r.width;
+    W = canvas.width  = r.width;
     H = canvas.height = r.height;
+    if(words) words.forEach(w => clamp(w));
   }
 
-  function makeNode(){
-    const isMajor = Math.random() < 0.18;
-    const isStar  = !isMajor && Math.random() < 0.12;
-    return {
-      x: Math.random() * W,
-      y: Math.random() * H,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      r: isMajor ? 5 + Math.random()*3 : isStar ? 3 : 1.5 + Math.random()*2,
-      color: isMajor ? MAGENTA : isStar ? MARIGOLD : WHITE,
-      pulse: Math.random() * Math.PI * 2,
-      pulseSpeed: 0.018 + Math.random()*0.012,
-      major: isMajor
-    };
+  function clamp(w){
+    w.ox = Math.max(w.hw + 10, Math.min(W - w.hw - 10, w.ox));
+    w.oy = Math.max(w.size + 10, Math.min(H - 10, w.oy));
   }
 
   function init(){
     resize();
-    nodes = Array.from({length: NODE_COUNT}, makeNode);
-  }
-
-  function drawGlow(x, y, r, color, alpha){
-    const g = ctx.createRadialGradient(x, y, 0, x, y, r*5);
-    g.addColorStop(0, color.replace(')', `,${alpha})`).replace('rgb','rgba').replace('#','rgba(').replace('rgba(','rgba(').replace('rgba(E0185C','rgba(224,24,92').replace('rgba(FFB300','rgba(255,179,0').replace('rgba(rgba(255,255,255,0.85)','rgba(255,255,255'));
-    // simpler approach
-    ctx.save();
-    ctx.globalAlpha = alpha * 0.25;
-    ctx.beginPath();
-    ctx.arc(x, y, r*4, 0, Math.PI*2);
-    const grd = ctx.createRadialGradient(x, y, 0, x, y, r*4);
-    grd.addColorStop(0, color);
-    grd.addColorStop(1, 'transparent');
-    ctx.fillStyle = grd;
-    ctx.fill();
-    ctx.restore();
+    const cols = 3, rows = Math.ceil(WORDS.length / cols);
+    words = WORDS.map((def, i) => {
+      ctx.font = `${def.weight} ${def.size}px Manrope,ui-sans-serif,sans-serif`;
+      const hw = ctx.measureText(def.text).width / 2;
+      const col = i % cols, row = Math.floor(i / cols);
+      const ox = (col + 0.5) * (W / cols) + (Math.random()-0.5)*40;
+      const oy = 60 + row * (H / rows) + (Math.random()-0.5)*30;
+      return {
+        ...def,
+        hw, ox, oy,
+        x: ox, y: oy,
+        vx: 0, vy: 0,
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.008 + Math.random() * 0.006,
+        amp: 6 + Math.random() * 8,
+      };
+    });
   }
 
   function frame(){
     ctx.clearRect(0, 0, W, H);
 
-    /* move */
-    nodes.forEach(n => {
-      n.x += n.vx; n.y += n.vy;
-      if(n.x < -20) n.x = W+20;
-      if(n.x > W+20) n.x = -20;
-      if(n.y < -20) n.y = H+20;
-      if(n.y > H+20) n.y = -20;
-      n.pulse += n.pulseSpeed;
-    });
+    words.forEach(w => {
+      /* gentle idle drift */
+      const driftX = Math.sin(w.phase) * w.amp * 0.3;
+      const driftY = Math.cos(w.phase * 0.7) * w.amp;
+      w.phase += w.speed;
+      const tx = w.ox + driftX;
+      const ty = w.oy + driftY;
 
-    /* links */
-    for(let i=0; i<nodes.length; i++){
-      for(let j=i+1; j<nodes.length; j++){
-        const a = nodes[i], b = nodes[j];
-        const dx = a.x-b.x, dy = a.y-b.y;
-        const d = Math.sqrt(dx*dx+dy*dy);
-        if(d < LINK_DIST){
-          const alpha = (1 - d/LINK_DIST) * 0.45;
-          const isMagenta = a.major || b.major;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = isMagenta
-            ? `rgba(224,24,92,${alpha*0.9})`
-            : `rgba(80,70,90,${alpha*0.35})`;
-          ctx.lineWidth = isMagenta ? 1.5 : 0.8;
-          ctx.stroke();
-        }
+      /* repulsion from mouse */
+      const dx = w.x - mouse.x, dy = w.y - mouse.y;
+      const d  = Math.sqrt(dx*dx + dy*dy);
+      let fx = 0, fy = 0;
+      if(d < REPEL_R && d > 0){
+        const force = (REPEL_R - d) / REPEL_R;
+        fx = (dx/d) * force * 5.5;
+        fy = (dy/d) * force * 5.5;
       }
-    }
 
-    /* nodes */
-    nodes.forEach(n => {
-      const scale = n.major ? 1 + 0.18*Math.sin(n.pulse) : 1;
-      const r = n.r * scale;
-      /* glow halo */
-      if(n.major || n.color === MARIGOLD){
-        const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r*5);
-        const base = n.color === MARIGOLD ? '255,179,0' : '224,24,92';
-        grd.addColorStop(0, `rgba(${base},0.35)`);
-        grd.addColorStop(1, `rgba(${base},0)`);
+      /* spring back to target */
+      w.vx = (w.vx + (tx - w.x) * SPRING + fx) * DAMPING;
+      w.vy = (w.vy + (ty - w.y) * SPRING + fy) * DAMPING;
+      w.x += w.vx;
+      w.y += w.vy;
+
+      /* draw */
+      const hover = d < REPEL_R;
+      ctx.save();
+      ctx.font = `${w.weight} ${w.size}px Manrope,ui-sans-serif,sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      /* pill background on hover */
+      if(hover){
+        const pad = 10;
+        const rr  = w.size * 0.6;
         ctx.beginPath();
-        ctx.arc(n.x, n.y, r*5, 0, Math.PI*2);
-        ctx.fillStyle = grd;
+        ctx.roundRect(w.x - w.hw - pad, w.y - rr, (w.hw + pad)*2, rr*2, rr);
+        ctx.fillStyle = w.color === '#E0185C' ? 'rgba(224,24,92,0.08)'
+                      : w.color === '#FFB300'  ? 'rgba(255,179,0,0.10)'
+                      : 'rgba(17,17,17,0.05)';
         ctx.fill();
       }
-      /* dot */
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, r, 0, Math.PI*2);
-      ctx.fillStyle = n.color;
-      ctx.globalAlpha = n.major ? 1 : 0.75;
-      ctx.fill();
-      ctx.globalAlpha = 1;
+
+      ctx.globalAlpha = hover ? 1 : 0.72;
+      ctx.fillStyle   = w.color;
+      ctx.fillText(w.text, w.x, w.y);
+      ctx.restore();
     });
 
-    raf = requestAnimationFrame(frame);
+    requestAnimationFrame(frame);
   }
+
+  function onMove(e){
+    const r = canvas.getBoundingClientRect();
+    const src = e.touches ? e.touches[0] : e;
+    mouse.x = src.clientX - r.left;
+    mouse.y = src.clientY - r.top;
+  }
+  function onLeave(){ mouse.x = mouse.y = -999; }
+
+  canvas.addEventListener('mousemove', onMove);
+  canvas.addEventListener('mouseleave', onLeave);
+  canvas.addEventListener('touchmove', e => { e.preventDefault(); onMove(e); }, {passive:false});
+  canvas.addEventListener('touchend', onLeave);
 
   init();
   frame();
 
-  const ro = new ResizeObserver(() => { resize(); });
-  ro.observe(canvas.parentElement);
+  new ResizeObserver(resize).observe(canvas.parentElement);
 })();
 </script>
 
