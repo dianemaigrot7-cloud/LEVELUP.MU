@@ -87,8 +87,8 @@
   .hero .ctas{margin-top:36px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
   .hero .ctas .meta{margin-left:8px;font-size:13px;color:var(--mute);display:flex;align-items:center;gap:8px;white-space:nowrap}
   .hero .ctas .meta::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--marigold)}
-  .hero-visual{position:relative;height:520px;border-radius:24px;overflow:hidden;background:transparent}
-  #hero-canvas{position:absolute;inset:0;width:100%;height:100%}
+  .hero-visual{position:relative;height:520px;border-radius:24px;overflow:hidden;background:var(--cream)}
+  .hero-visual img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
   /* badge top-left */
   .hero-visual .badge{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#fff;background:rgba(17,17,17,.55);padding:8px 14px;border-radius:999px;backdrop-filter:blur(10px)}
   .hero-visual .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--marigold);flex:0 0 auto}
@@ -471,7 +471,7 @@
       </div>
     </div>
     <aside class="hero-visual">
-      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <img src="hero-duo.jpg" alt="Session de coaching — LEVELUP" width="460" height="520" onerror="this.style.display='none'" />
     </aside>
   </div>
 </header>
@@ -1030,143 +1030,6 @@ if (floatCta && heroEl) {
   heroObserver.observe(heroEl);
 }
 
-/* ── Hero: magnetic words animation ── */
-(function(){
-  const canvas = document.getElementById('hero-canvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  const WORDS = [
-    { text: 'Innovation',      size: 22, weight: '800', color: '#E0185C' },
-    { text: 'Design Thinking', size: 16, weight: '700', color: '#111111' },
-    { text: 'Intelligence IA', size: 15, weight: '700', color: '#E0185C' },
-    { text: 'Cohésion',        size: 18, weight: '800', color: '#FFB300' },
-    { text: 'Leadership',      size: 16, weight: '700', color: '#111111' },
-    { text: 'Transformation',  size: 14, weight: '700', color: '#6B7280' },
-    { text: 'Agilité',         size: 20, weight: '800', color: '#E0185C' },
-    { text: 'Créativité',      size: 15, weight: '700', color: '#111111' },
-    { text: 'Sprint',          size: 17, weight: '800', color: '#FFB300' },
-    { text: 'Empathie',        size: 14, weight: '700', color: '#6B7280' },
-    { text: 'Impact',          size: 21, weight: '800', color: '#111111' },
-    { text: 'Prototype',       size: 13, weight: '700', color: '#6B7280' },
-    { text: '90 jours',        size: 18, weight: '800', color: '#E0185C' },
-    { text: 'Équipes',         size: 16, weight: '700', color: '#111111' },
-    { text: 'Vision',          size: 14, weight: '700', color: '#FFB300' },
-  ];
-
-  const REPEL_R  = 110;
-  const SPRING   = 0.07;
-  const DAMPING  = 0.78;
-  const DRIFT_A  = 0.012;
-
-  let W, H, words, mouse = {x: -999, y: -999};
-
-  function resize(){
-    const r = canvas.parentElement.getBoundingClientRect();
-    W = canvas.width  = r.width;
-    H = canvas.height = r.height;
-    if(words) words.forEach(w => clamp(w));
-  }
-
-  function clamp(w){
-    w.ox = Math.max(w.hw + 10, Math.min(W - w.hw - 10, w.ox));
-    w.oy = Math.max(w.size + 10, Math.min(H - 10, w.oy));
-  }
-
-  function init(){
-    resize();
-    const cols = 3, rows = Math.ceil(WORDS.length / cols);
-    words = WORDS.map((def, i) => {
-      ctx.font = `${def.weight} ${def.size}px Manrope,ui-sans-serif,sans-serif`;
-      const hw = ctx.measureText(def.text).width / 2;
-      const col = i % cols, row = Math.floor(i / cols);
-      const ox = (col + 0.5) * (W / cols) + (Math.random()-0.5)*40;
-      const oy = 60 + row * (H / rows) + (Math.random()-0.5)*30;
-      return {
-        ...def,
-        hw, ox, oy,
-        x: ox, y: oy,
-        vx: 0, vy: 0,
-        phase: Math.random() * Math.PI * 2,
-        speed: 0.008 + Math.random() * 0.006,
-        amp: 6 + Math.random() * 8,
-      };
-    });
-  }
-
-  function frame(){
-    ctx.clearRect(0, 0, W, H);
-
-    words.forEach(w => {
-      /* gentle idle drift */
-      const driftX = Math.sin(w.phase) * w.amp * 0.3;
-      const driftY = Math.cos(w.phase * 0.7) * w.amp;
-      w.phase += w.speed;
-      const tx = w.ox + driftX;
-      const ty = w.oy + driftY;
-
-      /* repulsion from mouse */
-      const dx = w.x - mouse.x, dy = w.y - mouse.y;
-      const d  = Math.sqrt(dx*dx + dy*dy);
-      let fx = 0, fy = 0;
-      if(d < REPEL_R && d > 0){
-        const force = (REPEL_R - d) / REPEL_R;
-        fx = (dx/d) * force * 5.5;
-        fy = (dy/d) * force * 5.5;
-      }
-
-      /* spring back to target */
-      w.vx = (w.vx + (tx - w.x) * SPRING + fx) * DAMPING;
-      w.vy = (w.vy + (ty - w.y) * SPRING + fy) * DAMPING;
-      w.x += w.vx;
-      w.y += w.vy;
-
-      /* draw */
-      const hover = d < REPEL_R;
-      ctx.save();
-      ctx.font = `${w.weight} ${w.size}px Manrope,ui-sans-serif,sans-serif`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-
-      /* pill background on hover */
-      if(hover){
-        const pad = 10;
-        const rr  = w.size * 0.6;
-        ctx.beginPath();
-        ctx.roundRect(w.x - w.hw - pad, w.y - rr, (w.hw + pad)*2, rr*2, rr);
-        ctx.fillStyle = w.color === '#E0185C' ? 'rgba(224,24,92,0.08)'
-                      : w.color === '#FFB300'  ? 'rgba(255,179,0,0.10)'
-                      : 'rgba(17,17,17,0.05)';
-        ctx.fill();
-      }
-
-      ctx.globalAlpha = hover ? 1 : 0.72;
-      ctx.fillStyle   = w.color;
-      ctx.fillText(w.text, w.x, w.y);
-      ctx.restore();
-    });
-
-    requestAnimationFrame(frame);
-  }
-
-  function onMove(e){
-    const r = canvas.getBoundingClientRect();
-    const src = e.touches ? e.touches[0] : e;
-    mouse.x = src.clientX - r.left;
-    mouse.y = src.clientY - r.top;
-  }
-  function onLeave(){ mouse.x = mouse.y = -999; }
-
-  canvas.addEventListener('mousemove', onMove);
-  canvas.addEventListener('mouseleave', onLeave);
-  canvas.addEventListener('touchmove', e => { e.preventDefault(); onMove(e); }, {passive:false});
-  canvas.addEventListener('touchend', onLeave);
-
-  init();
-  frame();
-
-  new ResizeObserver(resize).observe(canvas.parentElement);
-})();
 </script>
 
 <script type="application/ld+json">
