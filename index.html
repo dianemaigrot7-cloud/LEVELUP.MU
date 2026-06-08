@@ -87,13 +87,18 @@
   .hero .ctas{margin-top:36px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
   .hero .ctas .meta{margin-left:8px;font-size:13px;color:var(--mute);display:flex;align-items:center;gap:8px;white-space:nowrap}
   .hero .ctas .meta::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--marigold)}
-  .hero-visual{position:relative;height:520px;border-radius:24px;background:linear-gradient(160deg,var(--magenta) 0%,#8C0A38 100%);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;color:#fff}
-  .hero-visual .chev{position:absolute;inset:0;opacity:.18}
-  .hero-visual .chev svg{width:120%;height:120%;margin:-10%}
-  .hero-visual .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#fff;opacity:.75;align-self:flex-start;background:rgba(255,255,255,.12);padding:8px 12px;border-radius:999px;backdrop-filter:blur(8px)}
-  .hero-visual .quote{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:26px;line-height:1.2;letter-spacing:-1px;margin-top:auto;padding-bottom:10px}
-  .hero-visual .quote-attr{margin-top:14px;font-size:12px;opacity:.7}
-  .hero-visual .ring{position:absolute;top:32px;right:32px;width:88px;height:88px;border-radius:50%;background:var(--marigold);display:flex;align-items:center;justify-content:center;color:var(--ink);font-weight:800;font-size:11px;letter-spacing:0.5px;text-align:center;line-height:1.15;transform:rotate(-8deg)}
+  .hero-visual{position:relative;height:520px;border-radius:24px;overflow:hidden;background:var(--cream)}
+  .hero-visual img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+  /* placeholder shown when no photo yet */
+  .hero-visual .photo-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#f0ece4 0%,#e8e2d8 100%);color:var(--mute);font-size:14px;font-weight:600;letter-spacing:0.3px}
+  .hero-visual .photo-placeholder svg{opacity:.35}
+  /* badge top-left */
+  .hero-visual .badge{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#fff;background:rgba(17,17,17,.55);padding:8px 14px;border-radius:999px;backdrop-filter:blur(10px)}
+  .hero-visual .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--marigold);flex:0 0 auto}
+  /* caption bottom */
+  .hero-visual .photo-caption{position:absolute;bottom:0;left:0;right:0;padding:20px 24px;background:linear-gradient(to top,rgba(17,17,17,.7) 0%,transparent 100%);border-radius:0 0 24px 24px}
+  .hero-visual .photo-caption p{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:17px;line-height:1.35;color:#fff;letter-spacing:-0.3px;font-style:italic;margin:0}
+  .hero-visual .photo-caption cite{display:block;margin-top:6px;font-size:12px;color:rgba(255,255,255,.7);font-style:normal;font-weight:500}
 
   /* TRUST */
   .trust{padding:44px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -294,7 +299,7 @@
   .nav-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
   /* quote-attr contrast fix */
-  .hero-visual .quote-attr{opacity:.9}
+  .hero-visual .photo-caption p{font-size:15px}
 
   /* ── Tablet ── */
   @media (max-width: 980px){
@@ -469,14 +474,18 @@
       </div>
     </div>
     <aside class="hero-visual">
-      <div class="chev" style="color:#fff"><svg><use href="#lvl"/></svg></div>
-      <div class="ring" data-fr="EN MOUVEMENT DEPUIS 2016" data-en="DRIVING CHANGE SINCE 2016">EN
-MOUVEMENT
-DEPUIS
-2016</div>
-      <span class="tag" data-fr="● 120 équipes transformées" data-en="● 120 teams transformed">● 120 équipes transformées</span>
-      <blockquote class="quote" data-fr="« Nos équipes utilisent maintenant l'IA <em>au quotidien</em> pour explorer dix fois plus d'idées produit. »" data-en="&ldquo; Our teams now use AI <em>every day</em> to explore ten times more product ideas. &rdquo;">« Nos équipes utilisent maintenant l'IA <em>au quotidien</em> pour explorer dix fois plus d'idées produit. »</blockquote>
-      <div class="quote-attr">Camille Roux · <span data-fr="Directrice Innovation, Groupe Aurelia" data-en="Head of Innovation, Groupe Aurelia">Directrice Innovation, Groupe Aurelia</span></div>
+      <!-- Remplace team-photo.jpg par le nom de ta photo une fois uploadée sur GitHub -->
+      <img src="team-photo.jpg" alt="Équipe en session de design thinking — LEVELUP" width="460" height="520" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      <!-- Placeholder affiché si la photo n'existe pas encore -->
+      <div class="photo-placeholder" style="display:none">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span data-fr="Photo d'équipe à venir" data-en="Team photo coming soon">Photo d'équipe à venir</span>
+      </div>
+      <div class="badge" data-fr="120 équipes transformées" data-en="120 teams transformed">120 équipes transformées</div>
+      <div class="photo-caption">
+        <p data-fr="« Nos équipes utilisent maintenant l'IA au quotidien pour explorer dix fois plus d'idées produit. »" data-en="&ldquo; Our teams now use AI every day to explore ten times more product ideas. &rdquo;">« Nos équipes utilisent maintenant l'IA au quotidien pour explorer dix fois plus d'idées produit. »</p>
+        <cite>Camille Roux · <span data-fr="Directrice Innovation, Groupe Aurelia" data-en="Head of Innovation, Groupe Aurelia">Directrice Innovation, Groupe Aurelia</span></cite>
+      </div>
     </aside>
   </div>
 </header>
