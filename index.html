@@ -87,8 +87,23 @@
   .hero .ctas{margin-top:36px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
   .hero .ctas .meta{margin-left:8px;font-size:13px;color:var(--mute);display:flex;align-items:center;gap:8px;white-space:nowrap}
   .hero .ctas .meta::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--marigold)}
-  .hero-visual{position:relative;height:520px;border-radius:24px;overflow:hidden;background:var(--cream)}
-  .hero-visual img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+  .hero-visual{position:relative;height:520px;border-radius:24px;overflow:hidden;background:transparent}
+  .logo-anim{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .chev-svg{width:300px;height:auto;overflow:visible}
+  .chev{animation:chevRise 2.6s cubic-bezier(.45,0,.55,1) infinite;transform-box:fill-box;transform-origin:center}
+  .c1{animation-delay:0s}
+  .c2{animation-delay:.38s}
+  .c3{animation-delay:.76s}
+  @keyframes chevRise{
+    0%,100%{transform:translateY(0);opacity:.45}
+    35%,65%{transform:translateY(-22px);opacity:1}
+  }
+  .lu-glow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 40% at 50% 55%,rgba(224,24,92,.08) 0%,transparent 70%);pointer-events:none}
+  .lu-dot{position:absolute;border-radius:50%;animation:dotFloat 4s ease-in-out infinite}
+  @keyframes dotFloat{
+    0%,100%{transform:translateY(0) scale(1);opacity:.45}
+    50%{transform:translateY(-28px) scale(1.15);opacity:.8}
+  }
   /* badge top-left */
   .hero-visual .badge{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#fff;background:rgba(17,17,17,.55);padding:8px 14px;border-radius:999px;backdrop-filter:blur(10px)}
   .hero-visual .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--marigold);flex:0 0 auto}
@@ -471,7 +486,34 @@
       </div>
     </div>
     <aside class="hero-visual">
-      <img src="hero-duo.jpg" alt="Session de coaching — LEVELUP" width="460" height="520" onerror="this.style.display='none'" />
+      <div class="logo-anim" aria-hidden="true">
+        <div class="lu-glow"></div>
+        <!-- Floating accent dots -->
+        <span class="lu-dot" style="width:9px;height:9px;background:#E0185C;left:18%;top:58%;animation-delay:.3s;opacity:.5"></span>
+        <span class="lu-dot" style="width:6px;height:6px;background:#FFB300;left:76%;top:38%;animation-delay:1.2s;opacity:.4"></span>
+        <span class="lu-dot" style="width:7px;height:7px;background:#E0185C;left:82%;top:66%;animation-delay:2.1s;opacity:.35"></span>
+        <span class="lu-dot" style="width:5px;height:5px;background:#FFB300;left:22%;top:28%;animation-delay:.9s;opacity:.45"></span>
+        <span class="lu-dot" style="width:8px;height:8px;background:#E0185C;left:55%;top:78%;animation-delay:1.7s;opacity:.4"></span>
+        <!-- Chevrons SVG -->
+        <svg class="chev-svg" viewBox="-5 -50 230 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="glow-mg">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- bottom – lightest -->
+          <polyline class="chev c1" points="15,162 110,72 205,162"
+            stroke="#F4A0B8" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- middle -->
+          <polyline class="chev c2" points="15,108 110,18 205,108"
+            stroke="#E85580" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- top – darkest / glow -->
+          <polyline class="chev c3" points="15,54 110,-36 205,54"
+            stroke="#E0185C" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"
+            filter="url(#glow-mg)"/>
+        </svg>
+      </div>
     </aside>
   </div>
 </header>
