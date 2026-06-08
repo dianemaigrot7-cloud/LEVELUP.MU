@@ -87,11 +87,8 @@
   .hero .ctas{margin-top:36px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
   .hero .ctas .meta{margin-left:8px;font-size:13px;color:var(--mute);display:flex;align-items:center;gap:8px;white-space:nowrap}
   .hero .ctas .meta::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--marigold)}
-  .hero-visual{position:relative;height:520px;border-radius:24px;overflow:hidden;background:var(--cream)}
-  .hero-visual img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-  /* placeholder shown when no photo yet */
-  .hero-visual .photo-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#f0ece4 0%,#e8e2d8 100%);color:var(--mute);font-size:14px;font-weight:600;letter-spacing:0.3px}
-  .hero-visual .photo-placeholder svg{opacity:.35}
+  .hero-visual{position:relative;height:520px;border-radius:24px;overflow:hidden;background:linear-gradient(145deg,#0d0d14 0%,#12101c 40%,#1a0d1a 100%)}
+  #hero-canvas{position:absolute;inset:0;width:100%;height:100%}
   /* badge top-left */
   .hero-visual .badge{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#fff;background:rgba(17,17,17,.55);padding:8px 14px;border-radius:999px;backdrop-filter:blur(10px)}
   .hero-visual .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--marigold);flex:0 0 auto}
@@ -474,13 +471,7 @@
       </div>
     </div>
     <aside class="hero-visual">
-      <!-- Remplace team-photo.jpg par le nom de ta photo une fois uploadée sur GitHub -->
-      <img src="team-photo.jpg" alt="Équipe en session de design thinking — LEVELUP" width="460" height="520" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-      <!-- Placeholder affiché si la photo n'existe pas encore -->
-      <div class="photo-placeholder" style="display:none">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span data-fr="Photo d'équipe à venir" data-en="Team photo coming soon">Photo d'équipe à venir</span>
-      </div>
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
       <div class="badge" data-fr="120 équipes transformées" data-en="120 teams transformed">120 équipes transformées</div>
       <div class="photo-caption">
         <p data-fr="« Nos équipes utilisent maintenant l'IA au quotidien pour explorer dix fois plus d'idées produit. »" data-en="&ldquo; Our teams now use AI every day to explore ten times more product ideas. &rdquo;">« Nos équipes utilisent maintenant l'IA au quotidien pour explorer dix fois plus d'idées produit. »</p>
@@ -1043,6 +1034,138 @@ if (floatCta && heroEl) {
   }, { threshold: 0 });
   heroObserver.observe(heroEl);
 }
+
+/* ── Hero canvas animation ── */
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const MAGENTA = '#E0185C';
+  const MARIGOLD = '#FFB300';
+  const WHITE = 'rgba(255,255,255,0.85)';
+  const LINK_DIST = 130;
+  const NODE_COUNT = 52;
+
+  let W, H, nodes, raf;
+
+  function resize(){
+    const r = canvas.parentElement.getBoundingClientRect();
+    W = canvas.width = r.width;
+    H = canvas.height = r.height;
+  }
+
+  function makeNode(){
+    const isMajor = Math.random() < 0.18;
+    const isStar  = !isMajor && Math.random() < 0.12;
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: isMajor ? 5 + Math.random()*3 : isStar ? 3 : 1.5 + Math.random()*2,
+      color: isMajor ? MAGENTA : isStar ? MARIGOLD : WHITE,
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: 0.018 + Math.random()*0.012,
+      major: isMajor
+    };
+  }
+
+  function init(){
+    resize();
+    nodes = Array.from({length: NODE_COUNT}, makeNode);
+  }
+
+  function drawGlow(x, y, r, color, alpha){
+    const g = ctx.createRadialGradient(x, y, 0, x, y, r*5);
+    g.addColorStop(0, color.replace(')', `,${alpha})`).replace('rgb','rgba').replace('#','rgba(').replace('rgba(','rgba(').replace('rgba(E0185C','rgba(224,24,92').replace('rgba(FFB300','rgba(255,179,0').replace('rgba(rgba(255,255,255,0.85)','rgba(255,255,255'));
+    // simpler approach
+    ctx.save();
+    ctx.globalAlpha = alpha * 0.25;
+    ctx.beginPath();
+    ctx.arc(x, y, r*4, 0, Math.PI*2);
+    const grd = ctx.createRadialGradient(x, y, 0, x, y, r*4);
+    grd.addColorStop(0, color);
+    grd.addColorStop(1, 'transparent');
+    ctx.fillStyle = grd;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function frame(){
+    ctx.clearRect(0, 0, W, H);
+
+    /* subtle grid */
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+    ctx.lineWidth = 1;
+    for(let x=0; x<W; x+=48){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+    for(let y=0; y<H; y+=48){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+    ctx.restore();
+
+    /* move */
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if(n.x < -20) n.x = W+20;
+      if(n.x > W+20) n.x = -20;
+      if(n.y < -20) n.y = H+20;
+      if(n.y > H+20) n.y = -20;
+      n.pulse += n.pulseSpeed;
+    });
+
+    /* links */
+    for(let i=0; i<nodes.length; i++){
+      for(let j=i+1; j<nodes.length; j++){
+        const a = nodes[i], b = nodes[j];
+        const dx = a.x-b.x, dy = a.y-b.y;
+        const d = Math.sqrt(dx*dx+dy*dy);
+        if(d < LINK_DIST){
+          const alpha = (1 - d/LINK_DIST) * 0.45;
+          const isMagenta = a.major || b.major;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = isMagenta
+            ? `rgba(224,24,92,${alpha*0.9})`
+            : `rgba(255,255,255,${alpha*0.4})`;
+          ctx.lineWidth = isMagenta ? 1.5 : 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    /* nodes */
+    nodes.forEach(n => {
+      const scale = n.major ? 1 + 0.18*Math.sin(n.pulse) : 1;
+      const r = n.r * scale;
+      /* glow halo */
+      if(n.major || n.color === MARIGOLD){
+        const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r*5);
+        const base = n.color === MARIGOLD ? '255,179,0' : '224,24,92';
+        grd.addColorStop(0, `rgba(${base},0.35)`);
+        grd.addColorStop(1, `rgba(${base},0)`);
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r*5, 0, Math.PI*2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+      }
+      /* dot */
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, r, 0, Math.PI*2);
+      ctx.fillStyle = n.color;
+      ctx.globalAlpha = n.major ? 1 : 0.75;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+
+    raf = requestAnimationFrame(frame);
+  }
+
+  init();
+  frame();
+
+  const ro = new ResizeObserver(() => { resize(); });
+  ro.observe(canvas.parentElement);
+})();
 </script>
 
 <script type="application/ld+json">
