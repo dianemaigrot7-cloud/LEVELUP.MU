@@ -101,19 +101,9 @@
   /* animation */
   .logo-anim{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-bottom:120px}
   .chev-svg{width:280px;height:auto;overflow:visible}
-  .chev{animation:chevRise 2.6s cubic-bezier(.45,0,.55,1) infinite;transform-box:fill-box;transform-origin:center}
-  .c1{animation-delay:0s}
-  .c2{animation-delay:.38s}
-  .c3{animation-delay:.76s}
-  @keyframes chevRise{
-    0%,100%{transform:translateY(0);opacity:.35}
-    35%,65%{transform:translateY(-20px);opacity:.7}
-  }
-  .lu-dot{position:absolute;border-radius:50%;animation:dotFloat 4s ease-in-out infinite}
-  @keyframes dotFloat{
-    0%,100%{transform:translateY(0) scale(1)}
-    50%{transform:translateY(-24px) scale(1.15)}
-  }
+  .c1{opacity:.35}
+  .c2{opacity:.55}
+  .c3{opacity:.80}
   /* badge top-left */
   .hero-visual .badge{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#fff;background:rgba(17,17,17,.55);padding:8px 14px;border-radius:999px;backdrop-filter:blur(10px)}
   .hero-visual .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--marigold);flex:0 0 auto}
