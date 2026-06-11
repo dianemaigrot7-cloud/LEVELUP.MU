@@ -101,9 +101,6 @@
   /* animation */
   .logo-anim{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-bottom:120px}
   .chev-svg{width:280px;height:auto;overflow:visible}
-  .c1{opacity:.35}
-  .c2{opacity:.55}
-  .c3{opacity:.80}
   /* badge top-left */
   .hero-visual .badge{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#fff;background:rgba(17,17,17,.55);padding:8px 14px;border-radius:999px;backdrop-filter:blur(10px)}
   .hero-visual .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--marigold);flex:0 0 auto}
@@ -490,16 +487,13 @@
       <div class="hv-stamp" data-fr="En mouvement depuis 2016" data-en="In motion since 2016">EN MOUVEMENT DEPUIS 2016</div>
       <div class="logo-anim" aria-hidden="true">
         <!-- Chevrons SVG – couleurs claires sur fond magenta -->
-        <svg class="chev-svg" viewBox="-5 -50 230 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- bottom – semi-transparent -->
-          <polyline class="chev c1" points="15,162 110,72 205,162"
-            stroke="rgba(255,255,255,0.30)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- middle -->
-          <polyline class="chev c2" points="15,108 110,18 205,108"
-            stroke="rgba(255,255,255,0.50)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- top – brightest -->
-          <polyline class="chev c3" points="15,54 110,-36 205,54"
-            stroke="rgba(255,255,255,0.80)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+        <svg class="chev-svg" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- bottom chevron – more transparent -->
+          <polyline points="18,178 150,58 282,178"
+            stroke="rgba(255,255,255,0.35)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- top chevron – brighter -->
+          <polyline points="18,108 150,-12 282,108"
+            stroke="rgba(255,255,255,0.65)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <div class="hv-quote">
