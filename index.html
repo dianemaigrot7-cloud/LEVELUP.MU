@@ -87,20 +87,8 @@
   .hero .ctas{margin-top:36px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
   .hero .ctas .meta{margin-left:8px;font-size:13px;color:var(--mute);display:flex;align-items:center;gap:8px;white-space:nowrap}
   .hero .ctas .meta::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--marigold)}
-  .hero-visual{position:relative;height:520px;border-radius:28px;overflow:hidden;background:var(--magenta)}
-  /* badge top-left */
-  .hero-visual .hv-badge{position:absolute;top:22px;left:22px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.22);padding:8px 14px;border-radius:999px;backdrop-filter:blur(8px)}
-  .hero-visual .hv-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--marigold);flex:0 0 auto}
-  /* badge top-right yellow circle */
-  .hero-visual .hv-stamp{position:absolute;top:18px;right:18px;width:72px;height:72px;border-radius:50%;background:var(--marigold);display:flex;align-items:center;justify-content:center;text-align:center;font-size:9.5px;font-weight:800;line-height:1.25;letter-spacing:.5px;text-transform:uppercase;color:#111;padding:8px}
-  /* quote overlay bottom */
-  .hero-visual .hv-quote{position:absolute;bottom:0;left:0;right:0;padding:28px 28px 30px;background:linear-gradient(to top,rgba(140,8,44,.92) 0%,rgba(140,8,44,.5) 60%,transparent 100%)}
-  .hero-visual .hv-quote blockquote{font-family:"Manrope",ui-sans-serif,sans-serif;font-size:17px;font-weight:700;line-height:1.4;color:#fff;letter-spacing:-.3px;margin:0}
-  .hero-visual .hv-quote blockquote em{font-style:italic}
-  .hero-visual .hv-quote cite{display:block;margin-top:10px;font-size:12px;color:rgba(255,255,255,.7);font-style:normal;font-weight:500}
-  /* animation */
-  .logo-anim{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-bottom:120px}
-  .chev-svg{width:280px;height:auto;overflow:visible}
+  .hero-visual{position:relative;height:520px;border-radius:28px;overflow:hidden;background:var(--cream)}
+  .hero-visual img.hv-photo{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
   /* badge top-left */
   .hero-visual .badge{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#fff;background:rgba(17,17,17,.55);padding:8px 14px;border-radius:999px;backdrop-filter:blur(10px)}
   .hero-visual .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--marigold);flex:0 0 auto}
@@ -483,23 +471,7 @@
       </div>
     </div>
     <aside class="hero-visual">
-      <div class="hv-badge" data-fr="120 équipes transformées" data-en="120 teams transformed">120 équipes transformées</div>
-      <div class="hv-stamp" data-fr="En mouvement depuis 2016" data-en="In motion since 2016">EN MOUVEMENT DEPUIS 2016</div>
-      <div class="logo-anim" aria-hidden="true">
-        <!-- Chevrons SVG – couleurs claires sur fond magenta -->
-        <svg class="chev-svg" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- bottom chevron – more transparent -->
-          <polyline points="18,178 150,58 282,178"
-            stroke="rgba(255,255,255,0.35)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- top chevron – brighter -->
-          <polyline points="18,108 150,-12 282,108"
-            stroke="rgba(255,255,255,0.65)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="hv-quote">
-        <blockquote data-fr="« Nos équipes utilisent maintenant l'IA <em>au quotidien</em> pour explorer dix fois plus d'idées produit. »" data-en="&ldquo; Our teams now use AI <em>every day</em> to explore ten times more product ideas. &rdquo;">« Nos équipes utilisent maintenant l'IA <em>au quotidien</em> pour explorer dix fois plus d'idées produit. »</blockquote>
-        <cite>Camille Roux · <span data-fr="Directrice Innovation, Groupe Aurelia" data-en="Head of Innovation, Groupe Aurelia">Directrice Innovation, Groupe Aurelia</span></cite>
-      </div>
+      <img class="hv-photo" src="hero-bulb.jpg" alt="Main tenant une ampoule — idée et innovation" />
     </aside>
   </div>
 </header>
