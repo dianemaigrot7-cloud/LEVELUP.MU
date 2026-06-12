@@ -128,8 +128,9 @@
   .promise .col h3{font-size:20px;font-weight:800;letter-spacing:-0.5px;line-height:1.1}
   .promise .col p{font-size:15px;line-height:1.6;margin-bottom:24px}
   .promise .col ul{display:flex;flex-direction:column;gap:0;list-style:none;margin-top:auto}
-  .promise .col li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;padding:12px 0;border-top:1px solid}
-  .promise .col li:last-child{border-bottom:1px solid}
+  .promise .col.bad li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;padding:12px 0;border-top:1px solid}
+  .promise .col.bad li:last-child{border-bottom:1px solid}
+  .promise .col.good li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;padding:12px 0;border:none}
   .promise .col li .li-icon{width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
   /* bad column */
   .promise .col.bad{background:#fff;border:1.5px solid var(--line)}
@@ -491,14 +492,6 @@
       <!-- BAD -->
       <div class="col bad">
         <div class="col-eyebrow" data-fr="L'approche classique" data-en="The standard approach">L'approche classique</div>
-        <div class="col-header">
-          <div class="col-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M5 5l10 10M15 5L5 15" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3 data-fr="Ce qu'on évite" data-en="What we avoid">Ce qu'on évite</h3>
-        </div>
         <p data-fr="Le contenu prime, les humains qui doivent le vivre passent au second plan." data-en="Content comes first — the people who have to live it come second.">Le contenu prime, les humains qui doivent le vivre passent au second plan.</p>
         <ul>
           <li>
@@ -528,14 +521,6 @@
       <!-- GOOD -->
       <div class="col good">
         <div class="col-eyebrow" data-fr="Notre approche" data-en="Our approach">Notre approche</div>
-        <div class="col-header">
-          <div class="col-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M4 10.5l4.5 4.5 7.5-8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3 data-fr="Ce qu'on construit avec vous" data-en="What we build with you">Ce qu'on construit avec vous</h3>
-        </div>
         <p data-fr="Un programme sur-mesure, ancré dans la durée, à tous les niveaux de l'organisation." data-en="A bespoke programme, embedded over time, across every level of your organisation.">Un programme sur-mesure, ancré dans la durée, à tous les niveaux de l'organisation.</p>
         <ul>
           <li>
