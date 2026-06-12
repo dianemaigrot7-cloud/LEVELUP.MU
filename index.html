@@ -192,17 +192,16 @@
   /* FOUNDER */
   .founder{background:#fff;overflow:hidden;position:relative}
   .founder::before{content:"";position:absolute;top:-120px;right:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(224,24,92,.06) 0%,transparent 70%);pointer-events:none}
-  .founder .wrap{display:grid;grid-template-columns:400px 1fr;gap:72px;align-items:center;position:relative;z-index:1}
+  .founder .wrap{display:grid;grid-template-columns:400px 1fr;gap:72px;align-items:start;position:relative;z-index:1}
   /* portrait column */
   .founder .portrait-col{display:flex;flex-direction:column;align-items:center;gap:20px}
   .founder .portrait-wrap{position:relative;width:100%}
   /* photo — sharpened via CSS filter */
   .founder .portrait{position:relative;width:100%;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--cream);border:1.5px solid var(--line)}
   .founder .portrait img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;filter:contrast(1.06) saturate(1.05) sharpen(0);image-rendering:crisp-edges}
-  /* Mandela quote overlay on photo */
-  .founder .photo-quote{position:absolute;bottom:0;left:0;right:0;padding:20px 20px 22px;background:linear-gradient(to top,rgba(17,17,17,.85) 0%,rgba(17,17,17,.5) 60%,transparent 100%);border-radius:0 0 18px 18px}
-  .founder .photo-quote p{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:14px;line-height:1.45;color:#fff;font-style:italic;letter-spacing:0;margin:0}
-  .founder .photo-quote cite{display:block;margin-top:6px;font-size:11px;font-weight:600;color:var(--magenta);text-transform:uppercase;letter-spacing:1.2px;font-style:normal}
+  .founder .founder-quote{border-left:3px solid var(--magenta);padding:12px 20px;background:var(--cream);border-radius:0 10px 10px 0;margin-bottom:24px}
+  .founder .founder-quote p{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:700;font-size:15px;line-height:1.5;color:var(--ink);font-style:italic;margin:0}
+  .founder .founder-quote cite{display:block;margin-top:6px;font-size:11px;font-weight:700;color:var(--magenta);text-transform:uppercase;letter-spacing:1.2px;font-style:normal}
   /* name badge below portrait */
   .founder .portrait-badge{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
   .founder .portrait-badge .badge-name{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:18px;color:var(--ink);letter-spacing:-0.4px}
@@ -631,11 +630,6 @@
       <div class="portrait-wrap">
         <div class="portrait">
           <img src="diane-portrait.jpg" alt="Diane Maigrot, fondatrice de LEVELUP" width="400" height="500" loading="lazy" decoding="async" />
-          <!-- Mandela quote overlay -->
-          <div class="photo-quote">
-            <p>« It always seems impossible until it's done. »</p>
-            <cite>— Nelson Mandela</cite>
-          </div>
         </div>
       </div>
       <!-- Name badge + LinkedIn -->
@@ -663,6 +657,7 @@
         <span class="tag-pill" data-fr="Leadership" data-en="Leadership">Leadership</span>
       </div>
 
+      <blockquote class="founder-quote"><p>« It always seems impossible until it's done. »</p><cite>— Nelson Mandela</cite></blockquote>
       <p class="bio" data-fr="Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle a piloté pendant <strong>8 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation et de croissance — en mettant <strong>l'humain au cœur</strong> de chaque projet." data-en="With over <strong>20 years</strong> of entrepreneurial experience, Diane founded and led several companies before taking the helm of <strong>La Turbine</strong>, the leading incubator in Mauritius, which she directed for <strong>8 years</strong>. She now works with organisations that want to turn their teams into engines of innovation and growth — putting <strong>people at the heart</strong> of every project.">Plus de <strong>20 ans</strong> d'expérience entrepreneuriale, Diane a fondé et dirigé plusieurs entreprises avant de prendre la tête de <strong>La Turbine</strong>, l'incubateur de référence à l'île Maurice, qu'elle a piloté pendant <strong>8 ans</strong>. Elle accompagne aujourd'hui les organisations qui veulent transformer leurs équipes en moteurs d'innovation et de croissance — en mettant <strong>l'humain au cœur</strong> de chaque projet.</p>
     </div>
 
