@@ -447,8 +447,8 @@
     <div class="links" id="nav-links">
       <a href="#methode" data-fr="Méthode" data-en="Method">Méthode</a>
       <a href="#services" data-fr="Services" data-en="Services">Services</a>
-      <a href="#fondatrice" data-fr="Fondatrice" data-en="Founder">Fondatrice</a>
       <a href="#programmes" data-fr="Formations" data-en="Training">Formations</a>
+      <a href="#fondatrice" data-fr="Fondatrice" data-en="Founder">Fondatrice</a>
       <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
     </div>
     <div class="cta">
@@ -559,6 +559,39 @@
 </section>
 
 
+<!-- PROGRAMS / CATALOGUE -->
+<section class="s programs" id="programmes">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-fr="Envie d'aller plus loin&nbsp;? <em>Demandez notre catalogue de formations.</em>" data-en="Want to go further? <em>Request our training catalogue.</em>">Envie d'aller plus loin&nbsp;? <em>Demandez notre catalogue de formations.</em></h2>
+    </div>
+
+    <form id="catalog-form" class="catalog-form">
+      <div class="cf-field">
+        <label for="cf-name" data-fr="1. Votre entreprise (+ site internet si existant)" data-en="1. Your company (+ website if any)">1. Votre entreprise (+ site internet si existant)</label>
+        <input id="cf-name" name="company" type="text" autocomplete="organization" required>
+      </div>
+      <div class="cf-field">
+        <label for="cf-email" data-fr="2. Votre adresse email" data-en="2. Your email address">2. Votre adresse email</label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="cf-field">
+        <label for="cf-interest" data-fr="3. Quel axe vous intéresse le plus ?" data-en="3. Which area interests you most?">3. Quel axe vous intéresse le plus ?</label>
+        <select id="cf-interest" name="interest">
+          <option value="Ressources humaines" data-fr="Ressources humaines" data-en="Human Resources">Ressources humaines</option>
+          <option value="Développement produit" data-fr="Développement produit" data-en="Product Development">Développement produit</option>
+          <option value="Organisation du travail" data-fr="Organisation du travail" data-en="Work Organisation">Organisation du travail</option>
+          <option value="Les trois" data-fr="Les trois !" data-en="All three!">Les trois !</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary"><span data-fr="Recevoir le catalogue" data-en="Get the catalogue">Recevoir le catalogue</span></button>
+      <p class="cf-note" data-fr="Votre demande nous est transmise par email — le catalogue vous sera envoyé en retour." data-en="Your request is sent to us by email — the catalogue will be sent back to you.">Votre demande nous est transmise par email — le catalogue vous sera envoyé en retour.</p>
+    </form>
+
+    <p id="catalog-thanks" class="cf-note" hidden style="font-size:15px;color:var(--ink);font-weight:600" data-fr="Merci ! Votre demande est bien partie — vous recevrez notre catalogue de formations par email très rapidement." data-en="Thank you! Your request has been sent — you will receive our training catalogue by email very soon.">Merci ! Votre demande est bien partie — vous recevrez notre catalogue de formations par email très rapidement.</p>
+  </div>
+</section>
+
 <!-- FOUNDER -->
 <section class="s founder" id="fondatrice">
   <div class="container wrap">
@@ -601,38 +634,7 @@
   </div>
 </section>
 
-<!-- PROGRAMS / CATALOGUE -->
-<section class="s programs" id="programmes">
-  <div class="container">
-    <div class="section-head">
-      <h2 data-fr="Envie d'aller plus loin&nbsp;? <em>Demandez notre catalogue de formations.</em>" data-en="Want to go further? <em>Request our training catalogue.</em>">Envie d'aller plus loin&nbsp;? <em>Demandez notre catalogue de formations.</em></h2>
-    </div>
 
-    <form id="catalog-form" class="catalog-form">
-      <div class="cf-field">
-        <label for="cf-name" data-fr="1. Votre entreprise (+ site internet si existant)" data-en="1. Your company (+ website if any)">1. Votre entreprise (+ site internet si existant)</label>
-        <input id="cf-name" name="company" type="text" autocomplete="organization" required>
-      </div>
-      <div class="cf-field">
-        <label for="cf-email" data-fr="2. Votre adresse email" data-en="2. Your email address">2. Votre adresse email</label>
-        <input id="cf-email" name="email" type="email" autocomplete="email" required>
-      </div>
-      <div class="cf-field">
-        <label for="cf-interest" data-fr="3. Quel axe vous intéresse le plus ?" data-en="3. Which area interests you most?">3. Quel axe vous intéresse le plus ?</label>
-        <select id="cf-interest" name="interest">
-          <option value="Ressources humaines" data-fr="Ressources humaines" data-en="Human Resources">Ressources humaines</option>
-          <option value="Développement produit" data-fr="Développement produit" data-en="Product Development">Développement produit</option>
-          <option value="Organisation du travail" data-fr="Organisation du travail" data-en="Work Organisation">Organisation du travail</option>
-          <option value="Les trois" data-fr="Les trois !" data-en="All three!">Les trois !</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary"><span data-fr="Recevoir le catalogue" data-en="Get the catalogue">Recevoir le catalogue</span></button>
-      <p class="cf-note" data-fr="Votre demande nous est transmise par email — le catalogue vous sera envoyé en retour." data-en="Your request is sent to us by email — the catalogue will be sent back to you.">Votre demande nous est transmise par email — le catalogue vous sera envoyé en retour.</p>
-    </form>
-
-    <p id="catalog-thanks" class="cf-note" hidden style="font-size:15px;color:var(--ink);font-weight:600" data-fr="Merci ! Votre demande est bien partie — vous recevrez notre catalogue de formations par email très rapidement." data-en="Thank you! Your request has been sent — you will receive our training catalogue by email very soon.">Merci ! Votre demande est bien partie — vous recevrez notre catalogue de formations par email très rapidement.</p>
-  </div>
-</section>
 
 <!-- TESTIMONIAL -->
 <section class="testi" id="cas-clients" hidden style="display:none">
