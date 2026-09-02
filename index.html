@@ -160,7 +160,7 @@
   .service p{color:#3a3a3a;line-height:1.55;font-size:15px}
   .service .meta{display:flex;gap:14px;font-size:12px;color:var(--mute);margin-top:auto;padding-top:14px;border-top:1px solid var(--line);flex-wrap:wrap}
   .service .meta span{display:flex;align-items:center;gap:5px;white-space:nowrap}
-  .service .more-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;border:none;cursor:pointer;font:inherit;font-size:14px;font-weight:700;background:var(--ink);color:#fff;transition:transform .15s,opacity .15s}
+  .service .more-btn{align-self:flex-end;display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;border:1px solid rgba(0,0,0,.08);cursor:pointer;font:inherit;font-size:14px;font-weight:700;background:#fff;color:var(--magenta);transition:transform .15s,opacity .15s}
   .service .more-btn:hover{transform:translateY(-1px);opacity:.9}
   /* modales formations */
   .modal-overlay{position:fixed;inset:0;background:rgba(17,17,17,.55);z-index:200;display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto}
@@ -570,7 +570,7 @@
         <div class="num" style="color:rgba(255,255,255,.8)" data-fr="Service" data-en="Service">Service</div>
         <h3 style="color:#fff" data-fr="Organisation du travail" data-en="Work Organisation">Organisation du travail</h3>
         <p style="color:rgba(255,255,255,.85)" data-fr="Repenser vos modes de fonctionnement : rôles et responsabilités, rituels, processus et outils pour un travail plus fluide, plus clair et plus efficace au quotidien." data-en="Rethink how you operate: roles and responsibilities, rituals, processes and tools for smoother, clearer and more effective everyday work.">Repenser vos modes de fonctionnement : rôles et responsabilités, rituels, processus et outils pour un travail plus fluide, plus clair et plus efficace au quotidien.</p>
-        <button type="button" class="more-btn" data-modal="modal-orga" style="background:#fff;color:var(--magenta)"><span data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</span></button>
+        <button type="button" class="more-btn" data-modal="modal-orga"><span data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</span></button>
         <div class="meta" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.18)">
           <span data-fr="● Toute l'organisation" data-en="● Whole organisation">● Toute l'organisation</span>
           <span data-fr="● 3 à 6 mois" data-en="● 3 to 6 months">● 3 à 6 mois</span>
@@ -823,22 +823,21 @@ if (catForm && catThanks) {
   });
 }
 
-// Modales « En savoir plus » des offres
-document.querySelectorAll('.more-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
+// Modales « En savoir plus » des offres (délégation : les modales sont plus bas dans le DOM)
+function closeModal(ov) { ov.hidden = true; document.body.style.overflow = ''; }
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.more-btn');
+  if (btn) {
     const m = document.getElementById(btn.dataset.modal);
     if (m) { m.hidden = false; document.body.style.overflow = 'hidden'; }
-  });
-});
-document.querySelectorAll('.modal-overlay').forEach(ov => {
-  const close = () => { ov.hidden = true; document.body.style.overflow = ''; };
-  ov.addEventListener('click', e => { if (e.target === ov) close(); });
-  ov.querySelector('.modal-close').addEventListener('click', close);
+    return;
+  }
+  const x = e.target.closest('.modal-close');
+  if (x) { closeModal(x.closest('.modal-overlay')); return; }
+  if (e.target.classList && e.target.classList.contains('modal-overlay')) closeModal(e.target);
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay:not([hidden])').forEach(ov => {
-    ov.hidden = true; document.body.style.overflow = '';
-  });
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay:not([hidden])').forEach(closeModal);
 });
 
 // Hamburger menu
