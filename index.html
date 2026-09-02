@@ -189,7 +189,9 @@
   .program .meta .quote-cta:hover{background:var(--magenta-dk);transform:translateY(-1px)}
   .program .meta .quote-cta svg{flex:0 0 auto}
   /* catalogue form */
-  .catalog-form{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:16px;align-items:end;margin-bottom:32px}
+  .catalog-form{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:end;margin-bottom:32px}
+  .catalog-form .btn{grid-column:1/-1;justify-self:center;min-width:280px}
+  .catalog-form .cf-note{text-align:center}
   .catalog-form .cf-field{display:flex;flex-direction:column;gap:8px}
   .catalog-form label{font-size:13px;font-weight:700;color:var(--ink)}
   .catalog-form input,.catalog-form select{padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:14px;background:var(--paper);color:var(--ink)}
@@ -568,15 +570,19 @@
 
     <form id="catalog-form" class="catalog-form">
       <div class="cf-field">
-        <label for="cf-name" data-fr="1. Votre entreprise (+ site internet si existant)" data-en="1. Your company (+ website if any)">1. Votre entreprise (+ site internet si existant)</label>
+        <label for="cf-fullname" data-fr="1. Votre nom et prénom" data-en="1. Your first and last name">1. Votre nom et prénom</label>
+        <input id="cf-fullname" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="cf-field">
+        <label for="cf-name" data-fr="2. Votre entreprise (+ site internet si existant)" data-en="2. Your company (+ website if any)">2. Votre entreprise (+ site internet si existant)</label>
         <input id="cf-name" name="company" type="text" autocomplete="organization" required>
       </div>
       <div class="cf-field">
-        <label for="cf-email" data-fr="2. Votre adresse email" data-en="2. Your email address">2. Votre adresse email</label>
+        <label for="cf-email" data-fr="3. Votre adresse email" data-en="3. Your email address">3. Votre adresse email</label>
         <input id="cf-email" name="email" type="email" autocomplete="email" required>
       </div>
       <div class="cf-field">
-        <label for="cf-interest" data-fr="3. Quel axe vous intéresse le plus ?" data-en="3. Which area interests you most?">3. Quel axe vous intéresse le plus ?</label>
+        <label for="cf-interest" data-fr="4. Quel axe vous intéresse le plus ?" data-en="4. Which area interests you most?">4. Quel axe vous intéresse le plus ?</label>
         <select id="cf-interest" name="interest">
           <option value="Ressources humaines" data-fr="Ressources humaines" data-en="Human Resources">Ressources humaines</option>
           <option value="Développement produit" data-fr="Développement produit" data-en="Product Development">Développement produit</option>
@@ -786,11 +792,12 @@ if (catForm && catThanks) {
   catForm.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!catForm.reportValidity()) return;
-    const name = document.getElementById('cf-name').value.trim();
+    const fullname = document.getElementById('cf-fullname').value.trim();
+    const company = document.getElementById('cf-name').value.trim();
     const email = document.getElementById('cf-email').value.trim();
     const interest = document.getElementById('cf-interest').value;
     const subject = encodeURIComponent('Demande de catalogue de formations');
-    const body = encodeURIComponent('Entreprise / site : ' + name + '\nEmail : ' + email + '\nAxe qui intéresse le plus : ' + interest);
+    const body = encodeURIComponent('Nom et prénom : ' + fullname + '\nEntreprise / site : ' + company + '\nEmail : ' + email + '\nAxe qui intéresse le plus : ' + interest);
     catThanks.hidden = false;
     window.location.href = 'mailto:hello@levelup.mu?subject=' + subject + '&body=' + body;
   });
