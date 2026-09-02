@@ -823,22 +823,21 @@ if (catForm && catThanks) {
   });
 }
 
-// Modales « En savoir plus » des offres
-document.querySelectorAll('.more-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
+// Modales « En savoir plus » des offres (délégation : les modales sont plus bas dans le DOM)
+function closeModal(ov) { ov.hidden = true; document.body.style.overflow = ''; }
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.more-btn');
+  if (btn) {
     const m = document.getElementById(btn.dataset.modal);
     if (m) { m.hidden = false; document.body.style.overflow = 'hidden'; }
-  });
-});
-document.querySelectorAll('.modal-overlay').forEach(ov => {
-  const close = () => { ov.hidden = true; document.body.style.overflow = ''; };
-  ov.addEventListener('click', e => { if (e.target === ov) close(); });
-  ov.querySelector('.modal-close').addEventListener('click', close);
+    return;
+  }
+  const x = e.target.closest('.modal-close');
+  if (x) { closeModal(x.closest('.modal-overlay')); return; }
+  if (e.target.classList && e.target.classList.contains('modal-overlay')) closeModal(e.target);
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay:not([hidden])').forEach(ov => {
-    ov.hidden = true; document.body.style.overflow = '';
-  });
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay:not([hidden])').forEach(closeModal);
 });
 
 // Hamburger menu
