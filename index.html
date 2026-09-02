@@ -160,6 +160,23 @@
   .service p{color:#3a3a3a;line-height:1.55;font-size:15px}
   .service .meta{display:flex;gap:14px;font-size:12px;color:var(--mute);margin-top:auto;padding-top:14px;border-top:1px solid var(--line);flex-wrap:wrap}
   .service .meta span{display:flex;align-items:center;gap:5px;white-space:nowrap}
+  .service .more-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;border:none;cursor:pointer;font:inherit;font-size:14px;font-weight:700;background:var(--ink);color:#fff;transition:transform .15s,opacity .15s}
+  .service .more-btn:hover{transform:translateY(-1px);opacity:.9}
+  /* modales formations */
+  .modal-overlay{position:fixed;inset:0;background:rgba(17,17,17,.55);z-index:200;display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto}
+  .modal-overlay[hidden]{display:none}
+  .modal{background:#fff;border-radius:20px;max-width:780px;width:100%;padding:36px;position:relative;margin:auto 0}
+  .modal .modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);background:#fff;cursor:pointer;font-size:16px;font-weight:700;color:var(--ink);line-height:1}
+  .modal .modal-close:hover{border-color:var(--magenta);color:var(--magenta)}
+  .modal h3{font-family:"Manrope",ui-sans-serif,sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.8px;margin-bottom:4px;color:var(--ink)}
+  .modal .modal-sub{color:var(--mute);font-size:14px;margin-bottom:22px}
+  .modal .fiche{border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:14px}
+  .modal .fiche h4{font-size:17px;font-weight:800;letter-spacing:-0.3px;margin-bottom:2px;color:var(--ink)}
+  .modal .fiche .flab{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--magenta-dk);margin:10px 0 4px}
+  .modal .fiche ul{margin:0;padding-left:18px;color:#3a3a3a;font-size:14px;line-height:1.55}
+  .modal .fiche p{color:#3a3a3a;font-size:14px;line-height:1.55}
+  .modal .fiche .fmeta{margin-top:10px;font-size:12.5px;font-weight:700;color:var(--magenta)}
+  @media (max-width:600px){.modal{padding:24px 18px}}
 
   /* METHOD */
   .method{background:var(--cream);color:var(--ink)}
@@ -531,6 +548,7 @@
         <div class="num" style="color:#E0185C" data-fr="Service" data-en="Service">Service</div>
         <h3 data-fr="Ressources humaines" data-en="Human Resources">Ressources humaines</h3>
         <p data-fr="Fidéliser, engager et faire grandir vos talents : parcours collaborateurs, culture d'équipe et montée en compétences pour des équipes épanouies et performantes." data-en="Retain, engage and grow your talent: employee journeys, team culture and skills development for fulfilled, high-performing teams.">Fidéliser, engager et faire grandir vos talents : parcours collaborateurs, culture d'équipe et montée en compétences pour des équipes épanouies et performantes.</p>
+        <button type="button" class="more-btn" data-modal="modal-rh"><span data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</span></button>
         <div class="meta">
           <span data-fr="● Dirigeants &amp; équipes" data-en="● Leaders &amp; teams">● Dirigeants &amp; équipes</span>
           <span data-fr="● Sur-mesure" data-en="● Tailored">● Sur-mesure</span>
@@ -541,6 +559,7 @@
         <div class="num" style="color:#8C0030" data-fr="Service · Le plus demandé" data-en="Service · Most requested">Service · Le plus demandé</div>
         <h3 data-fr="Développement produit" data-en="Product Development">Développement produit</h3>
         <p style="color:rgba(17,17,17,.78)" data-fr="De l'idée au lancement : comprendre vos clients, concevoir et tester rapidement de nouveaux produits ou services, avec les équipes qui les porteront au quotidien." data-en="From idea to launch: understand your customers, design and rapidly test new products or services with the teams who will own them day to day.">De l'idée au lancement : comprendre vos clients, concevoir et tester rapidement de nouveaux produits ou services, avec les équipes qui les porteront au quotidien.</p>
+        <button type="button" class="more-btn" data-modal="modal-produit"><span data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</span></button>
         <div class="meta" style="color:rgba(17,17,17,.6);border-color:rgba(17,17,17,.18)">
           <span data-fr="● 6–12 personnes" data-en="● 6–12 people">● 6–12 personnes</span>
           <span data-fr="● Ateliers &amp; sprints" data-en="● Workshops &amp; sprints">● Ateliers &amp; sprints</span>
@@ -551,6 +570,7 @@
         <div class="num" style="color:rgba(255,255,255,.8)" data-fr="Service" data-en="Service">Service</div>
         <h3 style="color:#fff" data-fr="Organisation du travail" data-en="Work Organisation">Organisation du travail</h3>
         <p style="color:rgba(255,255,255,.85)" data-fr="Repenser vos modes de fonctionnement : rôles et responsabilités, rituels, processus et outils pour un travail plus fluide, plus clair et plus efficace au quotidien." data-en="Rethink how you operate: roles and responsibilities, rituals, processes and tools for smoother, clearer and more effective everyday work.">Repenser vos modes de fonctionnement : rôles et responsabilités, rituels, processus et outils pour un travail plus fluide, plus clair et plus efficace au quotidien.</p>
+        <button type="button" class="more-btn" data-modal="modal-orga" style="background:#fff;color:var(--magenta)"><span data-fr="En savoir plus →" data-en="Learn more →">En savoir plus →</span></button>
         <div class="meta" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.18)">
           <span data-fr="● Toute l'organisation" data-en="● Whole organisation">● Toute l'organisation</span>
           <span data-fr="● 3 à 6 mois" data-en="● 3 to 6 months">● 3 à 6 mois</span>
@@ -803,6 +823,24 @@ if (catForm && catThanks) {
   });
 }
 
+// Modales « En savoir plus » des offres
+document.querySelectorAll('.more-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const m = document.getElementById(btn.dataset.modal);
+    if (m) { m.hidden = false; document.body.style.overflow = 'hidden'; }
+  });
+});
+document.querySelectorAll('.modal-overlay').forEach(ov => {
+  const close = () => { ov.hidden = true; document.body.style.overflow = ''; };
+  ov.addEventListener('click', e => { if (e.target === ov) close(); });
+  ov.querySelector('.modal-close').addEventListener('click', close);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay:not([hidden])').forEach(ov => {
+    ov.hidden = true; document.body.style.overflow = '';
+  });
+});
+
 // Hamburger menu
 const burger = document.getElementById('nav-burger');
 const navLinks = document.getElementById('nav-links');
@@ -883,6 +921,175 @@ if (floatCta && heroEl) {
   "knowsAbout": ["Design Thinking", "Innovation produit", "Intelligence Artificielle", "Coaching d'équipes"]
 }
 </script>
+
+<!-- MODALES FORMATIONS -->
+<div class="modal-overlay" id="modal-rh" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-rh-title">
+    <button type="button" class="modal-close" aria-label="Fermer">✕</button>
+    <h3 id="modal-rh-title" data-fr="Ressources humaines" data-en="Human Resources">Ressources humaines</h3>
+    <p class="modal-sub" data-fr="Fidéliser, engager et faire grandir vos talents — 4 formations." data-en="Retain, engage and grow your talent — 4 training courses.">Fidéliser, engager et faire grandir vos talents — 4 formations.</p>
+      <div class="fiche">
+        <h4 data-fr="Recrutement &amp; Marque employeur" data-en="Recruitment &amp; Employer Brand">Recrutement &amp; Marque employeur</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="Un processus de recrutement structuré et partagé par tous les recruteurs." data-en="A structured recruitment process shared by all recruiters.">Un processus de recrutement structuré et partagé par tous les recruteurs.</li>
+          <li data-fr="Des entretiens objectivés grâce à des grilles d'évaluation communes." data-en="Objective interviews thanks to shared evaluation grids.">Des entretiens objectivés grâce à des grilles d'évaluation communes.</li>
+          <li data-fr="Un discours de marque employeur clair pour attirer les bons profils." data-en="A clear employer-brand message to attract the right profiles.">Un discours de marque employeur clair pour attirer les bons profils.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Atelier pratique à partir de vos recrutements en cours : travail sur cas réels, jeux de rôle d'entretien et co-construction des outils." data-en="Hands-on workshop based on your current recruitments: real cases, interview role-plays and co-built tools.">Atelier pratique à partir de vos recrutements en cours : travail sur cas réels, jeux de rôle d'entretien et co-construction des outils.</p>
+        <div class="fmeta" data-fr="Durée : 1 jour · Participants : 8 à 15 personnes" data-en="Duration: 1 day · Participants: 8 to 15 people">Durée : 1 jour · Participants : 8 à 15 personnes</div>
+      </div>
+      <div class="fiche">
+        <h4 data-fr="Feedback &amp; Entretiens de développement" data-en="Feedback &amp; Growth Conversations">Feedback &amp; Entretiens de développement</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="Des managers à l'aise pour donner un feedback régulier et utile." data-en="Managers at ease giving regular, useful feedback.">Des managers à l'aise pour donner un feedback régulier et utile.</li>
+          <li data-fr="Des entretiens de développement préparés, structurés et suivis." data-en="Growth conversations that are prepared, structured and followed up.">Des entretiens de développement préparés, structurés et suivis.</li>
+          <li data-fr="Une culture du feedback qui s'installe dans l'équipe." data-en="A feedback culture that takes root in the team.">Une culture du feedback qui s'installe dans l'équipe.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Alternance d'apports courts et de mises en situation débriefées, construites sur les cas réels des participants." data-en="Short inputs alternating with debriefed role-plays, built on participants' real cases.">Alternance d'apports courts et de mises en situation débriefées, construites sur les cas réels des participants.</p>
+        <div class="fmeta" data-fr="Durée : 1 jour · Participants : 8 à 16 managers" data-en="Duration: 1 day · Participants: 8 to 16 managers">Durée : 1 jour · Participants : 8 à 16 managers</div>
+      </div>
+      <div class="fiche">
+        <h4 data-fr="Cohésion &amp; Sécurité psychologique" data-en="Cohesion &amp; Psychological Safety">Cohésion &amp; Sécurité psychologique</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="Un climat de confiance mesuré, discuté et renforcé." data-en="A climate of trust that is measured, discussed and strengthened.">Un climat de confiance mesuré, discuté et renforcé.</li>
+          <li data-fr="Des règles de fonctionnement co-construites par l'équipe." data-en="Team working rules co-built by the team.">Des règles de fonctionnement co-construites par l'équipe.</li>
+          <li data-fr="Des pratiques concrètes pour entretenir la confiance au quotidien." data-en="Concrete practices to nurture trust every day.">Des pratiques concrètes pour entretenir la confiance au quotidien.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Diagnostic express du climat d'équipe, ateliers expérientiels puis engagements d'équipe formalisés en fin de session." data-en="Express team-climate diagnostic, experiential workshops, then team commitments formalised at the end of the session.">Diagnostic express du climat d'équipe, ateliers expérientiels puis engagements d'équipe formalisés en fin de session.</p>
+        <div class="fmeta" data-fr="Durée : 1 à 2 jours · Participants : 8 à 25 personnes" data-en="Duration: 1 to 2 days · Participants: 8 to 25 people">Durée : 1 à 2 jours · Participants : 8 à 25 personnes</div>
+      </div>
+      <div class="fiche">
+        <h4 data-fr="Développement des talents" data-en="Talent Development">Développement des talents</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="Une cartographie des compétences clés de vos équipes." data-en="A map of your teams' key skills.">Une cartographie des compétences clés de vos équipes.</li>
+          <li data-fr="Des parcours de progression individualisés." data-en="Individualised progression paths.">Des parcours de progression individualisés.</li>
+          <li data-fr="Un plan de fidélisation de vos collaborateurs clés." data-en="A retention plan for your key people.">Un plan de fidélisation de vos collaborateurs clés.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Travail en binômes RH / managers sur vos référentiels réels : matrices de talents et plans d'action individuels." data-en="HR / manager pairs working on your real frameworks: talent matrices and individual action plans.">Travail en binômes RH / managers sur vos référentiels réels : matrices de talents et plans d'action individuels.</p>
+        <div class="fmeta" data-fr="Durée : 1 jour · Participants : RH &amp; managers" data-en="Duration: 1 day · Participants: HR &amp; managers">Durée : 1 jour · Participants : RH &amp; managers</div>
+      </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-produit" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-produit-title">
+    <button type="button" class="modal-close" aria-label="Fermer">✕</button>
+    <h3 id="modal-produit-title" data-fr="Développement produit" data-en="Product Development">Développement produit</h3>
+    <p class="modal-sub" data-fr="De l'idée au lancement, avec les équipes qui porteront le produit — 4 formations." data-en="From idea to launch, with the teams who will own the product — 4 training courses.">De l'idée au lancement, avec les équipes qui porteront le produit — 4 formations.</p>
+      <div class="fiche">
+        <h4 data-fr="Design Thinking Essentials" data-en="Design Thinking Essentials">Design Thinking Essentials</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="Une équipe initiée aux fondamentaux du design thinking." data-en="A team introduced to design thinking fundamentals.">Une équipe initiée aux fondamentaux du design thinking.</li>
+          <li data-fr="Un cas réel de l'entreprise avancé : problème reformulé, idées priorisées, premier prototype." data-en="A real company case moved forward: reframed problem, prioritised ideas, first prototype.">Un cas réel de l'entreprise avancé : problème reformulé, idées priorisées, premier prototype.</li>
+          <li data-fr="Des réflexes d'empathie utilisateur ancrés dans le quotidien." data-en="User-empathy reflexes anchored in daily work.">Des réflexes d'empathie utilisateur ancrés dans le quotidien.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Immersion pratique sur un vrai sujet de l'entreprise : empathie utilisateur, idéation, prototypage rapide et pitch final." data-en="Hands-on immersion on a real company topic: user empathy, ideation, rapid prototyping and a final pitch.">Immersion pratique sur un vrai sujet de l'entreprise : empathie utilisateur, idéation, prototypage rapide et pitch final.</p>
+        <div class="fmeta" data-fr="Durée : 2 jours · Participants : 10 à 30 personnes" data-en="Duration: 2 days · Participants: 10 to 30 people">Durée : 2 jours · Participants : 10 à 30 personnes</div>
+      </div>
+      <div class="fiche">
+        <h4 data-fr="Connaître ses clients" data-en="Knowing Your Customers">Connaître ses clients</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="Une méthode d'entretien utilisateur maîtrisée par l'équipe." data-en="A user-interview method mastered by the team.">Une méthode d'entretien utilisateur maîtrisée par l'équipe.</li>
+          <li data-fr="Des personas et parcours clients formalisés." data-en="Formalised personas and customer journeys.">Des personas et parcours clients formalisés.</li>
+          <li data-fr="Des besoins réels identifiés et priorisés." data-en="Real needs identified and prioritised.">Des besoins réels identifiés et priorisés.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Entraînement aux entretiens (préparation, conduite, analyse) puis construction collective des personas à partir de vos données." data-en="Interview practice (preparation, delivery, analysis) then collective persona building from your data.">Entraînement aux entretiens (préparation, conduite, analyse) puis construction collective des personas à partir de vos données.</p>
+        <div class="fmeta" data-fr="Durée : 1 jour · Participants : 8 à 20 personnes" data-en="Duration: 1 day · Participants: 8 to 20 people">Durée : 1 jour · Participants : 8 à 20 personnes</div>
+      </div>
+      <div class="fiche">
+        <h4 data-fr="Prototyper &amp; Tester rapidement" data-en="Prototype &amp; Test Fast">Prototyper &amp; Tester rapidement</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="Une idée transformée en prototype testable." data-en="An idea turned into a testable prototype.">Une idée transformée en prototype testable.</li>
+          <li data-fr="Des retours utilisateurs collectés et analysés." data-en="User feedback collected and analysed.">Des retours utilisateurs collectés et analysés.</li>
+          <li data-fr="Une décision éclairée : persévérer, pivoter ou arrêter." data-en="An informed decision: persevere, pivot or stop.">Une décision éclairée : persévérer, pivoter ou arrêter.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Sprint court : maquettage, scénarios de test, passation avec de vrais utilisateurs et synthèse des apprentissages." data-en="Short sprint: mock-ups, test scenarios, sessions with real users and a synthesis of learnings.">Sprint court : maquettage, scénarios de test, passation avec de vrais utilisateurs et synthèse des apprentissages.</p>
+        <div class="fmeta" data-fr="Durée : 1 à 2 jours · Participants : 8 à 20 personnes" data-en="Duration: 1 to 2 days · Participants: 8 to 20 people">Durée : 1 à 2 jours · Participants : 8 à 20 personnes</div>
+      </div>
+      <div class="fiche">
+        <h4 data-fr="IA &amp; Développement produit" data-en="AI &amp; Product Development">IA &amp; Développement produit</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="Des cas d'usage IA concrets identifiés pour votre produit et vos équipes." data-en="Concrete AI use cases identified for your product and teams.">Des cas d'usage IA concrets identifiés pour votre produit et vos équipes.</li>
+          <li data-fr="Une pratique réelle des outils (ChatGPT, Copilot, outils métiers)." data-en="Real practice with the tools (ChatGPT, Copilot, industry tools).">Une pratique réelle des outils (ChatGPT, Copilot, outils métiers).</li>
+          <li data-fr="Des réflexes pour continuer à explorer en autonomie." data-en="Reflexes to keep exploring autonomously.">Des réflexes pour continuer à explorer en autonomie.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Démonstrations, manipulation guidée sur vos propres cas et construction d'une feuille de route IA simple." data-en="Demos, guided hands-on work on your own cases and a simple AI roadmap.">Démonstrations, manipulation guidée sur vos propres cas et construction d'une feuille de route IA simple.</p>
+        <div class="fmeta" data-fr="Durée : 1 à 2 jours · Participants : 8 à 30 personnes" data-en="Duration: 1 to 2 days · Participants: 8 to 30 people">Durée : 1 à 2 jours · Participants : 8 à 30 personnes</div>
+      </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-orga" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-orga-title">
+    <button type="button" class="modal-close" aria-label="Fermer">✕</button>
+    <h3 id="modal-orga-title" data-fr="Organisation du travail" data-en="Work Organisation">Organisation du travail</h3>
+    <p class="modal-sub" data-fr="Des modes de fonctionnement plus fluides, plus clairs, plus efficaces — 4 formations." data-en="Smoother, clearer, more effective ways of working — 4 training courses.">Des modes de fonctionnement plus fluides, plus clairs, plus efficaces — 4 formations.</p>
+      <div class="fiche">
+        <h4 data-fr="Réunions efficaces &amp; Facilitation" data-en="Effective Meetings &amp; Facilitation">Réunions efficaces &amp; Facilitation</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="Moins de réunions subies, plus de décisions actées." data-en="Fewer endured meetings, more decisions made.">Moins de réunions subies, plus de décisions actées.</li>
+          <li data-fr="Des managers outillés pour préparer et animer leurs réunions." data-en="Managers equipped to prepare and run their meetings.">Des managers outillés pour préparer et animer leurs réunions.</li>
+          <li data-fr="Des formats de réunion adaptés à chaque besoin." data-en="Meeting formats adapted to each need.">Des formats de réunion adaptés à chaque besoin.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Ateliers de facilitation en conditions réelles : chaque participant anime, reçoit du feedback et repart avec sa boîte à outils." data-en="Facilitation workshops in real conditions: each participant facilitates, gets feedback and leaves with a toolbox.">Ateliers de facilitation en conditions réelles : chaque participant anime, reçoit du feedback et repart avec sa boîte à outils.</p>
+        <div class="fmeta" data-fr="Durée : 1 jour · Participants : 8 à 20 personnes" data-en="Duration: 1 day · Participants: 8 to 20 people">Durée : 1 jour · Participants : 8 à 20 personnes</div>
+      </div>
+      <div class="fiche">
+        <h4 data-fr="Rôles &amp; Responsabilités" data-en="Roles &amp; Responsibilities">Rôles &amp; Responsabilités</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="« Qui fait quoi » et « qui décide quoi » clarifiés." data-en="“Who does what” and “who decides what” clarified.">« Qui fait quoi » et « qui décide quoi » clarifiés.</li>
+          <li data-fr="Des zones de friction identifiées et traitées." data-en="Friction zones identified and addressed.">Des zones de friction identifiées et traitées.</li>
+          <li data-fr="Plus d'autonomie dans les décisions du quotidien." data-en="More autonomy in day-to-day decisions.">Plus d'autonomie dans les décisions du quotidien.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Cartographie collective des rôles réels (et non théoriques), clarification des droits de décision et engagements mutuels." data-en="Collective mapping of real (not theoretical) roles, clarified decision rights and mutual commitments.">Cartographie collective des rôles réels (et non théoriques), clarification des droits de décision et engagements mutuels.</p>
+        <div class="fmeta" data-fr="Durée : 1 jour · Participants : Équipes &amp; managers" data-en="Duration: 1 day · Participants: Teams &amp; managers">Durée : 1 jour · Participants : Équipes &amp; managers</div>
+      </div>
+      <div class="fiche">
+        <h4 data-fr="Rituels d'équipe &amp; Communication" data-en="Team Rituals &amp; Communication">Rituels d'équipe &amp; Communication</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="Un rythme de rituels adapté à l'équipe : points, revues, rétrospectives." data-en="A rhythm of rituals adapted to the team: check-ins, reviews, retrospectives.">Un rythme de rituels adapté à l'équipe : points, revues, rétrospectives.</li>
+          <li data-fr="Des règles de communication partagées." data-en="Shared communication rules.">Des règles de communication partagées.</li>
+          <li data-fr="Une information qui circule mieux, à tous les niveaux." data-en="Information that flows better, at every level.">Une information qui circule mieux, à tous les niveaux.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Audit express des rituels existants, co-conception du nouveau rythme et test immédiat d'une rétrospective." data-en="Express audit of existing rituals, co-design of the new rhythm and an immediate retrospective test.">Audit express des rituels existants, co-conception du nouveau rythme et test immédiat d'une rétrospective.</p>
+        <div class="fmeta" data-fr="Durée : 1 jour · Participants : 8 à 25 personnes" data-en="Duration: 1 day · Participants: 8 to 25 people">Durée : 1 jour · Participants : 8 à 25 personnes</div>
+      </div>
+      <div class="fiche">
+        <h4 data-fr="Conduite du changement &amp; Résilience" data-en="Change Management &amp; Resilience">Conduite du changement &amp; Résilience</h4>
+        <div class="flab" data-fr="Résultats attendus" data-en="Expected outcomes">Résultats attendus</div>
+        <ul>
+          <li data-fr="Les résistances comprises et adressées." data-en="Resistance understood and addressed.">Les résistances comprises et adressées.</li>
+          <li data-fr="Des relais internes identifiés et mobilisés." data-en="Internal champions identified and mobilised.">Des relais internes identifiés et mobilisés.</li>
+          <li data-fr="Les nouveaux comportements ancrés dans la durée." data-en="New behaviours anchored over time.">Les nouveaux comportements ancrés dans la durée.</li>
+        </ul>
+        <div class="flab" data-fr="Approche" data-en="Approach">Approche</div>
+        <p data-fr="Dispositif sur mesure combinant ateliers, accompagnement des relais internes et points de suivi jusqu'à l'ancrage." data-en="Tailored programme combining workshops, support for internal champions and follow-up until change sticks.">Dispositif sur mesure combinant ateliers, accompagnement des relais internes et points de suivi jusqu'à l'ancrage.</p>
+        <div class="fmeta" data-fr="Durée : Sur mesure · Participants : 10 à 30 personnes" data-en="Duration: Tailored · Participants: 10 to 30 people">Durée : Sur mesure · Participants : 10 à 30 personnes</div>
+      </div>
+  </div>
+</div>
 
 <!-- FLOATING CTA (desktop) -->
 <a href="#contact" class="float-cta" id="float-cta" aria-label="Contactez-moi">
