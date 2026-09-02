@@ -610,8 +610,8 @@
 
     <form id="catalog-form" class="catalog-form">
       <div class="cf-field">
-        <label for="cf-name" data-fr="1. Votre nom et votre entreprise" data-en="1. Your name and company">1. Votre nom et votre entreprise</label>
-        <input id="cf-name" name="name" type="text" autocomplete="name" required>
+        <label for="cf-name" data-fr="1. Votre entreprise (+ site internet si existant)" data-en="1. Your company (+ website if any)">1. Votre entreprise (+ site internet si existant)</label>
+        <input id="cf-name" name="company" type="text" autocomplete="organization" required>
       </div>
       <div class="cf-field">
         <label for="cf-email" data-fr="2. Votre adresse email" data-en="2. Your email address">2. Votre adresse email</label>
@@ -788,7 +788,7 @@ if (catForm && catThanks) {
     const email = document.getElementById('cf-email').value.trim();
     const interest = document.getElementById('cf-interest').value;
     const subject = encodeURIComponent('Demande de catalogue de formations');
-    const body = encodeURIComponent('Nom / entreprise : ' + name + '\nEmail : ' + email + '\nAxe qui intéresse le plus : ' + interest);
+    const body = encodeURIComponent('Entreprise / site : ' + name + '\nEmail : ' + email + '\nAxe qui intéresse le plus : ' + interest);
     catThanks.hidden = false;
     window.location.href = 'mailto:hello@levelup.mu?subject=' + subject + '&body=' + body;
   });
