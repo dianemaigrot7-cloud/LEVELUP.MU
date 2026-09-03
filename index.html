@@ -846,9 +846,11 @@ function setLang(lang) {
 
 // Catalogue de formations — formulaire d'engagement
 const catForm = document.getElementById('catalog-form');
-const catThanks = document.getElementById('modal-thanks');
-const openThanks = () => { catThanks.hidden = false; document.body.style.overflow = 'hidden'; };
-if (catForm && catThanks) {
+const openThanks = () => {
+  const m = document.getElementById('modal-thanks');
+  if (m) { m.hidden = false; document.body.style.overflow = 'hidden'; }
+};
+if (catForm) {
   catForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!catForm.reportValidity()) return;
@@ -1169,7 +1171,6 @@ if ((floatCta || stickyBar) && heroEl) {
     <h3 id="modal-thanks-title" data-fr="Merci !" data-en="Thank you!">Merci !</h3>
     <p class="modal-sub" style="margin-bottom:24px" data-fr="Votre demande est bien partie. Votre catalogue de formations est prêt :" data-en="Your request has been sent. Your training catalogue is ready:">Votre demande est bien partie. Votre catalogue de formations est prêt :</p>
     <a href="catalogue-formations-levelup.pdf" download="Catalogue-Formations-LevelUp.pdf" class="btn btn-primary" style="justify-content:center;width:100%;font-size:16px" data-fr="Télécharger le catalogue (PDF)" data-en="Download the catalogue (PDF)">Télécharger le catalogue (PDF)</a>
-    <p style="margin-top:16px;font-size:13px;color:var(--mute)" data-fr="Nous revenons vers vous très vite pour la suite." data-en="We will get back to you very soon.">Nous revenons vers vous très vite pour la suite.</p>
   </div>
 </div>
 
