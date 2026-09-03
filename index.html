@@ -23,7 +23,7 @@
 <link rel="alternate" hreflang="fr" href="https://levelup.mu/?lang=fr" />
 <link rel="alternate" hreflang="en" href="https://levelup.mu/?lang=en" />
 <link rel="alternate" hreflang="x-default" href="https://levelup.mu/" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://api.web3forms.com; frame-ancestors 'none';">
 <meta http-equiv="X-Frame-Options" content="DENY">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -648,8 +648,9 @@
           <option value="Les trois" data-fr="Les trois !" data-en="All three!">Les trois !</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary"><span data-fr="Recevoir le catalogue" data-en="Get the catalogue">Recevoir le catalogue</span></button>
-      <p class="cf-note" data-fr="Votre demande nous est transmise par email — le catalogue vous sera envoyé en retour." data-en="Your request is sent to us by email — the catalogue will be sent back to you.">Votre demande nous est transmise par email — le catalogue vous sera envoyé en retour.</p>
+      <input type="checkbox" name="botcheck" tabindex="-1" style="display:none" aria-hidden="true">
+      <button type="submit" class="btn btn-primary" id="cf-submit"><span data-fr="Recevoir le catalogue" data-en="Get the catalogue">Recevoir le catalogue</span></button>
+      <p class="cf-note" data-fr="Votre demande nous est envoyée directement — le catalogue vous sera transmis par email en retour." data-en="Your request is sent to us directly — the catalogue will be emailed back to you.">Votre demande nous est envoyée directement — le catalogue vous sera transmis par email en retour.</p>
     </form>
 
     <p id="catalog-thanks" class="cf-note" hidden style="font-size:15px;color:var(--ink);font-weight:600" data-fr="Merci ! Votre demande est bien partie — vous recevrez notre catalogue de formations par email très rapidement." data-en="Thank you! Your request has been sent — you will receive our training catalogue by email very soon.">Merci ! Votre demande est bien partie — vous recevrez notre catalogue de formations par email très rapidement.</p>
@@ -847,17 +848,43 @@ function setLang(lang) {
 const catForm = document.getElementById('catalog-form');
 const catThanks = document.getElementById('catalog-thanks');
 if (catForm && catThanks) {
-  catForm.addEventListener('submit', (e) => {
+  catForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!catForm.reportValidity()) return;
     const fullname = document.getElementById('cf-fullname').value.trim();
     const company = document.getElementById('cf-name').value.trim();
     const email = document.getElementById('cf-email').value.trim();
     const interest = document.getElementById('cf-interest').value;
-    const subject = encodeURIComponent('Demande de catalogue de formations');
-    const body = encodeURIComponent('Nom et prénom : ' + fullname + '\nEntreprise / site : ' + company + '\nEmail : ' + email + '\nAxe qui intéresse le plus : ' + interest);
-    catThanks.hidden = false;
-    window.location.href = 'mailto:contact@levelup.mu?subject=' + subject + '&body=' + body;
+    const btn = document.getElementById('cf-submit');
+    btn.disabled = true; btn.style.opacity = '.6';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'ad1ddbb8-73ca-4eb4-94ed-57408b31f717',
+          subject: 'Demande de catalogue de formations — ' + fullname,
+          from_name: 'levelup.mu',
+          'Nom et prénom': fullname,
+          'Entreprise / site': company,
+          'Email': email,
+          'Axe qui intéresse le plus': interest,
+          botcheck: catForm.querySelector('[name="botcheck"]').checked
+        })
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || 'send failed');
+      catThanks.hidden = false;
+      catForm.reset();
+    } catch (err) {
+      // repli : ouvrir le logiciel email du visiteur
+      const subject = encodeURIComponent('Demande de catalogue de formations');
+      const body = encodeURIComponent('Nom et prénom : ' + fullname + '\nEntreprise / site : ' + company + '\nEmail : ' + email + '\nAxe qui intéresse le plus : ' + interest);
+      catThanks.hidden = false;
+      window.location.href = 'mailto:contact@levelup.mu?subject=' + subject + '&body=' + body;
+    } finally {
+      btn.disabled = false; btn.style.opacity = '';
+    }
   });
 }
 
