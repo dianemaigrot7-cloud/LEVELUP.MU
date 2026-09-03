@@ -83,7 +83,9 @@
   .hero .grid{display:grid;grid-template-columns:minmax(0,1fr) 460px;gap:64px;align-items:start}
   .hero h1{font-family:"Manrope",ui-sans-serif,system-ui,-apple-system,sans-serif;font-size:clamp(32px,3.6vw,50px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;color:var(--ink);text-wrap:balance}
   .hero h1 em{font-style:normal;color:var(--magenta);font-weight:800}
-  .hero .lede{margin-top:20px;font-size:18px;line-height:1.55;color:#3a3a3a;max-width:560px}
+  .hero .lede-row{margin-top:20px}
+  .hero .lede{font-size:18px;line-height:1.55;color:#3a3a3a;max-width:560px}
+  .hero .hv-mobile{display:none}
   .hero .ctas{margin-top:28px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
   .hero .ctas .meta{margin-left:8px;font-size:13px;color:var(--mute);display:flex;align-items:center;gap:8px;white-space:nowrap}
   .hero .ctas .meta::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--magenta)}
@@ -379,15 +381,17 @@
     .lang-toggle{margin-left:auto}
     nav.top .links{top:60px}
 
-    /* hero mobile — texte, CTA puis photo */
+    /* hero mobile — photo à côté de l'accroche */
     .hero{padding:44px 0 36px}
-    .hero .grid{gap:28px}
+    .hero .grid{gap:0}
     .hero h1{font-size:clamp(34px,9vw,48px);letter-spacing:-2px}
-    .hero .lede{font-size:16px}
+    .hero .lede-row{display:flex;gap:14px;align-items:stretch;margin-top:18px}
+    .hero .lede{font-size:15px;flex:1;margin:0}
+    .hero .hv-mobile{display:block;width:42%;min-height:160px;object-fit:cover;object-position:center;border-radius:16px}
     .hero .ctas{flex-direction:column;align-items:stretch;gap:10px}
     .hero .ctas .btn{justify-content:center;width:100%}
     .hero .ctas .meta{margin-left:0;justify-content:center}
-    .hero-visual{display:block;height:300px;border-radius:20px}
+    .hero-visual{display:none}
 
     /* section heads */
     .section-head{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:32px}
@@ -495,7 +499,10 @@
     <div>
       <div class="eyebrow" style="margin-bottom:18px" data-fr="ATELIERS DE TRAVAIL · SESSIONS D'ÉCHANGES · COACHING PERSONNALISÉ" data-en="WORKSHOPS · DISCUSSION SESSIONS · PERSONALISED COACHING">ATELIERS DE TRAVAIL · SESSIONS D'ÉCHANGES · COACHING PERSONNALISÉ</div>
       <h1 data-fr="Je vous accompagne vers une <em>transformation positive et durable.</em>" data-en="I guide you toward <em>positive, lasting transformation.</em>">Je vous accompagne vers une <em>transformation positive et durable.</em></h1>
-      <p class="lede" data-fr="Offrez-vous, ainsi qu'à vos équipes, les outils et le support nécessaires pour devenir des acteurs engagés de votre organisation et de sa performance." data-en="Give yourself and your teams the tools and support needed to become engaged players in your organization and its performance.">Offrez-vous, ainsi qu'à vos équipes, les outils et le support nécessaires pour devenir des acteurs engagés de votre organisation et de sa performance.</p>
+      <div class="lede-row">
+        <p class="lede" data-fr="Offrez-vous, ainsi qu'à vos équipes, les outils et le support nécessaires pour devenir des acteurs engagés de votre organisation et de sa performance." data-en="Give yourself and your teams the tools and support needed to become engaged players in your organization and its performance.">Offrez-vous, ainsi qu'à vos équipes, les outils et le support nécessaires pour devenir des acteurs engagés de votre organisation et de sa performance.</p>
+        <img class="hv-mobile" src="hero-create.jpg" alt="Create Change — LEVELUP" loading="lazy" decoding="async" />
+      </div>
       <div class="ctas">
         <a href="#contact" class="btn btn-primary" data-fr="Contactez-moi !" data-en="Contact me!">Contactez-moi !</a>
       </div>
