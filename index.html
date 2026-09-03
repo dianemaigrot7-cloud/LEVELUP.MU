@@ -271,7 +271,8 @@
   .float-cta:hover{background:var(--magenta-dk)}
   .float-cta svg{flex:0 0 auto}
   /* STICKY MOBILE BAR */
-  .sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;padding:12px 16px;background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+  .sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;padding:12px 16px;background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s}
+  .sticky-bar.visible{transform:translateY(0)}
   .sticky-bar a{display:block;width:100%;text-align:center;padding:14px;border-radius:999px;background:var(--magenta);color:#fff;font-weight:700;font-size:15px;text-decoration:none}
 
   /* FINAL CTA */
@@ -378,14 +379,15 @@
     .lang-toggle{margin-left:auto}
     nav.top .links{top:60px}
 
-    /* hero — hide visual on mobile, text only */
-    .hero{padding:48px 0 36px}
+    /* hero mobile — texte, CTA puis photo */
+    .hero{padding:44px 0 36px}
+    .hero .grid{gap:28px}
     .hero h1{font-size:clamp(34px,9vw,48px);letter-spacing:-2px}
     .hero .lede{font-size:16px}
     .hero .ctas{flex-direction:column;align-items:stretch;gap:10px}
     .hero .ctas .btn{justify-content:center;width:100%}
     .hero .ctas .meta{margin-left:0;justify-content:center}
-    .hero-visual{display:none}
+    .hero-visual{display:block;height:300px;border-radius:20px}
 
     /* section heads */
     .section-head{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:32px}
@@ -892,10 +894,12 @@ navSections.forEach(s => activeObserver.observe(s));
 
 // Floating CTA — show after hero leaves viewport
 const floatCta = document.getElementById('float-cta');
+const stickyBar = document.getElementById('sticky-bar');
 const heroEl = document.querySelector('header.hero');
-if (floatCta && heroEl) {
+if ((floatCta || stickyBar) && heroEl) {
   const heroObserver = new IntersectionObserver(([entry]) => {
-    floatCta.classList.toggle('visible', !entry.isIntersecting);
+    if (floatCta) floatCta.classList.toggle('visible', !entry.isIntersecting);
+    if (stickyBar) stickyBar.classList.toggle('visible', !entry.isIntersecting);
   }, { threshold: 0 });
   heroObserver.observe(heroEl);
 }
