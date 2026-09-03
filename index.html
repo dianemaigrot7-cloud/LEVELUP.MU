@@ -218,6 +218,7 @@
   .catalog-form .btn{white-space:nowrap}
   .catalog-form .cf-note{grid-column:1/-1;font-size:12px;color:var(--mute);margin:0}
   .catalog[hidden]{display:none}
+  #catalog-thanks[hidden]{display:none}
 
   /* FOUNDER */
   .founder{background:#fff;overflow:hidden;position:relative}
@@ -650,10 +651,13 @@
       </div>
       <input type="checkbox" name="botcheck" tabindex="-1" style="display:none" aria-hidden="true">
       <button type="submit" class="btn btn-primary" id="cf-submit"><span data-fr="Recevoir le catalogue" data-en="Get the catalogue">Recevoir le catalogue</span></button>
-      <p class="cf-note" data-fr="Votre demande nous est envoyée directement — le catalogue vous sera transmis par email en retour." data-en="Your request is sent to us directly — the catalogue will be emailed back to you.">Votre demande nous est envoyée directement — le catalogue vous sera transmis par email en retour.</p>
+      <p class="cf-note" data-fr="Votre demande nous est envoyée directement — et le catalogue se télécharge aussitôt." data-en="Your request is sent to us directly — and the catalogue downloads right away.">Votre demande nous est envoyée directement — et le catalogue se télécharge aussitôt.</p>
     </form>
 
-    <p id="catalog-thanks" class="cf-note" hidden style="font-size:15px;color:var(--ink);font-weight:600" data-fr="Merci ! Votre demande est bien partie — vous recevrez notre catalogue de formations par email très rapidement." data-en="Thank you! Your request has been sent — you will receive our training catalogue by email very soon.">Merci ! Votre demande est bien partie — vous recevrez notre catalogue de formations par email très rapidement.</p>
+    <div id="catalog-thanks" hidden style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px">
+      <p style="font-size:16px;color:var(--ink);font-weight:600" data-fr="Merci ! Votre demande est bien partie — votre catalogue est prêt :" data-en="Thank you! Your request has been sent — your catalogue is ready:">Merci ! Votre demande est bien partie — votre catalogue est prêt :</p>
+      <a href="catalogue-formations-levelup.pdf" download="Catalogue-Formations-LevelUp.pdf" class="btn btn-primary" style="justify-content:center" data-fr="Télécharger le catalogue (PDF)" data-en="Download the catalogue (PDF)">Télécharger le catalogue (PDF)</a>
+    </div>
   </div>
 </section>
 
@@ -876,6 +880,10 @@ if (catForm && catThanks) {
       if (!data.success) throw new Error(data.message || 'send failed');
       catThanks.hidden = false;
       catForm.reset();
+      const dl = document.createElement('a');
+      dl.href = 'catalogue-formations-levelup.pdf';
+      dl.download = 'Catalogue-Formations-LevelUp.pdf';
+      document.body.appendChild(dl); dl.click(); dl.remove();
     } catch (err) {
       // repli : ouvrir le logiciel email du visiteur
       const subject = encodeURIComponent('Demande de catalogue de formations');
