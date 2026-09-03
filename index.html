@@ -218,7 +218,6 @@
   .catalog-form .btn{white-space:nowrap}
   .catalog-form .cf-note{grid-column:1/-1;font-size:12px;color:var(--mute);margin:0}
   .catalog[hidden]{display:none}
-  #catalog-thanks[hidden]{display:none}
 
   /* FOUNDER */
   .founder{background:#fff;overflow:hidden;position:relative}
@@ -654,10 +653,7 @@
       <p class="cf-note" data-fr="Votre demande nous est envoyée directement — et le catalogue se télécharge aussitôt." data-en="Your request is sent to us directly — and the catalogue downloads right away.">Votre demande nous est envoyée directement — et le catalogue se télécharge aussitôt.</p>
     </form>
 
-    <div id="catalog-thanks" hidden style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px">
-      <p style="font-size:16px;color:var(--ink);font-weight:600" data-fr="Merci ! Votre demande est bien partie — votre catalogue est prêt :" data-en="Thank you! Your request has been sent — your catalogue is ready:">Merci ! Votre demande est bien partie — votre catalogue est prêt :</p>
-      <a href="catalogue-formations-levelup.pdf" download="Catalogue-Formations-LevelUp.pdf" class="btn btn-primary" style="justify-content:center" data-fr="Télécharger le catalogue (PDF)" data-en="Download the catalogue (PDF)">Télécharger le catalogue (PDF)</a>
-    </div>
+
   </div>
 </section>
 
@@ -850,7 +846,8 @@ function setLang(lang) {
 
 // Catalogue de formations — formulaire d'engagement
 const catForm = document.getElementById('catalog-form');
-const catThanks = document.getElementById('catalog-thanks');
+const catThanks = document.getElementById('modal-thanks');
+const openThanks = () => { catThanks.hidden = false; document.body.style.overflow = 'hidden'; };
 if (catForm && catThanks) {
   catForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -878,7 +875,7 @@ if (catForm && catThanks) {
       });
       const data = await res.json();
       if (!data.success) throw new Error(data.message || 'send failed');
-      catThanks.hidden = false;
+      openThanks();
       catForm.reset();
       const dl = document.createElement('a');
       dl.href = 'catalogue-formations-levelup.pdf';
@@ -888,7 +885,7 @@ if (catForm && catThanks) {
       // repli : ouvrir le logiciel email du visiteur
       const subject = encodeURIComponent('Demande de catalogue de formations');
       const body = encodeURIComponent('Nom et prénom : ' + fullname + '\nEntreprise / site : ' + company + '\nEmail : ' + email + '\nAxe qui intéresse le plus : ' + interest);
-      catThanks.hidden = false;
+      openThanks();
       window.location.href = 'mailto:contact@levelup.mu?subject=' + subject + '&body=' + body;
     } finally {
       btn.disabled = false; btn.style.opacity = '';
@@ -1162,6 +1159,17 @@ if ((floatCta || stickyBar) && heroEl) {
         <p data-fr="Dispositif sur mesure combinant ateliers, accompagnement des relais internes et points de suivi jusqu'à l'ancrage." data-en="Tailored programme combining workshops, support for internal champions and follow-up until change sticks.">Dispositif sur mesure combinant ateliers, accompagnement des relais internes et points de suivi jusqu'à l'ancrage.</p>
         <div class="fmeta" data-fr="Durée : Sur mesure · Participants : 10 à 30 personnes" data-en="Duration: Tailored · Participants: 10 to 30 people">Durée : Sur mesure · Participants : 10 à 30 personnes</div>
       </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-thanks" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-thanks-title" style="max-width:440px;text-align:center;padding:44px 32px">
+    <button type="button" class="modal-close" aria-label="Fermer">✕</button>
+    <svg style="width:56px;height:56px;margin:0 auto 14px;display:block"><use href="#lvl-solid"/></svg>
+    <h3 id="modal-thanks-title" data-fr="Merci !" data-en="Thank you!">Merci !</h3>
+    <p class="modal-sub" style="margin-bottom:24px" data-fr="Votre demande est bien partie. Votre catalogue de formations est prêt :" data-en="Your request has been sent. Your training catalogue is ready:">Votre demande est bien partie. Votre catalogue de formations est prêt :</p>
+    <a href="catalogue-formations-levelup.pdf" download="Catalogue-Formations-LevelUp.pdf" class="btn btn-primary" style="justify-content:center;width:100%;font-size:16px" data-fr="Télécharger le catalogue (PDF)" data-en="Download the catalogue (PDF)">Télécharger le catalogue (PDF)</a>
+    <p style="margin-top:16px;font-size:13px;color:var(--mute)" data-fr="Nous revenons vers vous très vite pour la suite." data-en="We will get back to you very soon.">Nous revenons vers vous très vite pour la suite.</p>
   </div>
 </div>
 
