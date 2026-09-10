@@ -334,6 +334,17 @@
   /* quote-attr contrast fix */
   .hero-visual .photo-caption p{font-size:15px}
 
+  /* ── FAQ ── */
+  .faq .faq-list{max-width:860px}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq details:first-of-type{border-top:1px solid var(--line)}
+  .faq summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0;font-weight:700;font-size:19px;letter-spacing:-.3px;color:var(--ink)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';flex:0 0 auto;width:30px;height:30px;border-radius:999px;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:400;line-height:1;transition:background .18s,border-color .18s,color .18s}
+  .faq summary:hover::after{background:var(--magenta);border-color:var(--magenta);color:#fff}
+  .faq details[open] summary::after{content:'−';background:var(--magenta);border-color:var(--magenta);color:#fff}
+  .faq details p{margin:0;padding:0 44px 22px 0;max-width:720px;color:#3a3a3a;font-size:16px;line-height:1.65}
+
   /* ── Tablet ── */
   @media (max-width: 980px){
     .hero .grid{grid-template-columns:1fr}
@@ -440,6 +451,10 @@
 
     /* testimonial */
     .testi .card{padding:24px}
+
+    /* faq */
+    .faq summary{font-size:17px;padding:18px 0;gap:14px}
+    .faq details p{font-size:17px;padding:0 0 18px}
 
     /* final cta */
     .final h2{font-size:clamp(32px,9vw,46px);letter-spacing:-1.5px}
@@ -703,6 +718,44 @@
 </section>
 
 
+
+<!-- FAQ -->
+<section class="s faq" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-fr="Questions <em>fréquentes.</em>" data-en="Frequently asked <em>questions.</em>">Questions <em>fréquentes.</em></h2>
+      <p class="side" data-fr="L'essentiel à savoir avant de me contacter." data-en="The essentials before getting in touch.">L'essentiel à savoir avant de me contacter.</p>
+    </div>
+    <div class="faq-list">
+
+      <details>
+        <summary data-fr="Qui est LevelUp&nbsp;?" data-en="Who is LevelUp?">Qui est LevelUp&nbsp;?</summary>
+        <p data-fr="LevelUp est un cabinet de conseil et de formation basé à l'île Maurice, fondé par Diane Maigrot. J'accompagne les dirigeants et leurs équipes vers une transformation positive et durable de leur organisation et de leur performance, sur trois axes&nbsp;: les <strong>ressources humaines</strong>, le <strong>développement produit</strong> et l'<strong>organisation du travail</strong>." data-en="LevelUp is a consulting and training firm based in Mauritius, founded by Diane Maigrot. I support leaders and their teams towards a positive and lasting transformation of their organisation and performance, across three areas: <strong>human resources</strong>, <strong>product development</strong> and <strong>work organisation</strong>.">LevelUp est un cabinet de conseil et de formation basé à l'île Maurice, fondé par Diane Maigrot. J'accompagne les dirigeants et leurs équipes vers une transformation positive et durable de leur organisation et de leur performance, sur trois axes&nbsp;: les <strong>ressources humaines</strong>, le <strong>développement produit</strong> et l'<strong>organisation du travail</strong>.</p>
+      </details>
+
+      <details>
+        <summary data-fr="Quels types d'entreprises accompagnez-vous&nbsp;?" data-en="What kinds of companies do you work with?">Quels types d'entreprises accompagnez-vous&nbsp;?</summary>
+        <p data-fr="Des entreprises et organisations de toutes tailles à l'île Maurice, de la PME au grand groupe, dans des secteurs comme l'hôtellerie, la santé, les services financiers ou le retail. J'interviens sur site partout dans l'île, ainsi qu'à distance." data-en="Companies and organisations of all sizes in Mauritius, from SMEs to large groups, in sectors such as hospitality, healthcare, financial services and retail. I work on site anywhere on the island, as well as remotely.">Des entreprises et organisations de toutes tailles à l'île Maurice, de la PME au grand groupe, dans des secteurs comme l'hôtellerie, la santé, les services financiers ou le retail. J'interviens sur site partout dans l'île, ainsi qu'à distance.</p>
+      </details>
+
+      <details>
+        <summary data-fr="Comment se déroule un accompagnement&nbsp;?" data-en="What does an engagement look like?">Comment se déroule un accompagnement&nbsp;?</summary>
+        <p data-fr="La méthode LevelUp se déroule en quatre temps&nbsp;: un <strong>diagnostic</strong> (entretiens individuels et sondage d'équipe), un <strong>atelier</strong> collectif co-construit avec votre équipe, une phase d'<strong>activation</strong> où les engagements deviennent des rituels concrets, puis un <strong>suivi</strong> avec mesure d'impact à 6 et 12 mois. Les formats mêlent sessions de réflexion, ateliers pratiques et ludiques, et mise en application au sein de l'entreprise." data-en="The LevelUp method unfolds in four stages: a <strong>diagnosis</strong> (individual interviews and a team survey), a collective <strong>workshop</strong> co-designed with your team, an <strong>activation</strong> phase where commitments become concrete habits, then a <strong>follow-up</strong> with impact measurement at 6 and 12 months. Formats combine reflection sessions, hands-on and playful workshops, and real application inside the company.">La méthode LevelUp se déroule en quatre temps&nbsp;: un <strong>diagnostic</strong> (entretiens individuels et sondage d'équipe), un <strong>atelier</strong> collectif co-construit avec votre équipe, une phase d'<strong>activation</strong> où les engagements deviennent des rituels concrets, puis un <strong>suivi</strong> avec mesure d'impact à 6 et 12 mois. Les formats mêlent sessions de réflexion, ateliers pratiques et ludiques, et mise en application au sein de l'entreprise.</p>
+      </details>
+
+      <details>
+        <summary data-fr="Proposez-vous des formations&nbsp;?" data-en="Do you offer training courses?">Proposez-vous des formations&nbsp;?</summary>
+        <p data-fr="Oui&nbsp;: un catalogue de <strong>12 formations</strong> déclinées sur les trois axes — ressources humaines, développement produit et organisation du travail. Vous pouvez le recevoir immédiatement en remplissant le formulaire de demande de catalogue sur cette page." data-en="Yes: a catalogue of <strong>12 training courses</strong> across the three areas — human resources, product development and work organisation. You can receive it immediately by filling in the catalogue request form on this page.">Oui&nbsp;: un catalogue de <strong>12 formations</strong> déclinées sur les trois axes — ressources humaines, développement produit et organisation du travail. Vous pouvez le recevoir immédiatement en remplissant le formulaire de demande de catalogue sur cette page.</p>
+      </details>
+
+      <details>
+        <summary data-fr="Comment vous contacter&nbsp;?" data-en="How can I get in touch?">Comment vous contacter&nbsp;?</summary>
+        <p data-fr="Le plus simple est de réserver un échange de 30 minutes, gratuit et sans engagement, via le bouton «&nbsp;Prendre rendez-vous&nbsp;». Vous pouvez aussi écrire à contact@levelup.mu ou sur WhatsApp au +230 5252 8910. Réponse sous 24h ouvrées." data-en="The easiest way is to book a free, no-commitment 30-minute call via the “Book a meeting” button. You can also write to contact@levelup.mu or on WhatsApp at +230 5252 8910. Response within 24 business hours.">Le plus simple est de réserver un échange de 30 minutes, gratuit et sans engagement, via le bouton «&nbsp;Prendre rendez-vous&nbsp;». Vous pouvez aussi écrire à contact@levelup.mu ou sur WhatsApp au +230 5252 8910. Réponse sous 24h ouvrées.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
 
 <!-- TESTIMONIAL -->
 <section class="testi" id="cas-clients" hidden style="display:none">
@@ -980,7 +1033,8 @@ if ((floatCta || stickyBar) && heroEl) {
   "@type": "ProfessionalService",
   "name": "LEVELUP",
   "url": "https://levelup.mu",
-  "description": "Cabinet de consulting en transformation par la formation. Design thinking, innovation produit augmentée par l'IA, coaching d'équipes.",
+  "description": "LevelUp est un cabinet de conseil et de formation basé à l'île Maurice, fondé par Diane Maigrot. Il accompagne les dirigeants et leurs équipes vers une transformation positive et durable, sur trois axes : ressources humaines, développement produit et organisation du travail.",
+  "slogan": "Transformation positive et durable",
   "telephone": "+23052528910",
   "email": "contact@levelup.mu",
   "address": {
@@ -995,7 +1049,50 @@ if ((floatCta || stickyBar) && heroEl) {
     "sameAs": "https://www.linkedin.com/in/diane-maigrot-581799159/"
   },
   "areaServed": ["MU", "FR", "RE"],
-  "knowsAbout": ["Design Thinking", "Innovation produit", "Intelligence Artificielle", "Coaching d'équipes"]
+  "knowsAbout": ["Ressources humaines", "Développement produit", "Organisation du travail", "Design Thinking", "Innovation produit", "Intelligence Artificielle", "Coaching d'équipes"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Offres LevelUp",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ressources humaines", "description": "Fidéliser et faire grandir les talents : ateliers, coaching et formations pour des équipes engagées."}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Développement produit", "description": "De l'idée au lancement : design thinking et innovation produit, augmentés par l'IA."}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Organisation du travail", "description": "Des modes de fonctionnement et des rituels qui rendent le travail plus fluide et plus efficace."}}
+    ]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Qui est LevelUp ?",
+      "acceptedAnswer": {"@type": "Answer", "text": "LevelUp est un cabinet de conseil et de formation basé à l'île Maurice, fondé par Diane Maigrot. Il accompagne les dirigeants et leurs équipes vers une transformation positive et durable de leur organisation et de leur performance, sur trois axes : les ressources humaines, le développement produit et l'organisation du travail."}
+    },
+    {
+      "@type": "Question",
+      "name": "Quels types d'entreprises LevelUp accompagne-t-il ?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Des entreprises et organisations de toutes tailles à l'île Maurice, de la PME au grand groupe, dans des secteurs comme l'hôtellerie, la santé, les services financiers ou le retail. Les interventions se font sur site partout dans l'île, ainsi qu'à distance."}
+    },
+    {
+      "@type": "Question",
+      "name": "Comment se déroule un accompagnement LevelUp ?",
+      "acceptedAnswer": {"@type": "Answer", "text": "La méthode LevelUp se déroule en quatre temps : un diagnostic (entretiens individuels et sondage d'équipe), un atelier collectif co-construit avec l'équipe, une phase d'activation où les engagements deviennent des rituels concrets, puis un suivi avec mesure d'impact à 6 et 12 mois. Les formats mêlent sessions de réflexion, ateliers pratiques et ludiques, et mise en application au sein de l'entreprise."}
+    },
+    {
+      "@type": "Question",
+      "name": "LevelUp propose-t-il des formations ?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Oui : un catalogue de 12 formations déclinées sur les trois axes — ressources humaines, développement produit et organisation du travail — disponible via le formulaire de demande de catalogue sur levelup.mu."}
+    },
+    {
+      "@type": "Question",
+      "name": "Comment contacter LevelUp ?",
+      "acceptedAnswer": {"@type": "Answer", "text": "En réservant un échange gratuit de 30 minutes via le bouton « Prendre rendez-vous » sur levelup.mu, par email à contact@levelup.mu ou sur WhatsApp au +230 5252 8910."}
+    }
+  ]
 }
 </script>
 
